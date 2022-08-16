@@ -1,6 +1,6 @@
 {
-  "name": "vue-fuzzy-next",
-  "version": "0.0.11",
+  "name": "@yh/fuzzy-next",
+  "version": "0.0.1",
   "description": "On the background management system Fuzzy Provides one - stop add, delete, change and check configurable component",
   "keywords": [
     "npm",
