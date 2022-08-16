@@ -39,7 +39,7 @@
     "build:layout": "LIB_NAME=layoutProvider vite build && tsc -p ./tsconfig.build.json",
     "preview": "vite preview",
     "test": "vitest",
-    "pub": "npm version patch && npm publish --access public --force"
+    "pub": "npm run build && npm version patch && npm publish --access public --force"
   },
   "peerdependencies": {
     "vue": "^3.2.25"
