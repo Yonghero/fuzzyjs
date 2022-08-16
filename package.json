@@ -1,6 +1,6 @@
 {
   "name": "@fanta/vue-fuzzy",
-  "version": "0.0.2",
+  "version": "0.0.8",
   "description": "On the background management system Fuzzy Provides one - stop add, delete, change and check configurable component",
   "keywords": [
     "npm",
