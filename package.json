@@ -1,5 +1,5 @@
 {
-  "name": "@goal/vue-fuzzy",
+  "name": "@fanta/vue-fuzzy",
   "version": "0.0.22",
   "description": "On the background management system Fuzzy Provides one - stop add, delete, change and check configurable component",
   "keywords": [
@@ -11,11 +11,11 @@
     "component"
   ],
   "license": "MIT",
-  "repository": "https://github.com/Yonghero/vue-fuzzy.git",
+  "repository": "https://github.com/Yonghero/fuzzyjs.git",
   "files": [
     "lib"
   ],
-  "homepage": "https://github.com/Yonghero/vue-fuzzy.git",
+  "homepage": "https://github.com/Yonghero/fuzzyjs.git",
   "exports": {
     ".": {
       "import": "./lib/fuzzy-core.es.js",
