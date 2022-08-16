@@ -1,6 +1,6 @@
 {
   "name": "@yh/fuzzy",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "On the background management system Fuzzy Provides one - stop add, delete, change and check configurable component",
   "keywords": [
     "npm",
