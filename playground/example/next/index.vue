@@ -1,8 +1,15 @@
-<script  lang="tsx" setup>
+<script lang="tsx" setup>
 import { mergeFuzzyOptions } from '../../../fuzzy-next/utils'
-import { ElementUIRenderer } from '../../../fuzzy-next/impl-renderer/element-ui-renderer'
-import { ArcoUIRenderer } from '../../../fuzzy-next/impl-renderer/arco-ui-renderer'
-import { CreateComponent, CreateComponent2, UpdateComponent, UpdateComponent2, handlers, options, options2 } from './template'
+import { ArcoUIRenderer, ElementUIRenderer } from '../../../fuzzy-next/impl-renderer'
+import {
+  CreateComponent,
+  CreateComponent2,
+  UpdateComponent,
+  UpdateComponent2,
+  handlers,
+  options,
+  options2,
+} from './template'
 
 const _options = mergeFuzzyOptions(options, options2)
 const modalRenderer = mergeFuzzyOptions(
@@ -17,6 +24,11 @@ const onChange = () => {
   isArco.value = !isArco.value
 }
 
+const extra = [
+  <button key="1">add</button>,
+  <button key="2">decrease</button>,
+]
+
 // :modal-renderer="modalRenderer"
 </script>
 
@@ -28,5 +40,6 @@ const onChange = () => {
     :options="_options"
     :renderer="uiRenderer"
     :handlers="handlers"
+    :extra-renderer="extra"
   />
 </template>

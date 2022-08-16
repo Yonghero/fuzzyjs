@@ -28,6 +28,10 @@ export interface OptionsConfiguration<T> {
    * 对话框样式配置
    */
   modalStyle?: ModalStyleProps
+  /**
+   * 表格是否展示多选框
+   */
+  selection?: boolean
 }
 
 export interface ModalStyleProps {
@@ -62,15 +66,15 @@ export interface RendererQueryProps {
   value: string
 }
 
-export interface RendererTableProps{
+export interface RendererTableProps {
   key: string
   value: string
 }
+
 /**
  * 每个字段对应的相关信息
  */
-export interface Templates extends
-  BaseTemplate,
+export interface Templates extends BaseTemplate,
   TableTemplate,
   FormTemplate,
   FilterTemplate {
@@ -86,13 +90,14 @@ export interface Templates extends
 /**
  * 表格模板
  */
-export interface TableTemplate extends BaseTemplate{
+export interface TableTemplate extends BaseTemplate {
   /**
    * 在表格中自定义展示该字段
    * 按钮的形式？
    * 给字段带点颜色？
    */
   render?(param: any): any
+
   /**
    * 在表格中多宽
    */

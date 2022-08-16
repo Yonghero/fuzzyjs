@@ -3,17 +3,18 @@ import type { VNode } from 'vue'
 import type { Feature, TableRenderProps, TableRenderer, TableTemplate, Templates } from '../../types'
 
 export class ElementUITable implements TableRenderer {
-  render({ templates, feature }: TableRenderProps) {
+  render({ templates, feature, selection }: TableRenderProps) {
     const slots = {
       empty: () => (<ElEmpty/>),
     }
-    const TableColumn = this.getColumns(templates, feature)
+    const TableColumn = this.getColumns(templates, feature, selection)
 
     return (props) => {
       return (<ElTable
         v-slots={slots}
         data={props.data.value}
         v-loading={props.loading.value}
+        onSelection-Change={props.onSelectionChange}
       >
         {
           TableColumn
@@ -23,11 +24,11 @@ export class ElementUITable implements TableRenderer {
     }
   }
 
-  getColumns(templates: Templates[], feature: Feature | undefined): VNode[] {
-    const filedColumns = templates
+  getColumns(templates: Templates[], feature: Feature | undefined, selection = false): VNode[] {
+    let filedColumns = templates
       .filter(item => !(
         (item.visible && item.visible.table && typeof item.visible.table === 'boolean' && !item.visible.table && item.label)
-          || (item.visible && typeof item.visible.table === 'function' && item.visible.table(item) && item.label)
+        || (item.visible && typeof item.visible.table === 'function' && item.visible.table(item) && item.label)
       ))
       .filter(item => item.label)
       .map((item) => {
@@ -48,7 +49,7 @@ export class ElementUITable implements TableRenderer {
 
     if (this.shouldFeaturesRender(feature)) {
       const operatorItem = templates.find(t => t.value === 'fuzzy-table-operate') as TableTemplate
-      return [...filedColumns,
+      filedColumns = [...filedColumns,
         <ElTableColumn
           v-slots={{
             default: scope => (this._getColumn(operatorItem, scope)),
@@ -58,6 +59,13 @@ export class ElementUITable implements TableRenderer {
           prop="操作"
           align="center"
         />]
+    }
+
+    if (selection) {
+      filedColumns = [
+        <ElTableColumn key={'0'} type="selection" width={55}/>,
+        ...filedColumns,
+      ]
     }
 
     return filedColumns

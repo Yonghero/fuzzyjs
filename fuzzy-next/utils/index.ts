@@ -7,6 +7,17 @@ export function mergeFuzzyOptions(...rest) {
   return rest
 }
 
+export function transferToArray(value, deep = false) {
+  if (deep)
+    return [value]
+
+  if (Array.isArray(value) || Array.isArray(value[0]))
+    return value
+  if (Array.isArray(value))
+    return value
+  return [value]
+}
+
 /**
  * 根据renderer重新映射自定组件
  * @param templates

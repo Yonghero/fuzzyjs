@@ -3,8 +3,8 @@ import { createApp } from 'vue'
 import ElementPlus from 'element-plus'
 import ArcoVue from '@arco-design/web-vue'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
-import { DefaultLayoutProvider } from '../fuzzy-next/impl-layout-provider/default-layout-provider'
-import { ArcoUIRenderer } from '../fuzzy-next/impl-renderer/arco-ui-renderer'
+import { DefaultLayoutProvider } from '../fuzzy-next/impl-layout-provider'
+import { ArcoUIRenderer } from '../fuzzy-next/impl-renderer'
 import { DefaultRequestProvider } from '../fuzzy-next/impl-request-provider/default-request-provider'
 import { createFuzzy } from '../fuzzy-next/runtime-core'
 import App from './App.vue'
@@ -16,7 +16,7 @@ import '@arco-design/web-vue/dist/arco.css'
 import '../fuzzy-next/utils/index'
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:3301/api', // api的base_url
+  baseURL: 'http://localhost:3300/api', // api的base_url
   timeout: 300000, // 请求超时时间
 })
 

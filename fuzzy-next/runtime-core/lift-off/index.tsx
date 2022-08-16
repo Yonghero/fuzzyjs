@@ -1,6 +1,12 @@
-import type { LayoutProviderRenderer, ModalRenderer, OptionsConfiguration, Renderer } from '../../types'
-import type { FuzzyNextHandlers } from '../../types/handler'
-import type { RequestProvider } from '../../types/requestProvider'
+import type {
+  ExtraRenderer,
+  FuzzyNextHandlers,
+  LayoutProviderRenderer,
+  ModalRenderer,
+  OptionsConfiguration,
+  Renderer,
+  RequestProvider,
+} from '../../types'
 import { getTemplatesWithFeature } from '../../utils'
 import { createEventBus } from './createEventBus'
 import { createDataProvide } from './createDataProvide'
@@ -15,6 +21,7 @@ import { createModalRenderer } from './createModalRenderer'
 export function LiftOff(
   renderer: Renderer,
   _modalRenderer: ModalRenderer,
+  extraRenderer: ExtraRenderer,
   handlers: FuzzyNextHandlers,
   options: OptionsConfiguration<any>,
   mock: any[],
@@ -71,5 +78,6 @@ export function LiftOff(
     Page,
     Dialog,
     CreateButton,
+    ExtraRenderer: extraRenderer,
   }
 }

@@ -1,6 +1,12 @@
-import type { ModalRenderer, OptionsConfiguration, Renderer, TableTemplate, Templates } from '../../types'
-import type { FuzzyNextHandlers } from '../../types/handler'
-import type { RequestCallback } from '../../types/requestProvider'
+import type {
+  FuzzyNextHandlers,
+  ModalRenderer,
+  OptionsConfiguration,
+  Renderer,
+  RequestCallback,
+  TableTemplate,
+  Templates,
+} from '../../types'
 import { mapTemplatesRenderer } from '../../utils'
 import type { DataProvider } from './createDataProvide'
 
@@ -50,7 +56,8 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
             ? null
             : <renderer.confirm.render type="warning"
               onOk={() => onDelete(scope)}
-              onCancel={() => {}}
+              onCancel={() => {
+              }}
               content={'是否确认删除'}>
               <div class="text-red-500 cursor-pointer">删除</div>
             </renderer.confirm.render>
@@ -63,7 +70,17 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
   const Table = renderer.table.render({
     templates: mapTemplatesRenderer(templates as any, 'table'),
     feature: options.feature,
+    selection: options.selection,
   })
 
-  return <Table data={dataProvider.tableData} loading={dataProvider.tableLoading}/>
+  function onSelectionChange(p) {
+    if (handlers.selectionChange)
+      handlers.selectionChange(p)
+  }
+
+  return <Table
+    data={dataProvider.tableData}
+    loading={dataProvider.tableLoading}
+    onSelectionChange={onSelectionChange}
+  />
 }

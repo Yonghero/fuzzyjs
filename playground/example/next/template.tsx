@@ -1,6 +1,7 @@
 import { ElementUIForm } from '../../../fuzzy-next/impl-renderer/element-ui-renderer/ElementUIForm'
 import type { OptionsConfiguration } from '../../../fuzzy-next/types'
 import type { FuzzyNextHandlers } from '../../../fuzzy-next/types/handler'
+
 export interface CustomTemplate {
   placeholder?: string
 }
@@ -12,6 +13,7 @@ export const options: OptionsConfiguration<CustomTemplate> = {
     update: true,
     delete: true,
   },
+  selection: true,
   template: [
     {
       type: 'input',
@@ -118,7 +120,7 @@ export const CreateComponent2 = defineComponent({
   setup() {
     return () => (
       <div class="w-full h-full flex">
-          create 2
+        create 2
       </div>
     )
   },
@@ -147,6 +149,9 @@ export const handlers: FuzzyNextHandlers = {
   },
   updateConfirm: async() => {
     return true
+  },
+  selectionChange: (selection) => {
+    console.log('selectionChange', selection)
   },
   createConfirm: async() => {
     return true

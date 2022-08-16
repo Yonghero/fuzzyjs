@@ -32,7 +32,7 @@
   },
   "types": "./lib/index.d.ts",
   "scripts": {
-    "dev": "vite --force",
+    "dev": "LIB_NAME=core vite --force",
     "build": "npm run build:core && npm run build:layout && npm run build:renderer",
     "build:core": "LIB_NAME=core vite build && tsc -p ./tsconfig.build.json",
     "build:renderer": "LIB_NAME=renderer vite build && tsc -p ./tsconfig.build.json",

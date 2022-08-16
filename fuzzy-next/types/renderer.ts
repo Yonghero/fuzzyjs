@@ -20,7 +20,7 @@ export interface Renderer {
  * 表格渲染器接口
  */
 export interface TableRenderer {
-  render: (props: TableRenderProps) => (props: { data: Ref<any>; loading: Ref<boolean> }) => VNode
+  render: (props: TableRenderProps) => (props: { data: Ref<any>; loading: Ref<boolean>; onSelectionChange: (p) => any }) => VNode
   getColumns: (templates: Templates[], feature: Feature | undefined) => VNode[]
   shouldFeaturesRender: (feature: Feature | undefined) => boolean
 
@@ -32,6 +32,7 @@ export interface TableRenderer {
 export interface TableRenderProps {
   templates: Templates[]
   feature: Feature | undefined
+  selection?: boolean
 }
 
 /**
@@ -43,7 +44,7 @@ export type FormItemExtra<cmpName extends string, cmp extends Component> = {
 
 export type FormCompProps = Partial<FormTemplate> & { model: any; value: any }
 
-export interface FormRenderer extends FormItemExtra<any, any>{
+export interface FormRenderer extends FormItemExtra<any, any> {
   create: (props: FormRenderProps) => { render: Component | any; model: any; formRef: Ref<any> }
   getModel: (templates: Templates[]) => Record<string, any> | Ref<Record<string, any>>
   getFromItems: (templates: Templates[], model) => VNode[]
@@ -51,7 +52,7 @@ export interface FormRenderer extends FormItemExtra<any, any>{
   input: (props: FormCompProps, context: SetupContext) => VNode
 }
 
-export interface FormRenderProps{
+export interface FormRenderProps {
   templates: Templates[]
   labelPosition?: string
   feature?: Feature | undefined
@@ -79,16 +80,18 @@ export interface ButtonRenderer {
 export interface TabRenderer {
   render: (props: Readonly<TabRenderProps>, context: SetupContext) => VNode
 }
+
 export interface TabRenderProps {
   options: Option[]
   vModel: number
   modelValue?: any
 }
 
-export interface PageRenderer{
+export interface PageRenderer {
   render: (props: Readonly<PageProps>, context: SetupContext) => VNode
 
 }
+
 export interface PageProps {
   total: Ref<number>
   onUpdatePage?: (page: number) => void // vue emit
@@ -98,9 +101,10 @@ export interface PageProps {
  * dialog渲染器接口 (函数式受控组件)
  */
 
-export interface DialogRenderer{
+export interface DialogRenderer {
   render: (props: Readonly<DialogRenderProps>, context: SetupContext) => VNode
 }
+
 export interface DialogRenderProps {
   modelValue?: any
   title: string
@@ -120,6 +124,8 @@ export interface ModalRenderer {
   UpdateComponent: VNode | Element | Component | JSX.Element
   CreateComponent: VNode | Element | Component | JSX.Element
 }
+
+export type ExtraRenderer = Component[] | Element[] | VNode[]
 
 export interface ConfirmRenderProps {
   type: 'warning' | 'error' | 'success' | 'info'

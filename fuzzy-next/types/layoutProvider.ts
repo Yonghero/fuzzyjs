@@ -1,16 +1,18 @@
 import type { SetupContext } from '@vue/runtime-core'
 import type { VNode } from 'vue'
+import type { ExtraRenderer } from './renderer'
 
-export interface LayoutProvider{
+export interface LayoutProvider {
   setup(props: Readonly<LayoutProviderProps>, context: SetupContext): () => VNode | Record<string, any>
+
   render?: (props: Readonly<LayoutProviderProps>) => VNode
 }
 
-export interface LayoutProviderProps{
+export interface LayoutProviderProps {
   renderer: LayoutProviderRenderer
 }
 
-export interface LayoutProviderRenderer{
+export interface LayoutProviderRenderer {
   Table: () => VNode<any>
   FilterButton: VNode<any>
   Filter: VNode<any>
@@ -18,4 +20,5 @@ export interface LayoutProviderRenderer{
   Tab: VNode
   Dialog: VNode
   CreateButton: VNode
+  ExtraRenderer: ExtraRenderer
 }
