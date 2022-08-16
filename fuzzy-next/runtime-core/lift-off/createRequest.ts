@@ -6,7 +6,7 @@ import type { DataProvider } from './createDataProvide'
 /**
  * 创建请求模块
  */
-export function createRequest(options: OptionsConfiguration<any>, request: RequestProvider, handlers: FuzzyNextHandlers, dataProvide: DataProvider): RequestCallback {
+export function createRequest(options: OptionsConfiguration, request: RequestProvider, handlers: FuzzyNextHandlers, dataProvide: DataProvider): RequestCallback {
   const filterParams = ref({})
 
   const getApiOfMode = (mode: keyof Api) => {

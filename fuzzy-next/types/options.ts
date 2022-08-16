@@ -3,7 +3,7 @@ import type { Component, VNode } from 'vue'
 /**
  * fuzzy-next supported options
  */
-export interface OptionsConfiguration<T> {
+export interface OptionsConfiguration {
   /**
    * 页面标题 可传递自定义渲染函数
    * 传递展示
@@ -22,7 +22,7 @@ export interface OptionsConfiguration<T> {
   /**
    * 需要展示的每个字段 可配置每个字段对应的功能
    */
-  template: Templates[] & T
+  template: Templates[]
 
   /**
    * 对话框样式配置
@@ -32,6 +32,14 @@ export interface OptionsConfiguration<T> {
    * 表格是否展示多选框
    */
   selection?: boolean
+  /**
+   * 表格操作栏的宽度
+   */
+  operateWidth?: number
+}
+
+type ExtraProps = {
+  [key in string]: any
 }
 
 export interface ModalStyleProps {
@@ -71,14 +79,7 @@ export interface RendererTableProps {
   value: string
 }
 
-/**
- * 每个字段对应的相关信息
- */
-export interface Templates extends BaseTemplate,
-  TableTemplate,
-  FormTemplate,
-  FilterTemplate {
-
+export interface RendererTemplate {
   renderer?: {
     filter?: (props: RendererQueryProps) => Component | Element | VNode
     table?: (props: RendererTableProps) => Component | Element | VNode
@@ -86,6 +87,11 @@ export interface Templates extends BaseTemplate,
     create?: (props: RendererQueryProps) => Component | Element | VNode
   }
 }
+
+/**
+ * 每个字段对应的相关信息
+ */
+export type Templates = BaseTemplate & TableTemplate & FormTemplate & FilterTemplate & RendererTemplate & ExtraProps
 
 /**
  * 表格模板
@@ -115,7 +121,7 @@ export interface FormTemplate extends BaseTemplate {
   /**
    * 该字段展示的表单类型 输入框？ 下拉框？ 时间选择器？
    */
-  type: FormItem
+  type: FormItem | any
   /**
    * 查询区域该字段展示的默认值
    */
@@ -186,7 +192,7 @@ export interface FilterTemplate extends BaseTemplate {
   filterUnShow?: boolean
 }
 
-export type FormItem = 'input' | 'select' | 'datePicker' | 'dateRangePicker'
+export type FormItem = 'input' | 'select' | 'datePicker' | 'datePickerRange'
 
 export interface Api {
   create: string

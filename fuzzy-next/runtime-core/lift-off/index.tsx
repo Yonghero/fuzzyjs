@@ -23,7 +23,7 @@ export function LiftOff(
   _modalRenderer: ModalRenderer,
   extraRenderer: ExtraRenderer,
   handlers: FuzzyNextHandlers,
-  options: OptionsConfiguration<any>,
+  options: OptionsConfiguration,
   mock: any[],
   request: RequestProvider): Omit<LayoutProviderRenderer, 'Tab'> {
   console.log('----LiftOff----')

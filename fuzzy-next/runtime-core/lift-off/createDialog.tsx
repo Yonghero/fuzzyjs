@@ -4,7 +4,7 @@ import type { RequestCallback } from '../../types/requestProvider'
 import type { DataProvider } from './createDataProvide'
 import type { EventBus } from './createEventBus'
 
-export function createDialog(renderer: Renderer, modalRenderer: ModalRenderer, handlers: FuzzyNextHandlers, requestCallback: RequestCallback, dataProvide: DataProvider, options: OptionsConfiguration<any>, eventBus: EventBus) {
+export function createDialog(renderer: Renderer, modalRenderer: ModalRenderer, handlers: FuzzyNextHandlers, requestCallback: RequestCallback, dataProvide: DataProvider, options: OptionsConfiguration, eventBus: EventBus) {
   async function update() {
     // 确认更新操作 关闭弹窗
     dataProvide.dispatch.setDialog({ visible: false })

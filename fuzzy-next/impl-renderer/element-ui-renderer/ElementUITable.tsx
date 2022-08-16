@@ -58,6 +58,7 @@ export class ElementUITable implements TableRenderer {
           label="操作"
           prop="操作"
           align="center"
+          width={operatorItem.width ? operatorItem.width : ''}
         />]
     }
 

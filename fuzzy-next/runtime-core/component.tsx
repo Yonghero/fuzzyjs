@@ -15,7 +15,7 @@ export function createComponent(globalRenderer: Renderer, globalLayoutProvider: 
   return defineComponent({
     props: {
       options: {
-        type: Object as (PropType<OptionsConfiguration<any>>),
+        type: Object as (PropType<OptionsConfiguration>),
         default: () => ({ template: [] }),
         required: true,
       },

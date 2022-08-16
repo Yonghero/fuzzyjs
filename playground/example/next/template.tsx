@@ -1,12 +1,9 @@
 import { ElementUIForm } from '../../../fuzzy-next/impl-renderer/element-ui-renderer/ElementUIForm'
-import type { OptionsConfiguration } from '../../../fuzzy-next/types'
-import type { FuzzyNextHandlers } from '../../../fuzzy-next/types/handler'
+import type { FuzzyNextHandlers, OptionsConfiguration } from '../../../fuzzy-next/types'
 
-export interface CustomTemplate {
-  placeholder?: string
-}
+export type T = 'date'
 
-export const options: OptionsConfiguration<CustomTemplate> = {
+export const options: OptionsConfiguration = {
   title: '这是tab111',
   api: '/safety/major-hazard',
   feature: {
@@ -15,6 +12,11 @@ export const options: OptionsConfiguration<CustomTemplate> = {
   },
   selection: true,
   template: [
+    {
+      type: 'input',
+      label: '时间',
+      value: 'abc',
+    },
     {
       type: 'input',
       label: '企业名称',
@@ -67,7 +69,7 @@ export const options: OptionsConfiguration<CustomTemplate> = {
   ],
 }
 
-export const options2: OptionsConfiguration<CustomTemplate> = {
+export const options2: OptionsConfiguration = {
   title: '这是tab2',
   api: '/safety/ent/base',
   template: [

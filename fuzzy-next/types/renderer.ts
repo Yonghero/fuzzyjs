@@ -137,3 +137,8 @@ export interface ConfirmRenderProps {
 export interface ConfirmRender {
   render: (props: Readonly<ConfirmRenderProps>, context: SetupContext) => VNode
 }
+
+export interface ExtendFormItem {
+  type: string
+  renderer: (props: FormCompProps) => Component | Element | VNode
+}

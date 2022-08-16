@@ -1,6 +1,4 @@
-import type { LayoutProvider, Renderer } from '../types'
-import type { FuzzyInstall } from '../types/install'
-import type { RequestProvider } from '../types/requestProvider'
+import type { FuzzyInstall, LayoutProvider, Renderer, RequestProvider } from '../types'
 import { createComponent } from './component'
 
 export function createFuzzy(): FuzzyInstall | any {
@@ -21,6 +19,7 @@ export function createFuzzy(): FuzzyInstall | any {
       return component()
     return install
   }
+
   function requestProvider(requestProvider: RequestProvider) {
     implRequestProvider = requestProvider
 

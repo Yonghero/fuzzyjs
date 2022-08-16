@@ -1,4 +1,4 @@
-import type { RequestProvider, Response } from '../../types/requestProvider'
+import type { RequestProvider, Response } from '../../types'
 
 /**
  * 联图请求提供器

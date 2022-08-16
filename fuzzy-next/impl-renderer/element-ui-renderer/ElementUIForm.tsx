@@ -3,6 +3,7 @@ import { ElForm, ElFormItem } from 'element-plus'
 import type { VNode } from 'vue'
 import { reactive, ref } from 'vue'
 import type { FormCompProps, FormItem, FormRenderProps, FormRenderer, Templates } from '../../types'
+import { globalFormItems } from '../../runtime-core'
 
 export class ElementUIForm implements FormRenderer {
   isHorizontal = false
@@ -120,11 +121,16 @@ export class ElementUIForm implements FormRenderer {
   }
 
   _getFormComponent(type: FormItem) {
+    const renderer = globalFormItems.get(type)
+    if (renderer)
+      return renderer
+
     const COMPS_MAP = {
       input: this.input,
       select: this.select,
+      datePick: this.datePick,
     }
-    return COMPS_MAP[type]
+    return type.includes('datePicker') ? COMPS_MAP.datePick : COMPS_MAP[type]
   }
 
   input(props: FormCompProps) {
@@ -152,15 +158,24 @@ export class ElementUIForm implements FormRenderer {
       >
         {
           props.options
-            && props.options.map(item => (
-              <el-option
-                key={item.value}
-                label={item.label}
-                value={item.value}
-              />
-            ))
+          && props.options.map(item => (
+            <el-option
+              key={item.value}
+              label={item.label}
+              value={item.value}
+            />
+          ))
         }
       </el-select>
+    )
+  }
+
+  datePick(props: FormCompProps) {
+    return (
+      <el-date-picker
+        v-model={props.model[props.value]}
+        type={props.type}
+      />
     )
   }
 }

@@ -2,6 +2,7 @@ import type { ModalRenderer, OptionsConfiguration, Renderer, Templates } from '.
 import type { RequestCallback } from '../../types/requestProvider'
 import { getTemplatesWithFeature, mapTemplatesRenderer } from '../../utils'
 import type { EventBus } from './createEventBus'
+
 let _renderer: Renderer
 let _eventBus: EventBus
 let _requestCallback: RequestCallback
@@ -9,7 +10,7 @@ let _requestCallback: RequestCallback
 /**
  * 提供新增、编辑时的弹窗内容
  */
-export function createModalRenderer(renderer: Renderer, options: OptionsConfiguration<any>, modalRenderer: ModalRenderer, requestCallback: RequestCallback, eventBus: EventBus): ModalRenderer {
+export function createModalRenderer(renderer: Renderer, options: OptionsConfiguration, modalRenderer: ModalRenderer, requestCallback: RequestCallback, eventBus: EventBus): ModalRenderer {
   let UpdateComponent
   let CreateComponent
 
@@ -52,6 +53,7 @@ function createComp(type, requestMethod, templates: Templates[]) {
             return true
         }
       }
+
       return () => <form.render/>
     },
   })
