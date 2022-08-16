@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "useDefineForClassFields": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "lib": ["esnext", "dom"],
+    "suppressImplicitAnyIndexErrors": true,
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "~/*": ["./playground/*"]
+    },
+  },
+  "types": ["element-plus/global", "playground/typings/*.d.ts"],
+  "include": ["fuzzy-next/**/*.ts", "fuzzy-next/**/*.tsx", "fuzzy-next/**/*.vue", "playground/**/*.ts", "playground/**/*.d.ts", "playground/**/*.tsx", "playground/**/*.vue"],
+  "exclude": ["lib", "node_modules"]
+}

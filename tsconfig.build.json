@@ -1,0 +1,19 @@
+{
+  "include": ["fuzzy-next/runtime-core/index.ts", "fuzzy-next/impl-layout-provider/index.ts","fuzzy-next/impl-renderer","playground/**/*.d.ts", "core/fuzzy-next/types/index.ts"],
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "target": "esnext",
+    "jsx": "preserve",
+    "emitDeclarationOnly": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "removeComments": false,
+    "declarationDir": "lib",
+    "lib": ["esnext", "dom"],
+    "skipLibCheck": true,
+    "types": ["element-plus/global", "axios"]
+  },
+  "references": [{ "path": "./tsconfig.node.json" }],
+}

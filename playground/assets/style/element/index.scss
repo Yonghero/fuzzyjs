@@ -1,0 +1,14 @@
+@forward '../../../../node_modules/element-plus/theme-chalk/src/common/var' with (
+  $colors: (
+    'primary': (
+      'base': #3A87FF,
+    ),
+    'success' : (
+      'base' : #5DC226
+    ),
+    'warning' : (
+      'base' : #DD6A15
+    )
+  ),
+);
+@use "../../../../node_modules/element-plus/theme-chalk/src/index" as *;
