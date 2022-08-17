@@ -1,10 +1,8 @@
-import {ElementUIForm} from '../../../fuzzy-next/impl-renderer/element-ui-renderer/ElementUIForm'
-import type {FuzzyNextHandlers, OptionsConfiguration} from '../../../fuzzy-next/types'
-
-export type T = 'date'
+import { ElementUIForm } from '../../../fuzzy-next/impl-renderer/element-ui-renderer/ElementUIForm'
+import type { FuzzyNextHandlers, OptionsConfiguration } from '../../../fuzzy-next/types'
 
 export const options: OptionsConfiguration = {
-  title: '这是tab111',
+  title: '标题一',
   api: '/safety/major-hazard',
   feature: {
     update: true,
@@ -13,18 +11,13 @@ export const options: OptionsConfiguration = {
   selection: true,
   template: [
     {
-      type: 'date',
-      label: '时间',
-      value: 'abc',
-    },
-    {
       type: 'input',
       label: '企业名称',
       value: 'entName',
       placeholder: '来吧占位置',
       require: true,
       rules: [
-        {min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur'},
+        { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },
       ],
       visible: {
         table: true,
@@ -32,13 +25,12 @@ export const options: OptionsConfiguration = {
       renderer: {
         filter: props => (<el-input v-model={props.model[props.value]}/>),
         table: props => (<div>{props.value}</div>),
-        // update: props => (<el-date-picker v-model={props.model[props.value]} type="date"/>),
       },
     },
     {
       type: 'select',
       options: [
-        {label: 'hhh', value: 'hhh'},
+        { label: 'hhh', value: 'hhh' },
       ],
       label: '企业code',
       value: 'enterpriseCode',
@@ -85,7 +77,7 @@ export const options2: OptionsConfiguration = {
     {
       type: 'select',
       options: [
-        {label: 'hhh', value: 'hhh'},
+        { label: 'hhh', value: 'hhh' },
       ],
       label: '企业code',
       value: 'enterpriseCode',
@@ -137,24 +129,24 @@ export const UpdateComponent2 = defineComponent({
 })
 
 export const handlers: FuzzyNextHandlers = {
-  queryBefore: async (params) => {
+  queryBefore: async(params) => {
     return params
   },
   updateBeforePop: (params) => {
     console.log('updateBeforePop', params)
   },
-  deleteBefore: async (params) => {
+  deleteBefore: async(params) => {
     console.log('deleteBefore', params)
 
     return true
   },
-  updateConfirm: async () => {
+  updateConfirm: async() => {
     return true
   },
   selectionChange: (selection) => {
     console.log('selectionChange', selection)
   },
-  createConfirm: async () => {
+  createConfirm: async() => {
     return true
     // return f.value.validate((isValid) => {
     //   if (isValid)

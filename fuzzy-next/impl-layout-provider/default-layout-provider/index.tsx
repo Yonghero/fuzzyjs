@@ -9,15 +9,18 @@ export class DefaultLayoutProvider implements LayoutProvider {
   }
 
   setup(props) {
+    // 布局提供器
+    // 自定义放置框架组件 可扩展其他组件
     return () => (
       <div class="w-full p-10">
         <div>
-          {props.renderer.Tab}
+
         </div>
         <div class="flex flex-nowrap justify-between items-center">
           <div class="flex flex-nowrap flex-shrink-1 flex-nowrap pt-6 pb-2 items-start justify-between gap-x-3">
             {props.renderer.Filter}
             {props.renderer.FilterButton}
+            {props.renderer.Tab}
           </div>
           <div class="flex gap-x-3 flex-shrink-1">
             {
