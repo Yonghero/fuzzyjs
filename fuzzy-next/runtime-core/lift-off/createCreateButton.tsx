@@ -1,6 +1,4 @@
-import type { ModalRenderer, OptionsConfiguration, Renderer, Templates } from '../../types'
-import type { FuzzyNextHandlers } from '../../types/handler'
-import type { RequestCallback } from '../../types/requestProvider'
+import type { FuzzyNextHandlers, ModalRenderer, OptionsConfiguration, Renderer, RequestCallback, Templates } from '../../types'
 import type { DataProvider } from './createDataProvide'
 
 export function createCreateButton(renderer: Renderer, modalRenderer: ModalRenderer, templates: Templates[], handlers: FuzzyNextHandlers, requestCallback: RequestCallback, dataProvide: DataProvider, options: OptionsConfiguration) {
