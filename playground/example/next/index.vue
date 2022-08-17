@@ -13,9 +13,16 @@ import {
 } from './template'
 
 const _options = mergeFuzzyOptions(options, options2)
+
 const modalRenderer = mergeFuzzyOptions(
-  { CreateComponent, UpdateComponent },
-  { CreateComponent: CreateComponent2, UpdateComponent: UpdateComponent2 },
+  {
+    CreateComponent,
+    UpdateComponent,
+  },
+  {
+    CreateComponent: CreateComponent2,
+    UpdateComponent: UpdateComponent2,
+  },
 )
 
 const isArco = ref(false)
@@ -33,6 +40,9 @@ const extra = [
 const onUpdate = () => {
   $shallowUpdate()
 }
+const onForceUpdate = () => {
+  $forceUpdate()
+}
 // :modal-renderer="modalRenderer"
 </script>
 
@@ -41,6 +51,9 @@ const onUpdate = () => {
     换肤
   </el-button>
   <el-button @click="onUpdate">
+    shallowUpdate
+  </el-button>
+  <el-button @click="onForceUpdate">
     forceUpdate
   </el-button>
   <Fuzzy
