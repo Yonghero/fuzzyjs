@@ -12,7 +12,7 @@ import {
   options2,
 } from './template'
 
-const _options = mergeFuzzyOptions(options, options2)
+const _options = mergeFuzzyOptions(options)
 
 const modalRenderer = mergeFuzzyOptions(
   {

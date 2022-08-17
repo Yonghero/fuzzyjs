@@ -14,13 +14,12 @@ export class DefaultLayoutProvider implements LayoutProvider {
     return () => (
       <div class="w-full p-10">
         <div>
-
+          {props.renderer.Tab}
         </div>
         <div class="flex flex-nowrap justify-between items-center">
           <div class="flex flex-nowrap flex-shrink-1 flex-nowrap pt-6 pb-2 items-start justify-between gap-x-3">
             {props.renderer.Filter}
             {props.renderer.FilterButton}
-            {props.renderer.Tab}
           </div>
           <div class="flex gap-x-3 flex-shrink-1">
             {

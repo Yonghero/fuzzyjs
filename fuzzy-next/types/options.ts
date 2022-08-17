@@ -40,6 +40,12 @@ export interface OptionsConfiguration {
    * 表格是否展示边框
    */
   border?: boolean
+  /**
+   * 表格操作栏的配置
+   * @param updateRender 提供编辑组件 可任意放置位置
+   * @param deleteRender 提供删除组件
+   */
+  operators?: (row, { UpdateRender, DeleteRender }) => Element[] | Component[] | VNode[]
 }
 
 type ExtraProps = {

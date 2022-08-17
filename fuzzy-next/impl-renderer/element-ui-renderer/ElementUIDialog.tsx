@@ -8,7 +8,7 @@ export class ElementUIDialog implements DialogRenderer {
 
     const _slots = {
       header: () => (
-        <div class="flex items-center border-b-gray-200 border-b-2 pb-2 w-full">
+        <div class="flex items-center border-b-gray-200 border-b-2 pb-1 w-full">
           <div class="w-1 h-5 rounded-sm bg-primary-100 mr-2"/>
           <h2 class="font-bold text-lg">{props.title}</h2>
         </div>

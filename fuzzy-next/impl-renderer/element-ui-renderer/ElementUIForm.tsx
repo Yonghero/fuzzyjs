@@ -26,7 +26,7 @@ export class ElementUIForm implements FormRenderer {
         setup() {
           return () => (
             <ElForm
-              class="custom-el-form w-full flex"
+              class="custom-el-form w-full flex flex-wrap"
               model={model}
               rules={rules}
               ref={formRef}
@@ -100,22 +100,22 @@ export class ElementUIForm implements FormRenderer {
   getFromStyle(item: Templates) {
     const inlineLength = item.rowLength || 2
     const style = {
-      width: (!this.isHorizontal ? `calc(100% / ${inlineLength} - 32px)` : ''),
+      width: (!this.isHorizontal ? `calc(100% / ${inlineLength} - 1rem)` : ''),
     }
 
     if (this.shouldWarpEvenly)
-      style.width = `calc(100% / ${inlineLength} - 32px)`
+      style.width = `calc(100% / ${inlineLength} - 1rem)`
 
     const { full, width, rest, half } = item
     if (full)
       style.width = '100%'
     if (half)
-      style.width = 'calc(50% - 32px)'
+      style.width = 'calc(50% - 1rem)'
 
     if (width)
       style.width = width.toString()
     if (!this.isHorizontal && rest)
-      style.width = `calc(100% * ${inlineLength - 1} / ${inlineLength} - 32px)`
+      style.width = `calc(100% * ${inlineLength - 1} / ${inlineLength} - 1rem)`
 
     return style
   }

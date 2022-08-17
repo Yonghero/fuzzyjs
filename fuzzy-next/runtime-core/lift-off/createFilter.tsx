@@ -35,7 +35,8 @@ export function createFilter(renderer: Renderer, templates: Templates[], feature
   function FilterButton() {
     return (
       <renderer.button.render
-        type="primary"
+        type="filter"
+        class="fuzzy-filter-button"
         onClick={dispatchFilter}>{
           fuzzyOptions.lang?.filter || '查询'
         }</renderer.button.render>

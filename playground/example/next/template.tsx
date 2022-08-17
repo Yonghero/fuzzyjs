@@ -59,6 +59,11 @@ export const options: OptionsConfiguration = {
       },
     },
   ],
+  operateWidth: 280,
+  operators: (scope, { UpdateRender, DeleteRender }) => {
+    // eslint-disable-next-line react/jsx-key
+    return [<div>diy</div>, UpdateRender, DeleteRender]
+  },
 }
 
 export const options2: OptionsConfiguration = {

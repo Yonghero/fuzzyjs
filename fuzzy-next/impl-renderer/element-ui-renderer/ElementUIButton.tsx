@@ -21,6 +21,14 @@ export class ElementUIButton implements ButtonRenderer {
         删除
       </div>
     }
+    if (props.type === 'filter') {
+      return <div
+        class="bg-primary-100 w-20 h-8 cursor-pointer rounded-[6px] text-white flex items-center justify-center">
+        {
+          slots.default && slots.default()
+        }
+      </div>
+    }
     return (
       <ElButton {...props}>
         {

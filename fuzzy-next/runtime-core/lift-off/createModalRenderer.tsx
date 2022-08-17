@@ -38,7 +38,7 @@ function createComp(type, requestMethod, templates: Templates[]) {
   const form = _renderer.form.create({
     templates: mapTemplatesRenderer(templates, type),
     isHorizontal: true,
-    labelPosition: 'top',
+    labelPosition: 'left',
   })
 
   return defineComponent({

@@ -12,8 +12,6 @@ import type { DataProvider } from './createDataProvide'
 
 export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, handlers: FuzzyNextHandlers, templates: Partial<Templates>[], dataProvider: DataProvider, requestCallback: RequestCallback, options: OptionsConfiguration): any {
   function onUpdate(scope) {
-    console.log(scope)
-
     if (handlers.updateBeforePop)
       handlers.updateBeforePop({ data: scope, url: requestCallback.urls.update })
 
@@ -45,25 +43,48 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
     width: options.operateWidth ? `${options.operateWidth}px` : '180px',
     value: 'fuzzy-table-operate',
     render(scope) {
-      return (<div class="w-full h-full flex justify-center items-center gap-x-4">
-        {
-          options.feature && options.feature.update === false
-            ? null
-            : <renderer.button.render type={'update'} onClick={() => onUpdate(scope)}>编辑</renderer.button.render>
-        }
-        {
-          options.feature && options.feature.delete === false
-            ? null
-            : <renderer.confirm.render type="warning"
-              onOk={() => onDelete(scope)}
-              onCancel={() => {
-              }}
-              content={'是否确认删除'}>
-              <renderer.button.render type={'delete'}>编辑</renderer.button.render>
-            </renderer.confirm.render>
-        }
+      const UpdateRender = <renderer.button.render type={'update'}
+        onClick={() => onUpdate(scope)}>编辑</renderer.button.render>
 
-      </div>)
+      const DeleteRender = (<renderer.confirm.render type="warning"
+        onOk={() => onDelete(scope)}
+        onCancel={() => {
+        }}
+        content={'是否确认删除'}>
+        <renderer.button.render type={'delete'}>删除</renderer.button.render>
+      </renderer.confirm.render>)
+
+      if (options.operators) {
+        const operators = options.operators(scope, { UpdateRender, DeleteRender })
+        return <div class="w-full h-full flex justify-center items-center gap-x-4">
+          {
+            operators.map((Operator, idx) => {
+              return <Operator key={idx}/>
+            })
+          }
+        </div>
+      }
+      else {
+        return (<div class="w-full h-full flex justify-center items-center gap-x-4">
+          {
+            options.feature && options.feature.update === false
+              ? null
+              : <renderer.button.render type={'update'} onClick={() => onUpdate(scope)}>编辑</renderer.button.render>
+          }
+          {
+            options.feature && options.feature.delete === false
+              ? null
+              : <renderer.confirm.render type="warning"
+                onOk={() => onDelete(scope)}
+                onCancel={() => {
+                }}
+                content={'是否确认删除'}>
+                <renderer.button.render type={'delete'}>删除</renderer.button.render>
+              </renderer.confirm.render>
+          }
+
+        </div>)
+      }
     },
   } as TableTemplate)
 
