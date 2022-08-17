@@ -32,11 +32,8 @@
   },
   "types": "./lib/index.d.ts",
   "scripts": {
-    "dev": "LIB_NAME=core vite --force",
-    "build": "npm run build:core && npm run build:layout && npm run build:renderer",
-    "build:core": "LIB_NAME=core vite build && tsc -p ./tsconfig.build.json",
-    "build:renderer": "LIB_NAME=renderer vite build && tsc -p ./tsconfig.build.json",
-    "build:layout": "LIB_NAME=layoutProvider vite build && tsc -p ./tsconfig.build.json",
+    "dev": "vite --force",
+    "build": "vite build && tsc -p ./tsconfig.build.json",
     "preview": "vite preview",
     "test": "vitest",
     "pub": "npm run build && npm version patch && npm publish --access public --force"
@@ -66,7 +63,6 @@
     "unplugin-vue-components": "^0.17.21",
     "vite": "^2.9.0",
     "vite-plugin-windicss": "^1.8.4",
-    "vue": "^3.2.25",
     "vue-demi": "^0.12.5",
     "vue-tsc": "^0.29.8",
     "windicss": "^3.5.1"

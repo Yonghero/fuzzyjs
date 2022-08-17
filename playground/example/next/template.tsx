@@ -1,5 +1,5 @@
-import { ElementUIForm } from '../../../fuzzy-next/impl-renderer/element-ui-renderer/ElementUIForm'
-import type { FuzzyNextHandlers, OptionsConfiguration } from '../../../fuzzy-next/types'
+import {ElementUIForm} from '../../../fuzzy-next/impl-renderer/element-ui-renderer/ElementUIForm'
+import type {FuzzyNextHandlers, OptionsConfiguration} from '../../../fuzzy-next/types'
 
 export type T = 'date'
 
@@ -24,7 +24,7 @@ export const options: OptionsConfiguration = {
       placeholder: '来吧占位置',
       require: true,
       rules: [
-        { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },
+        {min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur'},
       ],
       visible: {
         table: true,
@@ -38,7 +38,7 @@ export const options: OptionsConfiguration = {
     {
       type: 'select',
       options: [
-        { label: 'hhh', value: 'hhh' },
+        {label: 'hhh', value: 'hhh'},
       ],
       label: '企业code',
       value: 'enterpriseCode',
@@ -85,7 +85,7 @@ export const options2: OptionsConfiguration = {
     {
       type: 'select',
       options: [
-        { label: 'hhh', value: 'hhh' },
+        {label: 'hhh', value: 'hhh'},
       ],
       label: '企业code',
       value: 'enterpriseCode',
@@ -137,25 +137,24 @@ export const UpdateComponent2 = defineComponent({
 })
 
 export const handlers: FuzzyNextHandlers = {
-  queryBefore: async(params) => {
-    console.log('queryBefore', params)
+  queryBefore: async (params) => {
     return params
   },
   updateBeforePop: (params) => {
     console.log('updateBeforePop', params)
   },
-  deleteBefore: async(params) => {
+  deleteBefore: async (params) => {
     console.log('deleteBefore', params)
 
     return true
   },
-  updateConfirm: async() => {
+  updateConfirm: async () => {
     return true
   },
   selectionChange: (selection) => {
     console.log('selectionChange', selection)
   },
-  createConfirm: async() => {
+  createConfirm: async () => {
     return true
     // return f.value.validate((isValid) => {
     //   if (isValid)

@@ -4,7 +4,7 @@
     "fuzzy-next/impl-layout-provider/index.ts",
     "fuzzy-next/impl-renderer",
     "playground/**/*.d.ts",
-    "core/fuzzy-next/types/index.ts"
+    "fuzzy-next/types/index.ts"
   ],
   "compilerOptions": {
     "moduleResolution": "node",
@@ -23,8 +23,8 @@
     ],
     "skipLibCheck": true,
     "types": [
-      "element-plus/global",
-      "axios"
+      //      "element-plus/global",
+      //      "axios"
     ]
   },
   "references": [

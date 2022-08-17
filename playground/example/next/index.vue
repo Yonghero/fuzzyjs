@@ -1,6 +1,6 @@
 <script lang="tsx" setup>
 import { mergeFuzzyOptions } from '../../../fuzzy-next/utils'
-import { ArcoUIRenderer, ElementUIRenderer } from '../../../fuzzy-next/impl-renderer'
+// import { ArcoUIRenderer, ElementUIRenderer } from '../../../fuzzy-next/impl-renderer'
 import { $forceUpdate, $shallowUpdate } from '../../../fuzzy-next/runtime-core/createFuzzy'
 import {
   CreateComponent,
@@ -58,7 +58,6 @@ const onForceUpdate = () => {
   </el-button>
   <Fuzzy
     :options="_options"
-    :renderer="uiRenderer"
     :handlers="handlers"
     :extra-renderer="extra"
   />

@@ -4,29 +4,6 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import AutoImport from 'unplugin-auto-import/vite'
 
-const buildConfigs = {
-  core: {
-    entry: path.resolve(__dirname, './fuzzy-next/runtime-core/index.ts'),
-    name: 'fuzzy',
-    fileName: format => `fuzzy-core.${format}.js`,
-  },
-  renderer: {
-    entry: path.resolve(__dirname, './fuzzy-next/impl-renderer/index.ts'),
-    name: 'fuzzy-renderer',
-    fileName: format => `fuzzy-renderer.${format}.js`,
-  },
-  layoutProvider: {
-    entry: path.resolve(__dirname, './fuzzy-next/impl-layout-provider/index.ts'),
-    name: 'fuzzy-layoutProvider',
-    fileName: format => `fuzzy-layoutProvider.${format}.js`,
-  },
-}
-
-const currentConfig = buildConfigs[(process.env.LIB_NAME as any)]
-console.log(currentConfig, 'c')
-if (currentConfig === undefined)
-  throw new Error('LIB_NAME is not defined or is not valid')
-
 export default defineConfig({
   resolve: {
     alias: {
@@ -66,13 +43,18 @@ export default defineConfig({
   },
   build: {
     lib: {
-      ...currentConfig,
+      entry: path.resolve(__dirname, './fuzzy-next/runtime-core/index.ts'),
+      name: 'fuzzy',
+      fileName: format => `fuzzy-next.${format}.js`,
     },
     outDir: './lib',
-    emptyOutDir: false,
+    minify: 'esbuild',
+    // emptyOutDir: false,
     rollupOptions: {
-      external: ['vue'],
+      // 确保外部化处理那些你不想打包进库的依赖
+      external: ['vue', 'vue-demi', 'element-plus', 'elementPlus', 'vueDemi'],
       output: {
+        // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
         globals: {
           vue: 'Vue',
         },

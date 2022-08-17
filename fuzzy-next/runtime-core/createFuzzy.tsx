@@ -13,7 +13,10 @@ export function createFuzzy(options: CreateFuzzyOptions): any {
 
   const implRenderer = renderer || new ElementUIRenderer()
   const implLayoutProvider = layout || new DefaultLayoutProvider()
-  const implRequestProvider = http || (new Error('fuzzy-next requestProvider is required'))
+  const implRequestProvider = http
+
+  if (!http)
+    throw new Error('fuzzy-next requestProvider is required')
 
   // 生成组件
   function component() {
