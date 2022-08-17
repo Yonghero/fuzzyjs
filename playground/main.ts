@@ -4,9 +4,10 @@ import ElementPlus from 'element-plus'
 import ArcoVue from '@arco-design/web-vue'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import { DefaultLayoutProvider } from '../fuzzy-next/impl-layout-provider'
-import { ArcoUIRenderer } from '../fuzzy-next/impl-renderer'
 import { DefaultRequestProvider } from '../fuzzy-next/impl-request-provider/default-request-provider'
 import { createFuzzy } from '../fuzzy-next/runtime-core'
+import { ElementUIRenderer } from '../fuzzy-next/impl-renderer'
+import { formItem } from '../fuzzy-next/runtime-core/extend/UIPlugings'
 import App from './App.vue'
 import './assets/style/tailwind.css'
 import './assets/style/index.scss'
@@ -26,15 +27,25 @@ axiosInstance.interceptors.request.use(
     return config
   })
 
-const Fuzzy = createFuzzy()
-  .renderer(new ArcoUIRenderer())
-  .layoutProvider(new DefaultLayoutProvider())
-  .requestProvider(new DefaultRequestProvider(axiosInstance))
+const Fuzzy = createFuzzy({
+  adapters: {
+    http: new DefaultRequestProvider(axiosInstance),
+    layout: new DefaultLayoutProvider(),
+    renderer: new ElementUIRenderer(),
+  },
+  lang: {
+    filter: '筛选',
+  },
+})
+
+Fuzzy.use(({ installUIPlugin }) => {
+  installUIPlugin(formItem)
+})
 
 function fuzzyInstall(App: any) {
   App.component(
     'Fuzzy',
-    Fuzzy)
+    Fuzzy.component())
 }
 
 createApp(App)

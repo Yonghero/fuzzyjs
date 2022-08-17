@@ -13,7 +13,7 @@ export const options: OptionsConfiguration = {
   selection: true,
   template: [
     {
-      type: 'input',
+      type: 'date',
       label: '时间',
       value: 'abc',
     },

@@ -82,5 +82,6 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
     data={dataProvider.tableData}
     loading={dataProvider.tableLoading}
     onSelectionChange={onSelectionChange}
+    border={options.border ?? true}
   />
 }

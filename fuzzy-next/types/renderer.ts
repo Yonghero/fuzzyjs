@@ -20,7 +20,7 @@ export interface Renderer {
  * 表格渲染器接口
  */
 export interface TableRenderer {
-  render: (props: TableRenderProps) => (props: { data: Ref<any>; loading: Ref<boolean>; onSelectionChange: (p) => any }) => VNode
+  render: (props: TableRenderProps) => (props: { data: Ref<any>; loading: Ref<boolean>; border: boolean; onSelectionChange: (p) => any }) => VNode
   getColumns: (templates: Templates[], feature: Feature | undefined) => VNode[]
   shouldFeaturesRender: (feature: Feature | undefined) => boolean
 

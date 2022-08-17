@@ -26,7 +26,7 @@ export class ElementUIForm implements FormRenderer {
         setup() {
           return () => (
             <ElForm
-              class="custom-el-form w-full"
+              class="custom-el-form w-full flex"
               model={model}
               rules={rules}
               ref={formRef}

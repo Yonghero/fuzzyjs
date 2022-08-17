@@ -1,4 +1,5 @@
 import type {
+  CreateFuzzyOptions,
   ExtraRenderer,
   FuzzyNextHandlers,
   LayoutProviderRenderer,
@@ -8,6 +9,7 @@ import type {
   RequestProvider,
 } from '../../types'
 import { getTemplatesWithFeature } from '../../utils'
+import { workInProgressFuzzy } from '../createFuzzy'
 import { createEventBus } from './createEventBus'
 import { createDataProvide } from './createDataProvide'
 import { createDialog } from './createDialog'
@@ -18,14 +20,7 @@ import { createTable } from './createTable'
 import { createCreateButton } from './createCreateButton'
 import { createModalRenderer } from './createModalRenderer'
 
-export function LiftOff(
-  renderer: Renderer,
-  _modalRenderer: ModalRenderer,
-  extraRenderer: ExtraRenderer,
-  handlers: FuzzyNextHandlers,
-  options: OptionsConfiguration,
-  mock: any[],
-  request: RequestProvider): Omit<LayoutProviderRenderer, 'Tab'> {
+export function LiftOff(renderer: Renderer, _modalRenderer: ModalRenderer, extraRenderer: ExtraRenderer, handlers: FuzzyNextHandlers, options: OptionsConfiguration, mock: any[], request: RequestProvider, fuzzyOptions: CreateFuzzyOptions): Omit<LayoutProviderRenderer, 'Tab'> {
   console.log('----LiftOff----')
 
   // global data provide
@@ -34,6 +29,9 @@ export function LiftOff(
 
   // provide request's methods
   const requestCallback = createRequest(options, request, handlers, dataProvide)
+
+  // 提供给用户的浅更新
+  workInProgressFuzzy.shallowUpdate = requestCallback.get
 
   const eventBus = createEventBus()
   // warp handlers inject self hooks
@@ -67,6 +65,7 @@ export function LiftOff(
     options?.feature,
     requestCallback,
     dataProvide,
+    fuzzyOptions,
   )
 
   const CreateButton = createCreateButton(renderer, modalRenderer, getTemplatesWithFeature(options.template, 'create'), handlers, requestCallback, dataProvide, options)

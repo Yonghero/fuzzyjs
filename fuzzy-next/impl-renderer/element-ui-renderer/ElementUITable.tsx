@@ -15,6 +15,7 @@ export class ElementUITable implements TableRenderer {
         data={props.data.value}
         v-loading={props.loading.value}
         onSelection-Change={props.onSelectionChange}
+        border={props.border}
       >
         {
           TableColumn

@@ -36,6 +36,10 @@ export interface OptionsConfiguration {
    * 表格操作栏的宽度
    */
   operateWidth?: number
+  /**
+   * 表格是否展示边框
+   */
+  border?: boolean
 }
 
 type ExtraProps = {

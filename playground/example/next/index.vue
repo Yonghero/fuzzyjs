@@ -1,6 +1,7 @@
 <script lang="tsx" setup>
 import { mergeFuzzyOptions } from '../../../fuzzy-next/utils'
 import { ArcoUIRenderer, ElementUIRenderer } from '../../../fuzzy-next/impl-renderer'
+import { $forceUpdate, $shallowUpdate } from '../../../fuzzy-next/runtime-core/createFuzzy'
 import {
   CreateComponent,
   CreateComponent2,
@@ -29,12 +30,18 @@ const extra = [
   <button key="2">decrease</button>,
 ]
 
+const onUpdate = () => {
+  $shallowUpdate()
+}
 // :modal-renderer="modalRenderer"
 </script>
 
 <template>
   <el-button @click="onChange">
     换肤
+  </el-button>
+  <el-button @click="onUpdate">
+    forceUpdate
   </el-button>
   <Fuzzy
     :options="_options"

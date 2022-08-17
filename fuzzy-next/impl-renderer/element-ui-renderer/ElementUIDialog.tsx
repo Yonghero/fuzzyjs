@@ -26,7 +26,8 @@ export class ElementUIDialog implements DialogRenderer {
               emit('update:modelValue', false)
               emit('cancel', scope)
             }}
-          >取消</button.render>
+          >取消
+          </button.render>
           <button.render
             type="primary"
             class="btn confirm"
@@ -38,7 +39,6 @@ export class ElementUIDialog implements DialogRenderer {
     return (
       <ElDialog
         v-slots={_slots}
-        custom-class="rounded-[10px]"
         closeOnClickModal={false}
         show-close={false}
         destroy-on-close={true}

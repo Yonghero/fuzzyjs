@@ -1,5 +1,7 @@
 import type { PropType } from 'vue'
+import { getCurrentInstance } from 'vue'
 import type {
+  CreateFuzzyOptions,
   ExtraRenderer,
   FuzzyNextHandlers,
   LayoutProvider,
@@ -10,8 +12,9 @@ import type {
 } from '../types'
 import { LiftOff } from './lift-off'
 import { useActivated } from './useActivated'
+import { workInProgressFuzzy } from './createFuzzy'
 
-export function createComponent(globalRenderer: Renderer, globalLayoutProvider: LayoutProvider, requestProvider: RequestProvider) {
+export function createComponent(globalRenderer: Renderer, globalLayoutProvider: LayoutProvider, requestProvider: RequestProvider, fuzzyOptions: CreateFuzzyOptions) {
   return defineComponent({
     props: {
       options: {
@@ -47,6 +50,9 @@ export function createComponent(globalRenderer: Renderer, globalLayoutProvider: 
     setup(props) {
       console.log(`%c${'-----component setup-----'}`, 'color: #008c8c', props)
 
+      // 提供给用户的强制更新
+      workInProgressFuzzy.forceUpdate = getCurrentInstance()?.proxy?.$forceUpdate
+
       const {
         modalRenderer,
         extraRenderer,
@@ -56,7 +62,7 @@ export function createComponent(globalRenderer: Renderer, globalLayoutProvider: 
 
       // 根据activeOptions页面配置动态渲染
       const dynamicLayout = computed(() => {
-        const components = LiftOff(props.renderer, modalRenderer.value, extraRenderer.value, props.handlers, options.value, props.mock, requestProvider)
+        const components = LiftOff(props.renderer, modalRenderer.value, extraRenderer.value, props.handlers, options.value, props.mock, requestProvider, fuzzyOptions)
         return (
           <props.layoutProvider renderer={{ ...components, Tab: tab.value }}></props.layoutProvider>
         )

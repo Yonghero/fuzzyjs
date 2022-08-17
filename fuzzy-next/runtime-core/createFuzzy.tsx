@@ -1,50 +1,48 @@
-import type { FuzzyInstall, LayoutProvider, Renderer, RequestProvider } from '../types'
+import type { CreateFuzzyOptions } from '../types'
+import { ElementUIRenderer } from '../impl-renderer'
+import { DefaultLayoutProvider } from '../impl-layout-provider'
 import { createComponent } from './component'
+import { use } from './extend'
 
-export function createFuzzy(): FuzzyInstall | any {
-  let implRenderer: Renderer
-  let implLayoutProvider: LayoutProvider
-  let implRequestProvider: RequestProvider
-
-  const install = {
+export function createFuzzy(options: CreateFuzzyOptions): any {
+  const {
+    http,
+    layout,
     renderer,
-    layoutProvider,
-    requestProvider,
-  }
+  } = options.adapters
 
-  // 安装UI渲染器
-  function renderer(renderer: Renderer) {
-    implRenderer = renderer
-    if (implLayoutProvider && implRequestProvider)
-      return component()
-    return install
-  }
-
-  function requestProvider(requestProvider: RequestProvider) {
-    implRequestProvider = requestProvider
-
-    if (implRenderer && implLayoutProvider)
-      return component()
-
-    return install
-  }
-
-  // 实现布局提供器
-  function layoutProvider(layoutProvider: LayoutProvider) {
-    implLayoutProvider = layoutProvider
-    if (implRenderer && implRequestProvider)
-      return component()
-
-    return install
-  }
+  const implRenderer = renderer || new ElementUIRenderer()
+  const implLayoutProvider = layout || new DefaultLayoutProvider()
+  const implRequestProvider = http || (new Error('fuzzy-next requestProvider is required'))
 
   // 生成组件
   function component() {
-    if (!implRenderer)
-      throw new Error('Renderer is not defined')
-    if (implRenderer && implRequestProvider && implLayoutProvider)
-      return createComponent(implRenderer, implLayoutProvider, implRequestProvider)
+    return createComponent(implRenderer, implLayoutProvider, implRequestProvider, options)
   }
 
-  return install
+  return {
+    component,
+    use,
+  }
+}
+
+export const workInProgressFuzzy: any = {
+  forceUpdate: () => undefined,
+  shallowUpdate: () => undefined,
+}
+
+/**
+ * 强制该组件重新渲染
+ */
+export function $forceUpdate() {
+  if (workInProgressFuzzy.forceUpdate)
+    workInProgressFuzzy.forceUpdate()
+}
+
+/**
+ * 只重新请求组件数据，不重新渲染
+ */
+export function $shallowUpdate() {
+  if (workInProgressFuzzy.shallowUpdate)
+    workInProgressFuzzy.shallowUpdate()
 }
