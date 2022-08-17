@@ -32,6 +32,7 @@ export class ElementUIForm implements FormRenderer {
               ref={formRef}
               label-position={labelPosition}
               inline={isHorizontal}
+              label-width="100px"
             >
               {
                 FormItems
