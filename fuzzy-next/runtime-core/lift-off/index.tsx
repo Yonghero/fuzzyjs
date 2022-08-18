@@ -19,6 +19,7 @@ import { createRequest } from './createRequest'
 import { createTable } from './createTable'
 import { createCreateButton } from './createCreateButton'
 import { createModalRenderer } from './createModalRenderer'
+import '../../tailwind.css'
 
 export function LiftOff(renderer: Renderer, _modalRenderer: ModalRenderer, extraRenderer: ExtraRenderer, handlers: FuzzyNextHandlers, options: OptionsConfiguration, mock: any[], request: RequestProvider, fuzzyOptions: CreateFuzzyOptions): Omit<LayoutProviderRenderer, 'Tab'> {
   console.log('----LiftOff----')

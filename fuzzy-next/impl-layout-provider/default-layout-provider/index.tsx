@@ -12,7 +12,7 @@ export class DefaultLayoutProvider implements LayoutProvider {
     // 布局提供器
     // 自定义放置框架组件 可扩展其他组件
     return () => (
-      <div class="w-full p-10">
+      <div class="w-full h-full">
         <div>
           {props.renderer.Tab}
         </div>
