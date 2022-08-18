@@ -43,7 +43,7 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: path.resolve(__dirname, './fuzzy-next/runtime-core/index.ts'),
+      entry: path.resolve(__dirname, './fuzzy-next/index.ts'),
       name: 'fuzzy',
       fileName: format => `fuzzy-next.${format}.js`,
     },
