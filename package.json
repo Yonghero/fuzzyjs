@@ -19,7 +19,11 @@
   "exports": {
     ".": {
       "import": "./lib/fuzzy-next.es.js",
-      "require": "./lib/fuzzy-next.es.js"
+      "require": "./lib/fuzzy-next.umd.js"
+    },
+    "./style": {
+      "import": "./lib/style.css",
+      "require": "./lib/style.css"
     }
   },
   "types": "./lib/index.d.ts",
@@ -31,7 +35,8 @@
     "pub": "npm run build && npm version patch && npm publish --access public --force"
   },
   "peerdependencies": {
-    "vue": "^3.2.25"
+    "vue": "^3.2.25",
+    "tailwindcss": "^3.1.8"
   },
   "devDependencies": {
     "element-plus": "^2.1.9",

@@ -1,7 +1,6 @@
 <script lang="tsx" setup>
-import { mergeFuzzyOptions } from '../../../fuzzy-next/utils'
-import { ArcoUIRenderer, ElementUIRenderer } from '../../../fuzzy-next/impl-renderer'
-import { $forceUpdate, $shallowUpdate } from '../../../fuzzy-next/runtime-core/createFuzzy'
+import { ArcoUIRenderer, ElementUIRenderer, mergeFuzzyOptions } from '../../../fuzzy-next'
+import { $forceUpdate, $shallowUpdate } from '../../../fuzzy-next/runtime-core'
 import {
   CreateComponent,
   CreateComponent2,
