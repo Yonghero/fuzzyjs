@@ -22,8 +22,6 @@ import { createModalRenderer } from './createModalRenderer'
 import '../../tailwind.css'
 
 export function LiftOff(renderer: Renderer, _modalRenderer: ModalRenderer, extraRenderer: ExtraRenderer, handlers: FuzzyNextHandlers, options: OptionsConfiguration, mock: any[], request: RequestProvider, fuzzyOptions: CreateFuzzyOptions): Omit<LayoutProviderRenderer, 'Tab'> {
-  console.log('----LiftOff----')
-
   // global data provide
   // dispatch data
   const dataProvide = createDataProvide()
