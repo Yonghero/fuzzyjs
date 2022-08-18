@@ -20,14 +20,6 @@
     ".": {
       "import": "./lib/fuzzy-core.es.js",
       "require": "./lib/fuzzy-core.es.js"
-    },
-    "./renderer": {
-      "import": "./lib/fuzzy-renderer.es.js",
-      "require": "./lib/fuzzy-renderer.umd.js"
-    },
-    "./layoutProvider": {
-      "import": "./lib/fuzzy-layoutProvider.es.js",
-      "require": "./lib/fuzzy-layoutProvider.umd.js"
     }
   },
   "types": "./lib/index.d.ts",
