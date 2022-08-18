@@ -11,16 +11,17 @@ import { mapTemplatesRenderer } from '../../utils'
 import type { DataProvider } from './createDataProvide'
 
 export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, handlers: FuzzyNextHandlers, templates: Partial<Templates>[], dataProvider: DataProvider, requestCallback: RequestCallback, options: OptionsConfiguration): any {
-  function onUpdate(scope) {
+  async function onUpdate(scope) {
+    let row = scope.row
     if (handlers.updateBeforePop)
-      handlers.updateBeforePop({ data: scope, url: requestCallback.urls.update })
+      row = await handlers.updateBeforePop({ data: scope.row, url: requestCallback.urls.update })
 
     dataProvider.dispatch.setDialog({
       visible: true,
       title: `编辑${options.title}`,
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error ts
-      render: <modalRenderer.UpdateComponent row={scope.row}/>,
+      render: <modalRenderer.UpdateComponent row={row}/>,
     })
   }
 

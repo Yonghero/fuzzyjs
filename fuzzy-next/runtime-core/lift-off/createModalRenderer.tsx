@@ -1,6 +1,5 @@
-import type { ModalRenderer, OptionsConfiguration, Renderer, Templates } from '../../types'
-import type { RequestCallback } from '../../types/requestProvider'
-import { getTemplatesWithFeature, mapTemplatesRenderer } from '../../utils'
+import type { ModalRenderer, OptionsConfiguration, Renderer, RequestCallback, Templates } from '../../types'
+import { getTemplatesWithFeature, mapTemplateDefaultValue, mapTemplatesRenderer, templateMiddleWare } from '../../utils'
 import type { EventBus } from './createEventBus'
 
 let _renderer: Renderer
@@ -36,25 +35,39 @@ export function createModalRenderer(renderer: Renderer, options: OptionsConfigur
 
 function createComp(type, requestMethod, templates: Templates[]) {
   const form = _renderer.form.create({
-    templates: mapTemplatesRenderer(templates, type),
+    templates: templateMiddleWare([mapTemplatesRenderer, mapTemplateDefaultValue])(templates, type),
     isHorizontal: true,
     labelPosition: 'right',
+    shouldLabelWidthAuto: false,
   })
 
   return defineComponent({
-    setup() {
+    props: {
+      row: {
+        type: Object,
+        default: () => ({ data: {} }),
+      },
+    },
+    setup(props) {
       _eventBus.subscribe(type, invoke)
+      _eventBus.subscribe('cancel', rest)
+
+      async function rest() {
+        return form.formRef.value.resetFields()
+      }
 
       async function invoke() {
         const valid = await form.formRef.value.validate()
         if (valid) {
           const { success } = await _requestCallback[requestMethod](form.model)
+          await rest()
+
           if (success)
             return true
         }
       }
 
-      return () => <form.render/>
+      return () => <form.render modelValue={props.row.data}/>
     },
   })
 }

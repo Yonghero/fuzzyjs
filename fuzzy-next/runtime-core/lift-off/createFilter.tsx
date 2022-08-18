@@ -1,11 +1,11 @@
 import type { VNode } from 'vue'
 import type { CreateFuzzyOptions, Renderer, RequestCallback, Templates } from '../../types'
-import { mapTemplatesRenderer } from '../../utils'
+import { mapTemplateDefaultValue, mapTemplatesRenderer, templateMiddleWare } from '../../utils'
 import type { DataProvider } from './createDataProvide'
 
 export function createFilter(renderer: Renderer, templates: Templates[], feature: any, requestCallback: RequestCallback, dataProvide: DataProvider, fuzzyOptions: CreateFuzzyOptions): { Filter: any; FilterButton: VNode } {
   const FilterFrom = renderer.form.create({
-    templates: mapTemplatesRenderer(templates, 'filter'),
+    templates: templateMiddleWare([mapTemplatesRenderer, mapTemplateDefaultValue])(templates, 'filter'),
     feature,
     isHorizontal: true,
     shouldWarpEvenly: false,

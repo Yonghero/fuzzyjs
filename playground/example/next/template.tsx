@@ -15,6 +15,10 @@ export const options: OptionsConfiguration = {
       label: '企业名称',
       value: 'entName',
       placeholder: '来吧占位置',
+      defaultValue: {
+        filter: '特',
+        create: 'hhh',
+      },
       require: true,
       rules: [
         { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },
@@ -45,9 +49,11 @@ export const options: OptionsConfiguration = {
       label: '级别',
       value: 'level',
       require: true,
+      placeholder: '来吧占位置',
       type: 'input',
       visible: {
         table: true,
+        filter: true,
       },
     },
     {
@@ -77,6 +83,7 @@ export const options2: OptionsConfiguration = {
       placeholder: '来吧占位置',
       visible: {
         table: true,
+        filter: true,
       },
     },
     {
@@ -137,8 +144,9 @@ export const handlers: FuzzyNextHandlers = {
   queryBefore: async(params) => {
     return params
   },
-  updateBeforePop: (params) => {
+  updateBeforePop: async(params) => {
     console.log('updateBeforePop', params)
+    return params
   },
   deleteBefore: async(params) => {
     console.log('deleteBefore', params)

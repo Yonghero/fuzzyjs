@@ -65,6 +65,10 @@ export interface FormRenderProps {
    * 是否启动校验规则 默认开启
    */
   shouldValidate?: boolean
+  /**
+   * 是否开启标签宽度自适应 默认开启
+   */
+  shouldLabelWidthAuto?: boolean
 }
 
 /**

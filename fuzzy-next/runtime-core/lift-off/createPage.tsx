@@ -1,7 +1,5 @@
 import type { VNode } from 'vue'
-import type { Renderer } from '../../types'
-import type { FuzzyNextHandlers } from '../../types/handler'
-import type { RequestCallback } from '../../types/requestProvider'
+import type { FuzzyNextHandlers, Renderer, RequestCallback } from '../../types'
 import type { DataProvider } from './createDataProvide'
 
 export function createPage(renderer: Renderer, handlers: FuzzyNextHandlers, requestCallback: RequestCallback, dataProvide: DataProvider): VNode {

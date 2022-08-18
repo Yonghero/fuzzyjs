@@ -19,7 +19,7 @@ export interface FuzzyNextHandlers {
   /**
    * 点击编辑对话框出来前
    */
-  updateBeforePop?: (params: HandlerParams) => any //
+  updateBeforePop?: (params: HandlerParams) => Promise<any> //
   /**
    * 删除前
    * @Returns 如果传递了url和params 删除会调用传递的url和params作为body参数 如果没传url系统默认设置url 返回值直接当作删除接口的body参数

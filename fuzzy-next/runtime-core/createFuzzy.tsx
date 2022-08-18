@@ -31,7 +31,7 @@ export function createFuzzy(options: CreateFuzzyOptions): any {
 
 export const workInProgressFuzzy: any = {
   forceUpdate: () => undefined,
-  shallowUpdate: () => undefined,
+  shallowUpdate: (p?: any) => p,
 }
 
 /**
@@ -45,7 +45,7 @@ export function $forceUpdate() {
 /**
  * 只重新请求组件数据，不重新渲染
  */
-export function $shallowUpdate() {
+export function $shallowUpdate(params = {}) {
   if (workInProgressFuzzy.shallowUpdate)
-    workInProgressFuzzy.shallowUpdate()
+    workInProgressFuzzy.shallowUpdate(params)
 }

@@ -1,6 +1,4 @@
-import type { ModalRenderer, OptionsConfiguration, Renderer } from '../../types'
-import type { FuzzyNextHandlers } from '../../types/handler'
-import type { RequestCallback } from '../../types/requestProvider'
+import type { FuzzyNextHandlers, ModalRenderer, OptionsConfiguration, Renderer, RequestCallback } from '../../types'
 import type { DataProvider } from './createDataProvide'
 import type { EventBus } from './createEventBus'
 
@@ -41,8 +39,8 @@ export function createDialog(renderer: Renderer, modalRenderer: ModalRenderer, h
     }
   }
 
-  function onCancel(scope) {
-    console.log('cancel', scope)
+  async function onCancel() {
+    await eventBus.publish('cancel')
   }
 
   const WrapDialog = defineComponent({

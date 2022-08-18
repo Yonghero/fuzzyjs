@@ -1,6 +1,7 @@
 /**
  * 多tab页合并配置
  */
+import { Template } from 'windicss/types/lang/tokens'
 import type { Templates } from '../types'
 
 export function mergeFuzzyOptions(...rest) {
@@ -31,6 +32,28 @@ export function mapTemplatesRenderer(templates: Templates[], type) {
 
     return _template
   })
+}
+
+export function mapTemplateDefaultValue(templates: Templates[], type) {
+  return templates.map((templates) => {
+    const _template = { ...templates }
+    if (_template.defaultValue && _template.defaultValue[type])
+      _template.defaultQueryValue = _template.defaultValue[type]
+
+    return _template
+  })
+}
+
+export interface TemplateMiddlewareCallback {
+  (templates: Templates[], type: string): Templates[]
+}
+
+export function templateMiddleWare(callback: TemplateMiddlewareCallback[]) {
+  return (templates, type) => {
+    return callback.reduce((templates, callback) => {
+      return callback(templates, type)
+    }, templates)
+  }
 }
 
 /**

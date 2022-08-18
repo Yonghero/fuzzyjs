@@ -133,9 +133,13 @@ export interface FormTemplate extends BaseTemplate {
    */
   type: FormItem | any
   /**
-   * 查询区域该字段展示的默认值
+   * 不同情况下字段展示的默认值
    */
-  defaultQueryValue?: string
+  defaultValue?: {
+    filter?: any
+    update?: any
+    create?: any
+  }
   /**
    * 是否禁用
    */

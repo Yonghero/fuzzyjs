@@ -9,7 +9,14 @@ export class ElementUIForm implements FormRenderer {
   isHorizontal = false
   shouldWarpEvenly = true
 
-  create({ templates, isHorizontal, labelPosition, shouldWarpEvenly, shouldValidate = true }: FormRenderProps) {
+  create({
+    templates,
+    isHorizontal,
+    labelPosition,
+    shouldWarpEvenly,
+    shouldValidate = true,
+    shouldLabelWidthAuto = true,
+  }: FormRenderProps) {
     this.isHorizontal = isHorizontal
     this.shouldWarpEvenly = shouldWarpEvenly === undefined
     // 获取数据模型
@@ -23,21 +30,47 @@ export class ElementUIForm implements FormRenderer {
 
     return {
       render: defineComponent({
-        setup() {
+        props: ['modelValue'],
+        setup(props) {
+          // 附默认值
+          if (props.modelValue) {
+            Object.keys(props.modelValue).forEach((key) => {
+              if (model[key])
+                model[key] = props.modelValue[key]
+            })
+          }
+
           return () => (
-            <ElForm
-              class="custom-el-form w-full flex flex-wrap"
-              model={model}
-              rules={rules}
-              ref={formRef}
-              label-position={labelPosition}
-              inline={isHorizontal}
-              label-width="100px"
-            >
+            <>
               {
-                FormItems
+                shouldLabelWidthAuto
+                  ? <ElForm
+                    class="custom-el-form w-full flex flex-wrap"
+                    model={model}
+                    rules={rules}
+                    ref={formRef}
+                    label-position={labelPosition}
+                    inline={isHorizontal}
+                  >
+                    {
+                      FormItems
+                    }
+                  </ElForm>
+                  : <ElForm
+                    class="custom-el-form w-full flex flex-wrap"
+                    model={model}
+                    rules={rules}
+                    ref={formRef}
+                    label-position={labelPosition}
+                    inline={isHorizontal}
+                    labelWidth="100px"
+                  >
+                    {
+                      FormItems
+                    }
+                  </ElForm>
               }
-            </ElForm>
+            </>
           )
         },
       }),
@@ -92,7 +125,6 @@ export class ElementUIForm implements FormRenderer {
               ? <item.render model={model} value={item.value}></item.render>
               : <FormItemComp {...item} model={model}/>
           }
-
         </ElFormItem>
       )
     })
@@ -143,7 +175,6 @@ export class ElementUIForm implements FormRenderer {
     return (
       <el-input
         v-model={props.model[props.value]}
-        placeholder="请输入"
         size="default"
         {..._props.value}
       />
