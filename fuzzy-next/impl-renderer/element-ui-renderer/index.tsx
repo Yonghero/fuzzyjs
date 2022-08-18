@@ -8,6 +8,8 @@ import { ElementUITab } from './ElementUITab'
 import { ElementUITable } from './ElementUITable'
 import { ElementUIDialog } from './ElementUIDialog'
 
+import '../../tailwind.css'
+
 export class ElementUIRenderer implements Renderer {
   button = new ElementUIButton()
   dialog = new ElementUIDialog()
