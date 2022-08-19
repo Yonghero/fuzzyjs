@@ -1,3 +1,5 @@
+import type { DataProvider } from './lift-off/createDataProvide'
+
 /**
  * 该文件暴露调用内部数据和方法, 可以在外部调用更加灵活处理
  */
@@ -5,6 +7,7 @@
 export const workInProgressFuzzy: any = {
   forceUpdate: () => undefined,
   shallowUpdate: (p?: any) => p,
+  dataProvider: ref<DataProvider>(),
 }
 
 /**
@@ -23,4 +26,6 @@ export function $shallowUpdate(params = {}) {
     workInProgressFuzzy.shallowUpdate(params)
 }
 
-// export function $fuzzy
+export function $insideReactiveValue() {
+  return workInProgressFuzzy.dataProvider.value.value
+}

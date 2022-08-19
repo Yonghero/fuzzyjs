@@ -1,5 +1,6 @@
 import type { PropType } from 'vue'
 import type { LayoutProvider, LayoutProviderRenderer } from '../../../fuzzy-next/types'
+import { $insideReactiveValue } from '../../../fuzzy-next'
 
 export class CustomLayoutProvider implements LayoutProvider {
   props = {
@@ -11,6 +12,11 @@ export class CustomLayoutProvider implements LayoutProvider {
   setup(props) {
     // 布局提供器
     // 自定义放置框架组件 可扩展其他组件
+
+    watchEffect(() => {
+      console.log($insideReactiveValue(), 'watch====inside')
+    })
+
     return () => (
       <div class="w-full h-full p-10">
         <div>

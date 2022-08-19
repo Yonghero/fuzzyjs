@@ -1,5 +1,6 @@
 import type { Ref, VNode } from 'vue'
 import { ref } from 'vue'
+import { workInProgressFuzzy } from '../expose'
 
 export interface ValueOfProvide {
   filterParams: Ref<Record<string, any>>
@@ -63,6 +64,14 @@ export function createDataProvide(): DataProvider {
       dialog.value = { ...dialog.value, ...props }
     },
   }
+
+  workInProgressFuzzy.dataProvider.value = computed(() => {
+    return {
+      filterParams: filterParams.value,
+      tableData: tableData.value,
+      total: total.value,
+    }
+  })
 
   return {
     dispatch,

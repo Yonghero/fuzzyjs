@@ -3,7 +3,7 @@ import type { VNode } from 'vue'
 import type { Feature, TableRenderProps, TableRenderer, TableTemplate, Templates } from '../../types'
 
 export class ElementUITable implements TableRenderer {
-  render({ templates, feature, selection, No }: TableRenderProps) {
+  render({ templates, feature, selection }: TableRenderProps) {
     const slots = {
       empty: () => (<ElEmpty/>),
     }

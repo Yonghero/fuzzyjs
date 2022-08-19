@@ -40,6 +40,7 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
     renderer.message.error(message)
   }
 
+  // 是否添加操作
   templates.push({
     width: options.operateWidth ? `${options.operateWidth}px` : '180px',
     value: 'fuzzy-table-operate',
@@ -89,8 +90,7 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
     },
   } as TableTemplate)
 
-  console.log(options.No, 'no')
-
+  // 是否添加序号
   if (options.No === undefined || options.No) {
     templates.unshift({
       label: '序号',
@@ -106,7 +106,6 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
     templates: mapTemplatesRenderer(templates as any, 'table'),
     feature: options.feature,
     selection: options.selection,
-    No: options?.No ?? true,
   })
 
   function onSelectionChange(p) {

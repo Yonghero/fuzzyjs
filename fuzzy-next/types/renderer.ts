@@ -33,7 +33,6 @@ export interface TableRenderProps {
   templates: Templates[]
   feature: Feature | undefined
   selection?: boolean
-  No?: boolean
 }
 
 /**
