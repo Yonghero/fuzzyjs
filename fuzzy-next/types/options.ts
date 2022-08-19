@@ -29,6 +29,10 @@ export interface OptionsConfiguration {
    */
   modalStyle?: ModalStyleProps
   /**
+   * 表格是否展示序号 默认展示
+   */
+  No?: boolean
+  /**
    * 表格是否展示多选框
    */
   selection?: boolean

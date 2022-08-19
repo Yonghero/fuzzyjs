@@ -18,7 +18,7 @@ export interface DispatchOfProvide {
   setDialog: (dialog: Partial<DialogProps>) => void
 }
 
-export interface DataProvider extends ValueOfProvide{
+export interface DataProvider extends ValueOfProvide {
   dispatch: DispatchOfProvide
 }
 
@@ -32,7 +32,7 @@ export interface DialogProps {
  * 提供框架的全局数据
  */
 export function createDataProvide(): DataProvider {
-  const filterParams = ref({})
+  const filterParams = ref({ current: 1, size: 10 })
   const tableData = ref([])
   const total = ref(0)
 

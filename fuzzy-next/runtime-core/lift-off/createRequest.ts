@@ -7,8 +7,6 @@ import type { DataProvider } from './createDataProvide'
  * 创建请求模块
  */
 export function createRequest(options: OptionsConfiguration, request: RequestProvider, handlers: FuzzyNextHandlers, dataProvide: DataProvider): RequestCallback {
-  const filterParams = ref({})
-
   const getApiOfMode = (mode: keyof Api) => {
     if (typeof options.api === 'string') return options.api
     return options.api[mode]
@@ -19,11 +17,11 @@ export function createRequest(options: OptionsConfiguration, request: RequestPro
       let handlerParams = {}
       // invoke hook
       if (handlers.queryBefore)
-        handlerParams = await handlers.queryBefore({ data: readonly(filterParams.value) })
+        handlerParams = await handlers.queryBefore({ data: readonly(dataProvide.filterParams.value) })
 
-      filterParams.value = { ...filterParams.value, ...params, ...handlerParams }
+      dataProvide.filterParams.value = { ...dataProvide.filterParams.value, ...params, ...handlerParams }
 
-      const response = await request.get(getApiOfMode('filter'), filterParams.value)
+      const response = await request.get(getApiOfMode('filter'), dataProvide.filterParams.value)
 
       if (response.success) {
         dataProvide.dispatch.setTableData(response.data)

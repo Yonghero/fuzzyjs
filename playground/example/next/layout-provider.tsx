@@ -1,7 +1,7 @@
 import type { PropType } from 'vue'
-import type { LayoutProvider, LayoutProviderRenderer } from '../../types'
+import type { LayoutProvider, LayoutProviderRenderer } from '../../../fuzzy-next/types'
 
-export class DefaultLayoutProvider implements LayoutProvider {
+export class CustomLayoutProvider implements LayoutProvider {
   props = {
     renderer: {
       type: Object as PropType<LayoutProviderRenderer>,
@@ -12,7 +12,7 @@ export class DefaultLayoutProvider implements LayoutProvider {
     // 布局提供器
     // 自定义放置框架组件 可扩展其他组件
     return () => (
-      <div class="w-full h-full p-2">
+      <div class="w-full h-full p-10">
         <div>
           {props.renderer.Tab}
         </div>

@@ -28,24 +28,3 @@ export function createFuzzy(options: CreateFuzzyOptions): any {
     use,
   }
 }
-
-export const workInProgressFuzzy: any = {
-  forceUpdate: () => undefined,
-  shallowUpdate: (p?: any) => p,
-}
-
-/**
- * 强制该组件重新渲染
- */
-export function $forceUpdate() {
-  if (workInProgressFuzzy.forceUpdate)
-    workInProgressFuzzy.forceUpdate()
-}
-
-/**
- * 只重新请求组件数据，不重新渲染
- */
-export function $shallowUpdate(params = {}) {
-  if (workInProgressFuzzy.shallowUpdate)
-    workInProgressFuzzy.shallowUpdate(params)
-}

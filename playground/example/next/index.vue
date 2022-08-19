@@ -1,6 +1,5 @@
 <script lang="tsx" setup>
-import { ArcoUIRenderer, ElementUIRenderer, mergeFuzzyOptions } from '../../../fuzzy-next'
-import { $forceUpdate, $shallowUpdate } from '../../../fuzzy-next/runtime-core'
+import { $forceUpdate, $shallowUpdate, ArcoUIRenderer, ElementUIRenderer, mergeFuzzyOptions } from '../../../fuzzy-next'
 import {
   CreateComponent,
   CreateComponent2,
@@ -10,8 +9,11 @@ import {
   options,
   options2,
 } from './template'
+import { CustomLayoutProvider } from '~/example/next/layout-provider'
 
-const _options = mergeFuzzyOptions(options)
+const layout = new CustomLayoutProvider()
+
+const _options = mergeFuzzyOptions(options, options2)
 
 const modalRenderer = mergeFuzzyOptions(
   {
@@ -57,6 +59,7 @@ const onForceUpdate = () => {
   </el-button>
   <Fuzzy
     :renderer="uiRenderer"
+    :layout-provider="layout"
     :options="_options"
     :handlers="handlers"
   />

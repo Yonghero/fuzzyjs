@@ -89,10 +89,24 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
     },
   } as TableTemplate)
 
+  console.log(options.No, 'no')
+
+  if (options.No === undefined || options.No) {
+    templates.unshift({
+      label: '序号',
+      value: 'fuzzy-No',
+      width: 70,
+      render(scope) {
+        return <span>{scope.$index + 1 + (dataProvider.filterParams.value.current - 1) * dataProvider.filterParams.value.size}</span>
+      },
+    })
+  }
+
   const Table = renderer.table.render({
     templates: mapTemplatesRenderer(templates as any, 'table'),
     feature: options.feature,
     selection: options.selection,
+    No: options?.No ?? true,
   })
 
   function onSelectionChange(p) {
