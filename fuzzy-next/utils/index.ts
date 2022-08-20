@@ -37,7 +37,7 @@ export function mapTemplatesRenderer(templates: Templates[], type) {
 export function mapTemplateDefaultValue(templates: Templates[], type) {
   return templates.map((templates) => {
     const _template = { ...templates }
-    if (_template.defaultValue && _template.defaultValue[type])
+    if (_template.defaultValue && _template.defaultValue[type] !== undefined)
       _template.defaultQueryValue = _template.defaultValue[type]
 
     return _template

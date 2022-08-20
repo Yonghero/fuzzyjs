@@ -35,10 +35,14 @@ export const options: OptionsConfiguration = {
     {
       type: 'select',
       options: [
-        { label: 'hhh', value: 'hhh' },
+        { label: 'hhh', value: 0 },
       ],
       label: '企业code',
       value: 'enterpriseCode',
+      defaultValue: {
+        create: 0,
+        update: 0,
+      },
       renderer: {
         table: () => <div>123hhh</div>,
       },

@@ -1,22 +1,22 @@
-import type { FormInstance } from 'element-plus'
-import { ElForm, ElFormItem } from 'element-plus'
-import type { VNode } from 'vue'
-import { reactive, ref } from 'vue'
-import type { FormCompProps, FormItem, FormRenderProps, FormRenderer, Templates } from '../../types'
-import { globalFormItems } from '../../runtime-core'
+import type {FormInstance} from 'element-plus'
+import {ElForm, ElFormItem} from 'element-plus'
+import type {VNode} from 'vue'
+import {reactive, ref} from 'vue'
+import type {FormCompProps, FormItem, FormRenderProps, FormRenderer, Templates} from '../../types'
+import {globalFormItems} from '../../runtime-core'
 
 export class ElementUIForm implements FormRenderer {
   isHorizontal = false
   shouldWarpEvenly = true
 
   create({
-    templates,
-    isHorizontal,
-    labelPosition,
-    shouldWarpEvenly,
-    shouldValidate = true,
-    shouldLabelWidthAuto = true,
-  }: FormRenderProps) {
+           templates,
+           isHorizontal,
+           labelPosition,
+           shouldWarpEvenly,
+           shouldValidate = true,
+           shouldLabelWidthAuto = true,
+         }: FormRenderProps) {
     this.isHorizontal = isHorizontal
     this.shouldWarpEvenly = shouldWarpEvenly === undefined
     // 获取数据模型
@@ -35,7 +35,7 @@ export class ElementUIForm implements FormRenderer {
           // 附默认值
           if (props.modelValue) {
             Object.keys(props.modelValue).forEach((key) => {
-              if (model[key])
+              if (model[key] !== undefined)
                 model[key] = props.modelValue[key]
             })
           }
@@ -84,7 +84,7 @@ export class ElementUIForm implements FormRenderer {
       rules[item.value] = []
       // 必填
       if (item.require)
-        rules[item.value].push({ required: true, trigger: 'change' })
+        rules[item.value].push({required: true, trigger: 'change'})
       // 其他规则
       if (item.rules)
         rules[item.value].push(...item.rules)
@@ -100,7 +100,7 @@ export class ElementUIForm implements FormRenderer {
     const model = reactive({})
     templates.forEach((item) => {
       if (item.value)
-        model[item.value] = item.defaultQueryValue ? item.defaultQueryValue : ''
+        model[item.value] = item.defaultQueryValue !== undefined ? item.defaultQueryValue : ''
     })
     return model
   }
@@ -139,7 +139,7 @@ export class ElementUIForm implements FormRenderer {
     if (this.shouldWarpEvenly)
       style.width = `calc(100% / ${inlineLength} - 1rem)`
 
-    const { full, width, rest, half } = item
+    const {full, width, rest, half} = item
     if (full)
       style.width = '100%'
     if (half)
@@ -168,7 +168,7 @@ export class ElementUIForm implements FormRenderer {
 
   input(props: FormCompProps) {
     const _props = computed(() => {
-      const p = { ...props }
+      const p = {...props}
       delete p.value
       return p
     })
@@ -181,7 +181,7 @@ export class ElementUIForm implements FormRenderer {
     )
   }
 
-  select(props: FormCompProps, { emit }): VNode {
+  select(props: FormCompProps, {emit}): VNode {
     return (
       <el-select
         onChange={v => emit('change', props.value, v)}
