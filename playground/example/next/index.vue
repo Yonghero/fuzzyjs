@@ -63,7 +63,6 @@ const onForceUpdate = () => {
   </el-button>
   <Fuzzy
     :renderer="uiRenderer"
-    :layout-provider="_layout"
     :options="_options"
     :handlers="handlers"
   />

@@ -58,7 +58,7 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
 
       if (options.operators) {
         const operators = options.operators(scope, { UpdateRender, DeleteRender })
-        return <div class="w-full h-full flex justify-center items-center gap-x-4">
+        return <div class="w-full h-full flex justify-center items-center" style="column-gap: 1rem">
           {
             operators.map((Operator, idx) => {
               return <Operator key={idx}/>
@@ -67,7 +67,7 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
         </div>
       }
       else {
-        return (<div class="w-full h-full flex justify-center items-center gap-x-4">
+        return (<div class="w-full h-full flex justify-center items-center" style="column-gap: 1rem">
           {
             options.feature && options.feature.update === false
               ? null

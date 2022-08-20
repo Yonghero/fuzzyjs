@@ -25,7 +25,12 @@ export function useActivated(props: any) {
   // 合并布局器
   const mergeLayoutProvider = computed(() => transferToArray(props.layoutProvider))
   // 激活的布局器
-  const layoutProvider = computed(() => markRaw(mergeLayoutProvider.value[activeTabIndex.value]))
+  const layoutProvider = computed(() => {
+    if (mergeLayoutProvider.value.length === mergeOptions.value.length)
+      return markRaw(mergeLayoutProvider.value[activeTabIndex.value])
+    return markRaw(mergeLayoutProvider.value[0])
+  },
+  )
 
   const tab = computed(() => {
     return <props.renderer.tab.render
