@@ -13,8 +13,11 @@ import type { DataProvider } from './createDataProvide'
 export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, handlers: FuzzyNextHandlers, templates: Partial<Templates>[], dataProvider: DataProvider, requestCallback: RequestCallback, options: OptionsConfiguration): any {
   async function onUpdate(scope) {
     let row = scope.row
-    if (handlers.updateBeforePop)
+    if (handlers.updateBeforePop) {
       row = await handlers.updateBeforePop({ data: scope.row, url: requestCallback.urls.update })
+      if (row.data && row.url)
+        row = row.data
+    }
 
     dataProvider.dispatch.setDialog({
       visible: true,

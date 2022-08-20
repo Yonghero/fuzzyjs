@@ -88,10 +88,13 @@ function createComp(type, requestMethod, templates: Templates[]) {
           if (_handlers?.updateConfirm)
             _model = await _handlers.updateConfirm({ data: form.model, url: _requestCallback.urls.update })
         }
+        if (_model.data && _model.url)
+          _model = _model.data
+
         return _model
       }
 
-      return () => <form.render modelValue={props.row.data}/>
+      return () => <form.render modelValue={props.row}/>
     },
   })
 }
