@@ -11,7 +11,7 @@ export const options: OptionsConfiguration = {
   selection: true,
   template: [
     {
-      type: 'input',
+      type: 'date',
       label: '企业名称',
       value: 'entName',
       placeholder: '来吧占位置',
@@ -25,10 +25,11 @@ export const options: OptionsConfiguration = {
       ],
       visible: {
         table: true,
+        filter: true,
       },
       renderer: {
-        filter: props => (<el-input v-model={props.model[props.value]}/>),
-        table: props => (<div>{props.value}</div>),
+        // filter: props => (<el-input v-model={props.model[props.value]}/>),
+        table: props => (<div class="text-red-500">{props.value}</div>),
       },
     },
     {
@@ -68,7 +69,7 @@ export const options: OptionsConfiguration = {
   operateWidth: 280,
   operators: (scope, { UpdateRender, DeleteRender }) => {
     // eslint-disable-next-line react/jsx-key
-    return [<div>diy</div>, UpdateRender, DeleteRender]
+    return [<div>diy</div>, DeleteRender, UpdateRender]
   },
 }
 

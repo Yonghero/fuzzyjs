@@ -31,7 +31,7 @@ const Fuzzy = createFuzzy({
     renderer: new ElementUIRenderer(),
   },
   lang: {
-    filter: '筛选',
+    filter: '查询',
   },
 })
 

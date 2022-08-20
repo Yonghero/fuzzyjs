@@ -3,7 +3,7 @@ import type { Component, VNode } from 'vue'
 /**
  * fuzzy-next supported options
  */
-export interface OptionsConfiguration {
+export type OptionsConfiguration = {
   /**
    * 页面标题 可传递自定义渲染函数
    * 传递展示
@@ -50,7 +50,7 @@ export interface OptionsConfiguration {
    * @param deleteRender 提供删除组件
    */
   operators?: (row, { UpdateRender, DeleteRender }) => Element[] | Component[] | VNode[]
-}
+} & ExtraProps
 
 type ExtraProps = {
   [key in string]: any
@@ -83,15 +83,15 @@ interface BaseTemplate {
   }
 }
 
-export interface RendererQueryProps {
+export type RendererQueryProps = {
   model: any
-  value: string
-}
+  value: any
+} & ExtraProps
 
-export interface RendererTableProps {
+export type RendererTableProps = {
   key: string
-  value: string
-}
+  value: any
+} & ExtraProps
 
 export interface RendererTemplate {
   renderer?: {
