@@ -36,7 +36,7 @@ export function LiftOff(renderer: Renderer, _modalRenderer: ModalRenderer, extra
   // warp handlers inject self hooks
 
   // update & create dialog's content
-  const modalRenderer = createModalRenderer(renderer, options, _modalRenderer, requestCallback, eventBus)
+  const modalRenderer = createModalRenderer(renderer, options, _modalRenderer, requestCallback, eventBus, handlers)
 
   const Dialog = createDialog(renderer, modalRenderer, handlers, requestCallback, dataProvide, options, eventBus)
 

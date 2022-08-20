@@ -1,7 +1,6 @@
 /**
  * 多tab页合并配置
  */
-import { Template } from 'windicss/types/lang/tokens'
 import type { Templates } from '../types'
 
 export function mergeFuzzyOptions(...rest) {

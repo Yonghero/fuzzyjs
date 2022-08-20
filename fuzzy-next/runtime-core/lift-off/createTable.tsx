@@ -48,11 +48,11 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
       const UpdateRender = <renderer.button.render type={'update'}
         onClick={() => onUpdate(scope)}>编辑</renderer.button.render>
 
+      // @ts-expect-error 123
       const DeleteRender = (<renderer.confirm.render type="warning"
         onOk={() => onDelete(scope)}
         onCancel={() => {
-        }}
-        content={'是否确认删除'}>
+        }}>
         <renderer.button.render type={'delete'}>删除</renderer.button.render>
       </renderer.confirm.render>)
 
@@ -76,11 +76,12 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
           {
             options.feature && options.feature.delete === false
               ? null
+              // @ts-expect-error 123
               : <renderer.confirm.render type="warning"
                 onOk={() => onDelete(scope)}
                 onCancel={() => {
                 }}
-                content={'是否确认删除'}>
+              >
                 <renderer.button.render type={'delete'}>删除</renderer.button.render>
               </renderer.confirm.render>
           }

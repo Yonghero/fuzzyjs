@@ -139,7 +139,7 @@ export interface ConfirmRenderProps {
 }
 
 export interface ConfirmRender {
-  render: (props: Readonly<ConfirmRenderProps>, context: SetupContext) => VNode
+  render: VNode | Component | Element
 }
 
 export interface ExtendFormItem {
