@@ -22,6 +22,11 @@ export function useActivated(props: any) {
   // 激活的扩展组件
   const extraRenderer = computed(() => mergeExtraRenderer.value[activeTabIndex.value])
 
+  // 合并布局器
+  const mergeLayoutProvider = computed(() => transferToArray(props.layoutProvider))
+  // 激活的布局器
+  const layoutProvider = computed(() => markRaw(mergeLayoutProvider.value[activeTabIndex.value]))
+
   const tab = computed(() => {
     return <props.renderer.tab.render
       vModel={activeTabIndex.value}
@@ -33,6 +38,7 @@ export function useActivated(props: any) {
     options,
     modalRenderer,
     extraRenderer,
+    layoutProvider,
     tab,
   }
 }

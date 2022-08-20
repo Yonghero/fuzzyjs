@@ -10,8 +10,12 @@ import {
   options2,
 } from './template'
 import { CustomLayoutProvider } from '~/example/next/layout-provider'
+import { CustomLayoutProviderP } from '~/example/next/layout-provider-p'
 
 const layout = new CustomLayoutProvider()
+const layoutP = new CustomLayoutProviderP()
+
+const _layout = mergeFuzzyOptions(layout, layoutP)
 
 const _options = mergeFuzzyOptions(options, options2)
 
@@ -59,7 +63,7 @@ const onForceUpdate = () => {
   </el-button>
   <Fuzzy
     :renderer="uiRenderer"
-    :layout-provider="layout"
+    :layout-provider="_layout"
     :options="_options"
     :handlers="handlers"
   />

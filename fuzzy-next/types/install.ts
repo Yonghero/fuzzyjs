@@ -14,11 +14,18 @@ export interface FuzzyPluginOptions {
   installUIPlugin: (items: ExtendFormItem[]) => void
 }
 
+// 请求服务端分页的键
+export interface PagingProvider {
+  current: string
+  size: string
+}
+
 export interface CreateFuzzyOptions {
   adapters: {
     http: RequestProvider
     layout: LayoutProvider
     renderer: Renderer
+    paging: PagingProvider
   }
   lang?: {
     filter?: string

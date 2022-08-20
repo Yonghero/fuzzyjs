@@ -4,7 +4,7 @@ import type {
   FuzzyNextHandlers,
   LayoutProviderRenderer,
   ModalRenderer,
-  OptionsConfiguration,
+  OptionsConfiguration, PagingProvider,
   Renderer,
   RequestProvider,
 } from '../../types'
@@ -21,7 +21,7 @@ import { createCreateButton } from './createCreateButton'
 import { createModalRenderer } from './createModalRenderer'
 import '../../tailwind.css'
 
-export function LiftOff(renderer: Renderer, _modalRenderer: ModalRenderer, extraRenderer: ExtraRenderer, handlers: FuzzyNextHandlers, options: OptionsConfiguration, mock: any[], request: RequestProvider, fuzzyOptions: CreateFuzzyOptions): Omit<LayoutProviderRenderer, 'Tab'> {
+export function LiftOff(renderer: Renderer, _modalRenderer: ModalRenderer, extraRenderer: ExtraRenderer, handlers: FuzzyNextHandlers, options: OptionsConfiguration, mock: any[], request: RequestProvider, fuzzyOptions: CreateFuzzyOptions, paging: PagingProvider): Omit<LayoutProviderRenderer, 'Tab'> {
   // global data provide
   // dispatch data
   const dataProvide = createDataProvide()
@@ -52,7 +52,7 @@ export function LiftOff(renderer: Renderer, _modalRenderer: ModalRenderer, extra
   )
 
   // Page Component
-  const Page = createPage(renderer, handlers, requestCallback, dataProvide)
+  const Page = createPage(renderer, handlers, requestCallback, dataProvide, paging)
 
   // Filter Component
   const {

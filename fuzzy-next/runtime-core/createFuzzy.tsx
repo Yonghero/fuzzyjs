@@ -9,10 +9,12 @@ export function createFuzzy(options: CreateFuzzyOptions): any {
     http,
     layout,
     renderer,
+    paging,
   } = options.adapters
 
   const implRenderer = renderer || new ElementUIRenderer()
   const implLayoutProvider = layout || new DefaultLayoutProvider()
+  const implPaging = paging || { current: 'current', size: 'size' }
   const implRequestProvider = http
 
   if (!http)
@@ -20,7 +22,7 @@ export function createFuzzy(options: CreateFuzzyOptions): any {
 
   // 生成组件
   function component() {
-    return createComponent(implRenderer, implLayoutProvider, implRequestProvider, options)
+    return createComponent(implRenderer, implLayoutProvider, implRequestProvider, implPaging, options)
   }
 
   return {

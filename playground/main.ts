@@ -29,6 +29,10 @@ const Fuzzy = createFuzzy({
     http: new DefaultRequestProvider(axiosInstance),
     layout: new DefaultLayoutProvider(),
     renderer: new ElementUIRenderer(),
+    paging: {
+      current: 'current',
+      size: 'size',
+    },
   },
   lang: {
     filter: '查询',

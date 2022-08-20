@@ -6,7 +6,7 @@ import type {
   FuzzyNextHandlers,
   LayoutProvider,
   ModalRenderer,
-  OptionsConfiguration,
+  OptionsConfiguration, PagingProvider,
   Renderer,
   RequestProvider,
 } from '../types'
@@ -14,7 +14,7 @@ import { LiftOff } from './lift-off'
 import { useActivated } from './useActivated'
 import { workInProgressFuzzy } from './expose'
 
-export function createComponent(globalRenderer: Renderer, globalLayoutProvider: LayoutProvider, requestProvider: RequestProvider, fuzzyOptions: CreateFuzzyOptions) {
+export function createComponent(globalRenderer: Renderer, globalLayoutProvider: LayoutProvider, requestProvider: RequestProvider, globalPaging: PagingProvider, fuzzyOptions: CreateFuzzyOptions) {
   return defineComponent({
     props: {
       options: {
@@ -46,9 +46,13 @@ export function createComponent(globalRenderer: Renderer, globalLayoutProvider: 
         type: Array,
         default: () => ([]),
       },
+      paging: {
+        type: Object as PropType<PagingProvider>,
+        default: () => globalPaging,
+      },
     },
     setup(props) {
-      console.log(`%c${'-----component setup-----'}`, 'color: #008c8c')
+      console.log(`%c${'-----component setup-----'}`, 'color: #008c8c', props)
 
       // 提供给用户的强制更新
       workInProgressFuzzy.forceUpdate = getCurrentInstance()?.proxy?.$forceUpdate
@@ -58,13 +62,14 @@ export function createComponent(globalRenderer: Renderer, globalLayoutProvider: 
         extraRenderer,
         options,
         tab,
+        layoutProvider,
       } = useActivated(props)
 
       // 根据activeOptions页面配置动态渲染
       const dynamicLayout = computed(() => {
-        const components = LiftOff(props.renderer, modalRenderer.value, extraRenderer.value, props.handlers, options.value, props.mock, requestProvider, fuzzyOptions)
+        const components = LiftOff(props.renderer, modalRenderer.value, extraRenderer.value, props.handlers, options.value, props.mock, requestProvider, fuzzyOptions, props.paging)
         return (
-          <props.layoutProvider renderer={{ ...components, Tab: tab.value }}></props.layoutProvider>
+          <layoutProvider.value renderer={{ ...components, Tab: tab.value }}></layoutProvider.value>
         )
       })
 
