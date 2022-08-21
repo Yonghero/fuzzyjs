@@ -52,8 +52,6 @@ export function createComponent(globalRenderer: Renderer, globalLayoutProvider: 
       },
     },
     setup(props) {
-      console.log(`%c${'-----component setup-----'}`, 'color: #008c8c', props)
-
       // 提供给用户的强制更新
       workInProgressFuzzy.forceUpdate = getCurrentInstance()?.proxy?.$forceUpdate
 
