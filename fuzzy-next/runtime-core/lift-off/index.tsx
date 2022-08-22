@@ -8,7 +8,7 @@ import type {
   Renderer,
   RequestProvider,
 } from '../../types'
-import { getTemplatesWithFeature } from '../../utils'
+import { mapTemplateOfFeature } from '../../utils'
 import { workInProgressFuzzy } from '../expose'
 import { createEventBus } from './createEventBus'
 import { createDataProvide } from './createDataProvide'
@@ -41,15 +41,7 @@ export function LiftOff(renderer: Renderer, _modalRenderer: ModalRenderer, extra
   const Dialog = createDialog(renderer, modalRenderer, handlers, requestCallback, dataProvide, options, eventBus)
 
   // Table Component
-  const Table = createTable(
-    renderer,
-    modalRenderer,
-    handlers,
-    getTemplatesWithFeature(options.template, 'table'),
-    dataProvide,
-    requestCallback,
-    options,
-  )
+  const Table = createTable(renderer, modalRenderer, handlers, options.template, dataProvide, requestCallback, options)
 
   // Page Component
   const Page = createPage(renderer, handlers, requestCallback, dataProvide, paging)
@@ -58,16 +50,9 @@ export function LiftOff(renderer: Renderer, _modalRenderer: ModalRenderer, extra
   const {
     Filter,
     FilterButton,
-  } = createFilter(
-    renderer,
-    getTemplatesWithFeature(options.template, 'filter'),
-    options?.feature,
-    requestCallback,
-    dataProvide,
-    fuzzyOptions,
-  )
+  } = createFilter(renderer, options.template, options?.feature, requestCallback, dataProvide, fuzzyOptions)
 
-  const CreateButton = createCreateButton(renderer, modalRenderer, getTemplatesWithFeature(options.template, 'create'), handlers, requestCallback, dataProvide, options)
+  const CreateButton = createCreateButton(renderer, modalRenderer, mapTemplateOfFeature(options.template, 'create'), handlers, requestCallback, dataProvide, options)
 
   return {
     Filter,

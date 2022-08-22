@@ -1,5 +1,6 @@
 <script lang="tsx" setup>
 import { $forceUpdate, $shallowUpdate, ArcoUIRenderer, ElementUIRenderer, mergeFuzzyOptions } from '../../../fuzzy-next'
+import { mapTemplateOfOrder } from '../../../fuzzy-next/utils'
 import {
   CreateComponent,
   CreateComponent2,

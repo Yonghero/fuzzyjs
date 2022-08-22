@@ -2,6 +2,7 @@
  * 多tab页合并配置
  */
 import type { Templates } from '../types'
+import type { TemplateMiddlewareCallback } from '../types'
 
 export function mergeFuzzyOptions(...rest) {
   return rest
@@ -43,8 +44,25 @@ export function mapTemplateDefaultValue(templates: Templates[], type) {
   })
 }
 
-export interface TemplateMiddlewareCallback {
-  (templates: Templates[], type: string): Templates[]
+export function mapTemplateOfOrder(templates: Templates[], type) {
+  const orderTemplates = templates.map((template, index) => {
+    const _template = { order: {}, ...template }
+
+    if (_template.order[type] === undefined)
+      _template.order[type] = index
+
+    return _template
+  })
+
+  return orderTemplates.sort((t1, t2) => t1.order[type] - t2.order[type])
+}
+
+export function mapTemplateOfFeature(templates: Templates[], feature) {
+  return templates.filter((item) => {
+    if (!item.visible)
+      return true
+    return !!(item.visible && (item.visible[feature] || item.visible[feature] === undefined))
+  })
 }
 
 export function templateMiddleWare(callback: TemplateMiddlewareCallback[]) {

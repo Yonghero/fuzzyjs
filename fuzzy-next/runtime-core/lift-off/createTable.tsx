@@ -7,10 +7,18 @@ import type {
   TableTemplate,
   Templates,
 } from '../../types'
-import { mapTemplatesRenderer } from '../../utils'
+import { mapTemplateOfFeature, mapTemplateOfOrder, mapTemplatesRenderer, templateMiddleWare } from '../../utils'
 import type { DataProvider } from './createDataProvide'
 
-export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, handlers: FuzzyNextHandlers, templates: Partial<Templates>[], dataProvider: DataProvider, requestCallback: RequestCallback, options: OptionsConfiguration): any {
+export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, handlers: FuzzyNextHandlers, _templates: Partial<Templates>[], dataProvider: DataProvider, requestCallback: RequestCallback, options: OptionsConfiguration): any {
+  const templates = templateMiddleWare([mapTemplatesRenderer, mapTemplateOfOrder, mapTemplateOfFeature])(_templates, 'table')
+  console.log(templates)
+  const Table = renderer.table.render({
+    templates,
+    feature: options.feature,
+    selection: options.selection,
+  })
+
   async function onUpdate(scope) {
     let row = scope.row
     if (handlers.updateBeforePop) {
@@ -105,12 +113,6 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
       },
     })
   }
-
-  const Table = renderer.table.render({
-    templates: mapTemplatesRenderer(templates as any, 'table'),
-    feature: options.feature,
-    selection: options.selection,
-  })
 
   function onSelectionChange(p) {
     if (handlers.selectionChange)

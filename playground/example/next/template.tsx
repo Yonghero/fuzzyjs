@@ -19,6 +19,10 @@ export const options: OptionsConfiguration = {
         filter: '特',
         create: 'hhh',
       },
+      order: {
+        filter: 2,
+        table: 3,
+      },
       require: true,
       rules: [
         { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },
@@ -64,6 +68,17 @@ export const options: OptionsConfiguration = {
     {
       label: '两重点名称',
       value: 'name',
+      type: 'input',
+      order: {
+        filter: 4,
+      },
+      visible: {
+        table: true,
+      },
+    },
+    {
+      label: '两重点名称22',
+      value: 'name1',
       type: 'input',
       visible: {
         table: true,

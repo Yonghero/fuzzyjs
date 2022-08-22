@@ -7,6 +7,7 @@ export class ElementUITable implements TableRenderer {
     const slots = {
       empty: () => (<ElEmpty/>),
     }
+
     const TableColumn = this.getColumns(templates, feature, selection)
 
     return (props) => {
@@ -59,7 +60,7 @@ export class ElementUITable implements TableRenderer {
           label="操作"
           prop="操作"
           align="center"
-          width={operatorItem.width ? operatorItem.width : ''}
+          width={operatorItem?.width ?? ''}
         />]
     }
 
@@ -92,9 +93,9 @@ export class ElementUITable implements TableRenderer {
    */
   _getColumn(item: TableTemplate, scope: any) {
     // custom render
-    if (item.render)
+    if (item?.render)
       return (item.render({ ...scope, key: item.value, value: scope.row[item.value] }))
 
-    return (scope.row[item.value] || scope.row[item.value] === 0 ? scope.row[item.value] : '-')
+    return (scope.row[item?.value] || scope.row[item?.value] === 0 ? scope.row[item?.value] : '-')
   }
 }

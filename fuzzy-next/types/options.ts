@@ -81,6 +81,15 @@ interface BaseTemplate {
     update?: boolean | ((row: any) => boolean)
     delete?: boolean | ((row: any) => boolean)
   }
+  /**
+   * 字段展示顺序
+   */
+  order?: {
+    filter?: number
+    table?: number
+    create?: number
+    update?: number
+  }
 }
 
 export type RendererQueryProps = {
