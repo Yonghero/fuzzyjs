@@ -6,7 +6,12 @@ import type {
   RequestCallback,
   Templates,
 } from '../../types'
-import { getTemplatesWithFeature, mapTemplateDefaultValue, mapTemplatesRenderer, templateMiddleWare } from '../../utils'
+import {
+  mapTemplateDefaultValue,
+  mapTemplateOfFeature,
+  mapTemplatesRenderer,
+  templateMiddleWare,
+} from '../../utils'
 import type { EventBus } from './createEventBus'
 
 let _renderer: Renderer
@@ -29,12 +34,12 @@ export function createModalRenderer(renderer: Renderer, options: OptionsConfigur
   if (modalRenderer?.UpdateComponent)
     UpdateComponent = modalRenderer.UpdateComponent
   else
-    UpdateComponent = createComp('update', 'put', getTemplatesWithFeature(options.template, 'update'))
+    UpdateComponent = createComp('update', 'put', mapTemplateOfFeature(options.template, 'update'))
 
   if (modalRenderer?.CreateComponent)
     CreateComponent = modalRenderer.CreateComponent
   else
-    CreateComponent = createComp('create', 'post', getTemplatesWithFeature(options.template, 'create'))
+    CreateComponent = createComp('create', 'post', mapTemplateOfFeature(options.template, 'create'))
 
   return {
     UpdateComponent,

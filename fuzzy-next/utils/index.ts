@@ -1,8 +1,7 @@
 /**
  * 多tab页合并配置
  */
-import type { Templates } from '../types'
-import type { TemplateMiddlewareCallback } from '../types'
+import type { TemplateMiddlewareCallback, Templates } from '../types'
 
 export function mergeFuzzyOptions(...rest) {
   return rest
