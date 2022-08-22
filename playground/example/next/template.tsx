@@ -84,6 +84,20 @@ export const options: OptionsConfiguration = {
         table: true,
       },
     },
+    {
+      label: '站点类型',
+      value: 'subType',
+      filterUnShow: true,
+      defaultValue: {
+        filter: 1,
+      },
+      visible: {
+        table: false,
+        update: false,
+        create: false,
+      },
+      type: 'input',
+    },
   ],
   operateWidth: 280,
   operators: (scope, { UpdateRender, DeleteRender }) => {

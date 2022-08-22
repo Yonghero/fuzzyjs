@@ -51,7 +51,6 @@ export class ElementUITable implements TableRenderer {
 
     if (this.shouldFeaturesRender(feature)) {
       const operatorItem = templates.find(t => t.value === 'fuzzy-table-operate') as TableTemplate
-      console.log(operatorItem)
       filedColumns = [...filedColumns,
         <ElTableColumn
           v-slots={{

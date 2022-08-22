@@ -111,23 +111,25 @@ export class ElementUIForm implements FormRenderer {
    * @param model
    */
   getFromItems(templates: Templates[], model) {
-    return templates.map((item) => {
-      const FormItemComp = this._getFormComponent(item.type)
-      return (
-        <ElFormItem
-          label={item.label}
-          key={item.value}
-          style={this.getFromStyle(item)}
-          prop={item.value}
-        >
-          {
-            item.render
-              ? <item.render model={model} value={item.value}></item.render>
-              : <FormItemComp {...item} model={model}/>
-          }
-        </ElFormItem>
-      )
-    })
+    return templates
+      .filter(item => !item.filterUnShow)
+      .map((item) => {
+        const FormItemComp = this._getFormComponent(item.type)
+        return (
+          <ElFormItem
+            label={item.label}
+            key={item.value}
+            style={this.getFromStyle(item)}
+            prop={item.value}
+          >
+            {
+              item.render
+                ? <item.render model={model} value={item.value}></item.render>
+                : <FormItemComp {...item} model={model}/>
+            }
+          </ElFormItem>
+        )
+      })
   }
 
   getFromStyle(item: Templates) {
