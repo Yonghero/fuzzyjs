@@ -4,9 +4,9 @@ import type { FormCompProps, FormItem, FormRenderProps, FormRenderer, Templates 
 
 export class ArcoUIForm implements FormRenderer {
   create({ templates }: FormRenderProps) {
-    const model = this.getModel(templates)
+    const model = this.getModel(unref(templates))
 
-    const FormItems = this.getFromItems(templates, model)
+    const FormItems = this.getFromItems(unref(templates), model)
     const formRef = ref()
     return {
       render: (
@@ -24,7 +24,7 @@ export class ArcoUIForm implements FormRenderer {
     }
   }
 
-  getModel(templates: Templates[]) {
+  getModel(templates: Templates[] | any) {
     const model = reactive({})
     templates.forEach((item) => {
       if (item.value)
@@ -33,7 +33,7 @@ export class ArcoUIForm implements FormRenderer {
     return model
   }
 
-  getFromItems(templates: Templates[], model) {
+  getFromItems(templates: Templates[] | any, model) {
     return templates.map((item) => {
       const FormItemComp = this._getFormComponent(item.type)
       return (
@@ -79,14 +79,14 @@ export class ArcoUIForm implements FormRenderer {
       >
         {
           props.options
-              && props.options.map(item => (
-                <a-option
-                  key={item.value}
-                  value={item.value}
-                >{
-                    item.label
-                  }</a-option>
-              ))
+          && props.options.map(item => (
+            <a-option
+              key={item.value}
+              value={item.value}
+            >{
+                item.label
+              }</a-option>
+          ))
         }
       </a-select>
     )
