@@ -22,11 +22,12 @@ export class ElementUITab implements TabRenderer {
                     onClick={() => {
                       emit('update:modelValue', index)
                     }}
+                    style="min-height: 2.4rem"
                     class={[
                       props?.modelValue === index
                         ? 'bg-primary-100 text-white'
                         : 'bg-gray-200 text-gray-700',
-                      'py-3.5', 'px-8',
+                      'px-8',
                       'rounded-t-lg', 'min-w-[120px]', 'flex', 'items-center', 'justify-center', 'mr-1', ' shadow-primary-50', 'cursor-pointer',
                     ].join(' ')}
                   >{option.label}</div>

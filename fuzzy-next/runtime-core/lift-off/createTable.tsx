@@ -12,12 +12,6 @@ import type { DataProvider } from './createDataProvide'
 
 export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, handlers: FuzzyNextHandlers, _templates: Partial<Templates>[], dataProvider: DataProvider, requestCallback: RequestCallback, options: OptionsConfiguration): any {
   const templates = templateMiddleWare([mapTemplatesRenderer, mapTemplateOfOrder, mapTemplateOfFeature])(_templates, 'table')
-  console.log(templates)
-  const Table = renderer.table.render({
-    templates,
-    feature: options.feature,
-    selection: options.selection,
-  })
 
   async function onUpdate(scope) {
     let row = scope.row
@@ -53,8 +47,11 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
 
   // 是否添加操作
   templates.push({
-    width: options.operateWidth ? `${options.operateWidth}px` : '180px',
+    width: options?.operateWidth ? `${options.operateWidth}px` : '180px',
     value: 'fuzzy-table-operate',
+    visible: {
+      table: true,
+    },
     render(scope) {
       const UpdateRender = <renderer.button.render type={'update'}
         onClick={() => onUpdate(scope)}>编辑</renderer.button.render>
@@ -113,6 +110,12 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
       },
     })
   }
+
+  const Table = renderer.table.render({
+    templates,
+    feature: options.feature,
+    selection: options.selection,
+  })
 
   function onSelectionChange(p) {
     if (handlers.selectionChange)

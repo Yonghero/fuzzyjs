@@ -71,14 +71,3 @@ export function templateMiddleWare(callback: TemplateMiddlewareCallback[]) {
     }, templates)
   }
 }
-
-/**
- * 返回指定类型的模板
- * @param templates
- * @param feature
- */
-export function getTemplatesWithFeature(templates: Templates[], feature: string): Templates[] {
-  return templates.filter((item) => {
-    return !(item.visible && item.visible[feature] === false)
-  })
-}
