@@ -1,6 +1,7 @@
 <script lang="tsx" setup>
 import { $forceUpdate, $shallowUpdate, ArcoUIRenderer, ElementUIRenderer, mergeFuzzyOptions } from '../../../fuzzy-next'
 import { mapTemplateOfOrder } from '../../../fuzzy-next/utils'
+import { ElementUIButton } from '../../../fuzzy-next/impl-renderer/element-ui-renderer/ElementUIButton'
 import {
   CreateComponent,
   CreateComponent2,
@@ -15,6 +16,8 @@ import { CustomLayoutProviderP } from '~/example/next/layout-provider-p'
 
 const layout = new CustomLayoutProvider()
 const layoutP = new CustomLayoutProviderP()
+
+const button = new ElementUIButton()
 
 const _layout = mergeFuzzyOptions(layout, layoutP)
 
@@ -53,9 +56,9 @@ const onForceUpdate = () => {
 </script>
 
 <template>
-  <el-button @click="onChange">
+  <button.render type="operate" @click="onChange">
     换肤
-  </el-button>
+  </button.render>
   <el-button @click="onUpdate">
     shallowUpdate
   </el-button>
@@ -66,5 +69,6 @@ const onForceUpdate = () => {
     :renderer="uiRenderer"
     :options="_options"
     :handlers="handlers"
+    :layout-provider="layout"
   />
 </template>

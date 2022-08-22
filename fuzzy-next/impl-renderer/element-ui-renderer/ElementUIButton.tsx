@@ -29,6 +29,17 @@ export class ElementUIButton implements ButtonRenderer {
         }
       </div>
     }
+    if (props.type === 'operate') {
+      return <div
+        class="w-14 h-7 p-3 flex items-center justify-center cursor-pointer"
+        style={{ color: props.color || '#0078FF', background: '#F0F0F0', borderRadius: '5px;color:#FF0000' }}
+        onClick={props.onClick}
+      >
+        {
+          slots.default && slots.default()
+        }
+      </div>
+    }
     return (
       <ElButton {...props}>
         {
