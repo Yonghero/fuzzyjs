@@ -20,18 +20,19 @@ export class ElementUIForm implements FormRenderer {
     this.isHorizontal = isHorizontal
     this.shouldWarpEvenly = shouldWarpEvenly === undefined
     // 获取数据模型
-    const model = this.getModel(templates)
+    const model = computed(() => this.getModel(unref(templates)))
     // 获取表单项组件
-    const FormItems = this.getFromItems(templates, model)
+    const FormItems = computed(() => this.getFromItems(unref(templates), model))
     // 获取表单项的验证规则
-    const rules = shouldValidate ? this.getRules(templates) : []
+    const rules = shouldValidate ? computed(() => this.getRules(unref(templates))) : computed(() => [])
     // 获取组件实例
     const formRef = ref<FormInstance>()
 
     return {
       render: defineComponent({
-        props: ['modelValue'],
+        props: ['modelValue', 'disabled'],
         setup(props) {
+          console.log('render')
           // 附默认值
           if (props.modelValue) {
             Object.keys(props.modelValue).forEach((key) => {
@@ -46,27 +47,29 @@ export class ElementUIForm implements FormRenderer {
                 shouldLabelWidthAuto
                   ? <ElForm
                     class="custom-el-form w-full flex flex-wrap"
-                    model={model}
-                    rules={rules}
+                    model={model.value}
+                    rules={rules.value}
                     ref={formRef}
                     label-position={labelPosition}
                     inline={isHorizontal}
+                    disabled={props.disabled ?? false}
                   >
                     {
-                      FormItems
+                      FormItems.value
                     }
                   </ElForm>
                   : <ElForm
                     class="custom-el-form w-full flex flex-wrap"
-                    model={model}
-                    rules={rules}
+                    model={model.value}
+                    rules={rules.value}
                     ref={formRef}
                     label-position={labelPosition}
                     inline={isHorizontal}
+                    disabled={props.disabled ?? false}
                     labelWidth="100px"
                   >
                     {
-                      FormItems
+                      FormItems.value
                     }
                   </ElForm>
               }
@@ -79,7 +82,7 @@ export class ElementUIForm implements FormRenderer {
     }
   }
 
-  getRules(templates: Templates[]) {
+  getRules(templates: Templates[] | any) {
     return reactive(templates.reduce((rules, item) => {
       rules[item.value] = []
       // 必填
@@ -96,7 +99,7 @@ export class ElementUIForm implements FormRenderer {
    * 获取绑定表单的数据迷行
    * @param templates
    */
-  getModel(templates: Templates[]) {
+  getModel(templates: Templates[] | any) {
     const model = reactive({})
     templates.forEach((item) => {
       if (item.value)
@@ -110,7 +113,7 @@ export class ElementUIForm implements FormRenderer {
    * @param templates
    * @param model
    */
-  getFromItems(templates: Templates[], model) {
+  getFromItems(templates: Templates[] | any, model) {
     return templates
       .filter(item => !item.filterUnShow)
       .map((item) => {
@@ -132,7 +135,7 @@ export class ElementUIForm implements FormRenderer {
       })
   }
 
-  getFromStyle(item: Templates) {
+  getFromStyle(item: Templates | any) {
     const inlineLength = item.rowLength || 2
     const style = {
       width: (!this.isHorizontal ? `calc(100% / ${inlineLength} - 1rem)` : ''),

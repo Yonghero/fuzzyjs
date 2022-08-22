@@ -3,6 +3,7 @@
  */
 import type { SetupContext } from '@vue/runtime-core'
 import type { Component, Ref, VNode } from 'vue'
+import type { ComputedRef } from 'vue-demi'
 import type { Feature, FormTemplate, ModalStyleProps, Option, Templates } from './options'
 
 export interface Renderer {
@@ -53,7 +54,7 @@ export interface FormRenderer extends FormItemExtra<any, any> {
 }
 
 export interface FormRenderProps {
-  templates: Templates[]
+  templates: Templates[] | Ref<Templates[]> | ComputedRef<Templates[]>
   labelPosition?: string
   feature?: Feature | undefined
   isHorizontal: boolean
