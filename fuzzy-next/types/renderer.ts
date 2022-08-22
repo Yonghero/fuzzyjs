@@ -56,6 +56,7 @@ export interface FormRenderer extends FormItemExtra<any, any> {
 export interface FormRenderProps {
   templates: Templates[] | Ref<Templates[]> | ComputedRef<Templates[]>
   labelPosition?: string
+  labelWidth?: number
   feature?: Feature | undefined
   isHorizontal: boolean
   /**

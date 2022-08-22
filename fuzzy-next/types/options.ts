@@ -37,6 +37,10 @@ export type OptionsConfiguration = {
    */
   selection?: boolean
   /**
+   * 表单标题的统一宽度
+   */
+  labelWidth?: number
+  /**
    * 表格操作栏的宽度
    */
   operateWidth?: number

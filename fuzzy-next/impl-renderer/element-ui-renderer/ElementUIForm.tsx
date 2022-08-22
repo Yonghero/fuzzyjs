@@ -16,6 +16,7 @@ export class ElementUIForm implements FormRenderer {
     shouldWarpEvenly,
     shouldValidate = true,
     shouldLabelWidthAuto = true,
+    labelWidth = 100,
   }: FormRenderProps) {
     this.isHorizontal = isHorizontal
     this.shouldWarpEvenly = shouldWarpEvenly === undefined
@@ -66,7 +67,7 @@ export class ElementUIForm implements FormRenderer {
                     label-position={labelPosition}
                     inline={isHorizontal}
                     disabled={props.disabled ?? false}
-                    labelWidth="100px"
+                    labelWidth={`${labelWidth}px`}
                   >
                     {
                       FormItems.value
