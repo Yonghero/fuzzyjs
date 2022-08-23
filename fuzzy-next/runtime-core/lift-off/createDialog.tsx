@@ -24,17 +24,14 @@ export function createDialog(renderer: Renderer, modalRenderer: ModalRenderer, h
       }
     }
     else {
-      if (handlers.updateConfirm) {
-        // invoke update confirm hook
-        if (handlers.updateConfirm)
-          await handlers.updateConfirm({ data: scope, url: requestCallback.urls.update })
+      if (handlers.updateConfirm)
+        await handlers.updateConfirm({ data: scope, url: requestCallback.urls.update })
 
-        // 触发内部的确定按钮hook
-        const isOk = await eventBus.publish('update')
-        if (isOk) {
-          renderer.message.success(`${dataProvide.dialog.value.title}成功`)
-          await update()
-        }
+      // 触发内部的确定按钮hook
+      const isOk = await eventBus.publish('update')
+      if (isOk) {
+        renderer.message.success(`${dataProvide.dialog.value.title}成功`)
+        await update()
       }
     }
   }

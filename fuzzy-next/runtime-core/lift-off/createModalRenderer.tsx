@@ -93,6 +93,8 @@ function createComp(type, requestMethod, templates: Templates[]) {
         if (type === 'update') {
           if (_handlers?.updateConfirm)
             _model = await _handlers.updateConfirm({ data: form.model, url: _requestCallback.urls.update })
+          if (props.row.id)
+            _model.id = props.row.id
         }
         if (_model.data && _model.url)
           _model = _model.data

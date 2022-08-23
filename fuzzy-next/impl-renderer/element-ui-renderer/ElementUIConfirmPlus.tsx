@@ -25,7 +25,10 @@ export class ElementUIConfirmPlus implements ConfirmRender {
               emit('cancel')
               visible.value = false
             }}>取消</el-button>
-            <el-button onClick={() => emit('ok')}>确定</el-button>
+            <el-button onClick={() => {
+              emit('ok')
+              visible.value = false
+            }}>确定</el-button>
           </span>
         ),
       }

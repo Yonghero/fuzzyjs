@@ -4,7 +4,7 @@ import type { FuzzyNextHandlers, OptionsConfiguration } from '../../../fuzzy-nex
 export const options: OptionsConfiguration = {
   title: '标题一',
   api: {
-    filter: '/safety/ent/base',
+    filter: '/environ/dictFactorFlag/flag/factor',
     update: '/safety/ent/base',
     create: '/safety/ent/base',
     delete: '/safety/ent/base',

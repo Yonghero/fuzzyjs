@@ -53,6 +53,7 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
       table: true,
     },
     render(scope) {
+      console.log(scope)
       const UpdateRender = <renderer.button.render type={'update'}
         onClick={() => onUpdate(scope)}>编辑</renderer.button.render>
 
