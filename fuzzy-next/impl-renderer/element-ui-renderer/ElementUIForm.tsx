@@ -21,7 +21,7 @@ export class ElementUIForm implements FormRenderer {
     this.isHorizontal = isHorizontal
     this.shouldWarpEvenly = shouldWarpEvenly === undefined
     // 获取数据模型
-    const model = computed(() => this.getModel(unref(templates)))
+    const model = this.getModel(unref(templates))
     // 获取表单项组件
     const FormItems = computed(() => this.getFromItems(unref(templates), model))
     // 获取表单项的验证规则
@@ -48,7 +48,7 @@ export class ElementUIForm implements FormRenderer {
                 shouldLabelWidthAuto
                   ? <ElForm
                     class="custom-el-form w-full flex flex-wrap"
-                    model={model.value}
+                    model={model}
                     rules={rules.value}
                     ref={formRef}
                     label-position={labelPosition}
@@ -61,7 +61,7 @@ export class ElementUIForm implements FormRenderer {
                   </ElForm>
                   : <ElForm
                     class="custom-el-form w-full flex flex-wrap"
-                    model={model.value}
+                    model={model}
                     rules={rules.value}
                     ref={formRef}
                     label-position={labelPosition}
