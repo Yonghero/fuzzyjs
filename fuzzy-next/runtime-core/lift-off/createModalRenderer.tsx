@@ -50,8 +50,9 @@ export function createModalRenderer(renderer: Renderer, options: OptionsConfigur
 function createComp(type, requestMethod, templates: Templates[]) {
   const form = _renderer.form.create({
     templates: templateMiddleWare([mapTemplatesRenderer, mapTemplateDefaultValue])(templates, type),
-    isHorizontal: true,
+    isHorizontal: false,
     labelPosition: 'right',
+    shouldWarpEvenly: true,
     shouldLabelWidthAuto: false,
   })
 

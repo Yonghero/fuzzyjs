@@ -13,17 +13,17 @@ export class ElementUIForm implements FormRenderer {
     templates,
     isHorizontal,
     labelPosition,
-    shouldWarpEvenly,
+    shouldWarpEvenly = true,
     shouldValidate = true,
     shouldLabelWidthAuto = true,
     labelWidth = 100,
   }: FormRenderProps) {
     this.isHorizontal = isHorizontal
-    this.shouldWarpEvenly = shouldWarpEvenly === undefined
+    this.shouldWarpEvenly = shouldWarpEvenly
     // 获取数据模型
     const model = this.getModel(unref(templates))
     // 获取表单项组件
-    const FormItems = computed(() => this.getFromItems(unref(templates), model))
+    const FormItems = computed(() => this.getFromItems(unref(templates), model, shouldWarpEvenly))
     // 获取表单项的验证规则
     const rules = shouldValidate ? computed(() => this.getRules(unref(templates))) : computed(() => [])
     // 获取组件实例
@@ -113,8 +113,9 @@ export class ElementUIForm implements FormRenderer {
    * 根据templates 生产表单项组件
    * @param templates
    * @param model
+   * @param shouldWarpEvenly
    */
-  getFromItems(templates: Templates[] | any, model) {
+  getFromItems(templates: Templates[] | any, model, shouldWarpEvenly) {
     return templates
       .filter(item => !item.filterUnShow)
       .map((item) => {
@@ -123,7 +124,7 @@ export class ElementUIForm implements FormRenderer {
           <ElFormItem
             label={item.label}
             key={item.value}
-            style={this.getFromStyle(item)}
+            style={this.getFromStyle(item, shouldWarpEvenly)}
             prop={item.value}
           >
             {
@@ -136,13 +137,12 @@ export class ElementUIForm implements FormRenderer {
       })
   }
 
-  getFromStyle(item: Templates | any) {
+  getFromStyle(item: Templates, shouldWarpEvenly) {
     const inlineLength = item.rowLength || 2
     const style = {
       width: (!this.isHorizontal ? `calc(100% / ${inlineLength} - 1rem)` : ''),
     }
-
-    if (this.shouldWarpEvenly)
+    if (shouldWarpEvenly)
       style.width = `calc(100% / ${inlineLength} - 1rem)`
 
     const { full, width, rest, half } = item

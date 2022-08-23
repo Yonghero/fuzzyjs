@@ -10,6 +10,7 @@ import {
   handlers,
   options,
   options2,
+  options3,
 } from './template'
 import { CustomLayoutProvider } from '~/example/next/layout-provider'
 import { CustomLayoutProviderP } from '~/example/next/layout-provider-p'
@@ -21,7 +22,7 @@ const button = new ElementUIButton()
 
 const _layout = mergeFuzzyOptions(layout, layoutP)
 
-const _options = mergeFuzzyOptions(options, options2)
+const _options = mergeFuzzyOptions(options3)
 
 const modalRenderer = mergeFuzzyOptions(
   {

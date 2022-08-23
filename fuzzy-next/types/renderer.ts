@@ -48,7 +48,7 @@ export type FormCompProps = Partial<FormTemplate> & { model: any; value: any }
 export interface FormRenderer extends FormItemExtra<any, any> {
   create: (props: FormRenderProps) => { render: Component | any; model: any; formRef: Ref<any> }
   getModel: (templates: Templates[]) => Record<string, any> | Ref<Record<string, any>>
-  getFromItems: (templates: Templates[], model) => VNode[]
+  getFromItems: (templates: Templates[], model, shouldWarpEvenly) => VNode[]
   select: (props: FormCompProps, context: SetupContext) => VNode
   input: (props: FormCompProps, context: SetupContext) => VNode
 }

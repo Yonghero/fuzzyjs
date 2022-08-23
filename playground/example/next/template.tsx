@@ -3,7 +3,13 @@ import type { FuzzyNextHandlers, OptionsConfiguration } from '../../../fuzzy-nex
 
 export const options: OptionsConfiguration = {
   title: '标题一',
-  api: '/safety/major-hazard',
+  api: {
+    filter: '/safety/ent/base',
+    update: '/safety/ent/base',
+    create: '/safety/ent/base',
+    delete: '/safety/ent/base',
+  },
+  labelWidth: 120,
   feature: {
     update: true,
     delete: true,
@@ -106,6 +112,56 @@ export const options: OptionsConfiguration = {
   },
 }
 
+export const options3 = {
+  title: '数据标记',
+  api: {
+    filter: '/safety/ent/base',
+    update: '/safety/ent/base',
+    create: '/safety/ent/base',
+    delete: '/safety/ent/base',
+  },
+  template: [
+    {
+      label: '名称',
+      type: 'input',
+      value: 'name',
+      require: true,
+    },
+    {
+      label: '编码',
+      type: 'input',
+      value: 'code',
+      require: true,
+    },
+    {
+      label: '解析值',
+      type: 'input',
+      value: 'trans',
+      require: true,
+    },
+    {
+      label: '正常标志',
+      type: 'select',
+      value: 'normal',
+      require: true,
+      options: [{ label: '是', value: 0 }, { label: '否', value: 1 }],
+    },
+    {
+      label: '描述',
+      type: 'input',
+      value: 'remark',
+    },
+    {
+      label: '系统类型',
+      value: 'dataType',
+      type: 'input',
+      // filterUnShow: true,
+      defaultValue: {
+        filter: 1,
+      },
+    },
+  ],
+}
 export const options2: OptionsConfiguration = {
   title: '这是tab2',
   api: '/safety/ent/base',
