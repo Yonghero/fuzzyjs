@@ -48,7 +48,7 @@ const extra = [
 ]
 
 const onUpdate = () => {
-  $shallowUpdate({ current: 4 })
+  $shallowUpdate({ current: 2 })
 }
 const onForceUpdate = () => {
   $forceUpdate()

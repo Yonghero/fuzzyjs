@@ -13,9 +13,9 @@ export class CustomLayoutProviderP implements LayoutProvider {
     // 布局提供器
     // 自定义放置框架组件 可扩展其他组件
 
-    watchEffect(() => {
-      console.log($insideReactiveValue(), 'watch====inside')
-    })
+    // watchEffect(() => {
+    //   console.log($insideReactiveValue(), 'watch====inside')
+    // })
 
     return () => (
       <div class="w-full h-full p-10">

@@ -24,10 +24,10 @@ import '../../tailwind.css'
 export function LiftOff(renderer: Renderer, _modalRenderer: ModalRenderer, extraRenderer: ExtraRenderer, handlers: FuzzyNextHandlers, options: OptionsConfiguration, mock: any[], request: RequestProvider, fuzzyOptions: CreateFuzzyOptions, paging: PagingProvider): Omit<LayoutProviderRenderer, 'Tab'> {
   // global data provide
   // dispatch data
-  const dataProvide = createDataProvide()
+  const dataProvide = createDataProvide(paging)
 
   // provide request's methods
-  const requestCallback = createRequest(options, request, handlers, dataProvide)
+  const requestCallback = createRequest(options, request, handlers, dataProvide, paging)
 
   // 提供给用户的浅更新
   workInProgressFuzzy.shallowUpdate = requestCallback.get
@@ -41,7 +41,7 @@ export function LiftOff(renderer: Renderer, _modalRenderer: ModalRenderer, extra
   const Dialog = createDialog(renderer, modalRenderer, handlers, requestCallback, dataProvide, options, eventBus)
 
   // Table Component
-  const Table = createTable(renderer, modalRenderer, handlers, options.template, dataProvide, requestCallback, options)
+  const Table = createTable(renderer, modalRenderer, handlers, options.template, dataProvide, requestCallback, options, paging)
 
   // Page Component
   const Page = createPage(renderer, handlers, requestCallback, dataProvide, paging)

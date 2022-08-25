@@ -1,10 +1,12 @@
 import type { Ref, VNode } from 'vue'
 import { ref } from 'vue'
 import { workInProgressFuzzy } from '../expose'
+import type { PagingProvider } from '../../types'
 
 export interface ValueOfProvide {
   filterParams: Ref<Record<string, any>>
   tableData: Ref<any[]>
+  currentPage: Ref<number>
   total: Ref<number>
   tableLoading: Ref<boolean>
   dialog: Ref<DialogProps>
@@ -17,6 +19,7 @@ export interface DispatchOfProvide {
   setTotal: (num) => void
   setTableLoading: (loading: boolean) => void
   setDialog: (dialog: Partial<DialogProps>) => void
+  setCurrentPage: (page: number) => void
 }
 
 export interface DataProvider extends ValueOfProvide {
@@ -32,8 +35,9 @@ export interface DialogProps {
 /**
  * 提供框架的全局数据
  */
-export function createDataProvide(): DataProvider {
-  const filterParams = ref({ index: 1, size: 10 })
+export function createDataProvide(paging: PagingProvider): DataProvider {
+  const currentPage = ref(1)
+  const filterParams = ref({ [paging.current]: 1, size: 10 })
   const tableData = ref([])
   const total = ref(0)
 
@@ -63,6 +67,9 @@ export function createDataProvide(): DataProvider {
     setDialog(props: Partial<DialogProps>) {
       dialog.value = { ...dialog.value, ...props }
     },
+    setCurrentPage(page) {
+      currentPage.value = page
+    },
   }
 
   workInProgressFuzzy.dataProvider.value = computed(() => {
@@ -78,6 +85,7 @@ export function createDataProvide(): DataProvider {
     filterParams,
     tableData,
     total,
+    currentPage,
     tableLoading,
     dialog,
     dialogVisible,

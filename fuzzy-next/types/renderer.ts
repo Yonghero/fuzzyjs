@@ -95,12 +95,12 @@ export interface TabRenderProps {
 
 export interface PageRenderer {
   render: (props: Readonly<PageProps>, context: SetupContext) => VNode
-
 }
 
 export interface PageProps {
   total: Ref<number>
-  onUpdatePage?: (page: number) => void // vue emit
+  // modelValue: Ref<number>
+  // onUpdateModelValue?: (page: number) => void // vue emit
 }
 
 /**

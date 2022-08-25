@@ -28,12 +28,12 @@ export interface FuzzyNextHandlers {
   /**
    * 确认更新时
    */
-  createConfirm?: (params: HandlerParams) => Promise<boolean>
+  createConfirm?: (params: HandlerParams) => Promise<any>
   /**
    * 新增更新点击确定按钮时
    * 返回true 关闭弹窗 刷新数据
    */
-  updateConfirm?: (params: HandlerParams) => Promise<boolean>
+  updateConfirm?: (params: HandlerParams) => Promise<any>
   /**
    * 取消更新时
    */

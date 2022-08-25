@@ -231,9 +231,6 @@ export const UpdateComponent2 = defineComponent({
 })
 
 export const handlers: FuzzyNextHandlers = {
-  queryBefore: async(params) => {
-    return params.data
-  },
   updateBeforePop: async(params) => {
     console.log('updateBeforePop', params)
     return params.data

@@ -1,12 +1,17 @@
-import type { Api, OptionsConfiguration } from '../../types'
-import type { FuzzyNextHandlers } from '../../types/handler'
-import type { RequestCallback, RequestProvider } from '../../types/requestProvider'
+import type {
+  Api,
+  FuzzyNextHandlers,
+  OptionsConfiguration,
+  PagingProvider,
+  RequestCallback,
+  RequestProvider,
+} from '../../types'
 import type { DataProvider } from './createDataProvide'
 
 /**
  * 创建请求模块
  */
-export function createRequest(options: OptionsConfiguration, request: RequestProvider, handlers: FuzzyNextHandlers, dataProvide: DataProvider): RequestCallback {
+export function createRequest(options: OptionsConfiguration, request: RequestProvider, handlers: FuzzyNextHandlers, dataProvide: DataProvider, paging: PagingProvider): RequestCallback {
   const getApiOfMode = (mode: keyof Api) => {
     if (typeof options.api === 'string') return options.api
     return options.api[mode]
@@ -16,10 +21,14 @@ export function createRequest(options: OptionsConfiguration, request: RequestPro
     get: async(params) => {
       let handlerParams = {}
       // invoke hook
-      if (handlers.queryBefore)
-        handlerParams = await handlers.queryBefore({ data: readonly(dataProvide.filterParams.value) })
-
+      if (handlers.queryBefore) {
+        handlerParams = await handlers.queryBefore({
+          data: readonly(dataProvide.filterParams.value),
+        })
+      }
       dataProvide.filterParams.value = { ...dataProvide.filterParams.value, ...params, ...handlerParams }
+
+      dataProvide.dispatch.setCurrentPage(dataProvide.filterParams.value[paging.current])
 
       const response = await request.get(getApiOfMode('filter'), dataProvide.filterParams.value)
 

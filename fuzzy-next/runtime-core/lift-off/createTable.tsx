@@ -1,7 +1,7 @@
 import type {
   FuzzyNextHandlers,
   ModalRenderer,
-  OptionsConfiguration,
+  OptionsConfiguration, PagingProvider,
   Renderer,
   RequestCallback,
   TableTemplate,
@@ -10,7 +10,7 @@ import type {
 import { mapTemplateOfFeature, mapTemplateOfOrder, mapTemplatesRenderer, templateMiddleWare } from '../../utils'
 import type { DataProvider } from './createDataProvide'
 
-export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, handlers: FuzzyNextHandlers, _templates: Partial<Templates>[], dataProvider: DataProvider, requestCallback: RequestCallback, options: OptionsConfiguration): any {
+export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, handlers: FuzzyNextHandlers, _templates: Partial<Templates>[], dataProvider: DataProvider, requestCallback: RequestCallback, options: OptionsConfiguration, paging: PagingProvider): any {
   const templates = templateMiddleWare([mapTemplatesRenderer, mapTemplateOfOrder, mapTemplateOfFeature])(_templates, 'table')
 
   async function onUpdate(scope) {
@@ -106,7 +106,7 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
       value: 'fuzzy-No',
       width: 70,
       render(scope) {
-        return <span>{scope.$index + 1 + (dataProvider.filterParams.value.index - 1) * dataProvider.filterParams.value.size}</span>
+        return <span>{scope.$index + 1 + (dataProvider.filterParams.value[paging.current] - 1) * dataProvider.filterParams.value[paging.size]}</span>
       },
     })
   }
