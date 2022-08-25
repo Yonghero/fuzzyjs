@@ -239,7 +239,7 @@ export class DefaultRequestProvider implements RequestProvider {
   get(url: string, params: any): Promise<Required<Response>> {
     return this._instance.get(
       url,
-      { params: { size: 10, current: 1, ...params } },
+      { params: { size: 10, index: 1, ...params } },
     )
       .then(res => this.implResponse(res.data))
   }

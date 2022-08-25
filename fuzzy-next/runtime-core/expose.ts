@@ -21,9 +21,9 @@ export function $forceUpdate() {
 /**
  * 只重新请求组件数据，不重新渲染
  */
-export function $shallowUpdate(params = {}) {
+export async function $shallowUpdate(params = {}) {
   if (workInProgressFuzzy.shallowUpdate)
-    workInProgressFuzzy.shallowUpdate(params)
+    return await workInProgressFuzzy.shallowUpdate(params)
 }
 
 export function $insideReactiveValue() {

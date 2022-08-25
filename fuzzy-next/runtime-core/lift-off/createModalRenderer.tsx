@@ -76,11 +76,13 @@ function createComp(type, requestMethod, templates: Templates[]) {
         if (valid) {
           const model = await processModel(form.model)
 
-          const { success } = await _requestCallback[requestMethod](model)
+          const { success, message } = await _requestCallback[requestMethod](model)
           await rest()
 
           if (success)
-            return true
+            return { flag: true, message }
+          else
+            return { flag: false, message }
         }
       }
 

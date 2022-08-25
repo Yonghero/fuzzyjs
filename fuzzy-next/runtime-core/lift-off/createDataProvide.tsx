@@ -33,7 +33,7 @@ export interface DialogProps {
  * 提供框架的全局数据
  */
 export function createDataProvide(): DataProvider {
-  const filterParams = ref({ current: 1, size: 10 })
+  const filterParams = ref({ index: 1, size: 10 })
   const tableData = ref([])
   const total = ref(0)
 

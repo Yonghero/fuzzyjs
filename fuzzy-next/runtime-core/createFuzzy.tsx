@@ -14,7 +14,7 @@ export function createFuzzy(options: CreateFuzzyOptions): any {
 
   const implRenderer = renderer || new ElementUIRenderer()
   const implLayoutProvider = layout || new DefaultLayoutProvider()
-  const implPaging = paging || { current: 'current', size: 'size' }
+  const implPaging = paging || { current: 'index', size: 'size' }
   const implRequestProvider = http
 
   if (!http)

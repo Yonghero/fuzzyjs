@@ -17,21 +17,28 @@ export function createDialog(renderer: Renderer, modalRenderer: ModalRenderer, h
         await handlers.createConfirm({ data: scope, url: requestCallback.urls.update })
 
       // 触发内部的确定按钮hook
-      const isOk = await eventBus.publish('create')
-      if (isOk) {
-        renderer.message.success(`${dataProvide.dialog.value.title}成功`)
+      const { flag, message } = await eventBus.publish('create')
+      if (flag) {
         await update()
+        renderer.message.success(`${dataProvide.dialog.value.title}成功`)
       }
+      else {
+        renderer.message.warning(message)
+      }
+      await update()
     }
     else {
       if (handlers.updateConfirm)
         await handlers.updateConfirm({ data: scope, url: requestCallback.urls.update })
 
       // 触发内部的确定按钮hook
-      const isOk = await eventBus.publish('update')
-      if (isOk) {
-        renderer.message.success(`${dataProvide.dialog.value.title}成功`)
+      const { flag, message } = await eventBus.publish('update')
+      if (flag) {
         await update()
+        renderer.message.success(`${dataProvide.dialog.value.title}成功`)
+      }
+      else {
+        renderer.message.warning(message)
       }
     }
   }

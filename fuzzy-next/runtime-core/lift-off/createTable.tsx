@@ -53,7 +53,6 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
       table: true,
     },
     render(scope) {
-      console.log(scope)
       const UpdateRender = <renderer.button.render type={'update'}
         onClick={() => onUpdate(scope)}>编辑</renderer.button.render>
 
@@ -107,7 +106,7 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
       value: 'fuzzy-No',
       width: 70,
       render(scope) {
-        return <span>{scope.$index + 1 + (dataProvider.filterParams.value.current - 1) * dataProvider.filterParams.value.size}</span>
+        return <span>{scope.$index + 1 + (dataProvider.filterParams.value.index - 1) * dataProvider.filterParams.value.size}</span>
       },
     })
   }

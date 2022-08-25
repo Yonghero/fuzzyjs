@@ -33,7 +33,6 @@ export class ElementUIForm implements FormRenderer {
       render: defineComponent({
         props: ['modelValue', 'disabled'],
         setup(props) {
-          console.log('render')
           // 附默认值
           if (props.modelValue) {
             Object.keys(props.modelValue).forEach((key) => {
