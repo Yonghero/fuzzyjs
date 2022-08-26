@@ -1,6 +1,6 @@
-
-export interface EventBus{
+export interface EventBus {
   subscribe(event: string, callback: (...args: any[]) => Promise<any>): void
+
   publish(eventName: string, ...args: any[]): Promise<any>
 }
 
@@ -11,8 +11,8 @@ export function createEventBus(): EventBus {
     subscribe: (key, callback) => {
       pool.set(key, callback)
     },
-    publish: async(key) => {
-      return await pool.get(key)()
+    publish: async(key, payload) => {
+      return await pool.get(key)(payload)
     },
   }
 }

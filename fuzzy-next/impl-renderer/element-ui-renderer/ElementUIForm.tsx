@@ -119,6 +119,9 @@ export class ElementUIForm implements FormRenderer {
       .filter(item => !item.filterUnShow)
       .map((item) => {
         const FormItemComp = this._getFormComponent(item.type)
+        if (item.fetchOptions)
+          item.fetchOptions()
+
         return (
           <ElFormItem
             label={item.label}

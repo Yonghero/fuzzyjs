@@ -29,6 +29,7 @@ export interface DataProvider extends ValueOfProvide {
 export interface DialogProps {
   visible: boolean
   render: VNode
+  type: 'update' | 'create'
   title: string
 }
 
@@ -45,6 +46,7 @@ export function createDataProvide(paging: PagingProvider): DataProvider {
 
   const dialog = ref<DialogProps>({
     visible: false,
+    type: 'update',
     title: '编辑',
     render: <>hhh</>,
   })

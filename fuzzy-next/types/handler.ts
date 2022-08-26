@@ -1,3 +1,6 @@
+import { ExtraRenderer } from './renderer'
+import type { ExtraProps } from './options'
+
 interface HandlerParams {
   data: any
   url?: string
@@ -28,12 +31,12 @@ export interface FuzzyNextHandlers {
   /**
    * 确认更新时
    */
-  createConfirm?: (params: HandlerParams) => Promise<any>
+  createConfirm?: (params: HandlerParams) => Promise<ExtraProps>
   /**
    * 新增更新点击确定按钮时
    * 返回true 关闭弹窗 刷新数据
    */
-  updateConfirm?: (params: HandlerParams) => Promise<any>
+  updateConfirm?: (params: HandlerParams) => Promise<ExtraProps>
   /**
    * 取消更新时
    */

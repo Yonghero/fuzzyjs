@@ -56,7 +56,7 @@ export type OptionsConfiguration = {
   operators?: (row, { UpdateRender, DeleteRender }) => Element[] | Component[] | VNode[]
 } & ExtraProps
 
-type ExtraProps = {
+export type ExtraProps = {
   [key in string]: any
 }
 
@@ -74,6 +74,10 @@ interface BaseTemplate {
    *  后端需要的字段值
    */
   value: string
+  /**
+   * 双向绑定的数据类型
+   */
+  valueType?: any
   /**
    * 是否在增删改查中包含此字段
    *
@@ -109,7 +113,7 @@ export type RendererTableProps = {
 export interface RendererTemplate {
   renderer?: {
     filter?: (props: RendererQueryProps) => Component | Element | VNode
-    table?: (props: RendererTableProps) => Component | Element | VNode
+    table?: (props: RendererTableProps) => Component | Element | VNode | any
     update?: (props: RendererQueryProps) => Component | Element | VNode
     create?: (props: RendererQueryProps) => Component | Element | VNode
   }
@@ -206,7 +210,7 @@ export interface FormTemplate extends BaseTemplate {
   /**
    * 异步加载下拉框的options
    */
-  fetchOptions?: (temp: Templates) => any
+  fetchOptions?: (temp: Templates) => Promise<Option[]>
 }
 
 /**

@@ -3,6 +3,7 @@ import type { DataProvider } from './createDataProvide'
 import type { EventBus } from './createEventBus'
 
 export function createDialog(renderer: Renderer, modalRenderer: ModalRenderer, handlers: FuzzyNextHandlers, requestCallback: RequestCallback, dataProvide: DataProvider, options: OptionsConfiguration, eventBus: EventBus) {
+  // 对话框确定并成功后调用
   async function update() {
     // 确认更新操作 关闭弹窗
     dataProvide.dispatch.setDialog({ visible: false })
@@ -11,38 +12,20 @@ export function createDialog(renderer: Renderer, modalRenderer: ModalRenderer, h
   }
 
   // 点击确定按钮触发
-  async function onConfirm(scope) {
-    if (dataProvide.dialog.value.title.includes('新增')) {
-      if (handlers.createConfirm)
-        await handlers.createConfirm({ data: scope, url: requestCallback.urls.update })
-
-      // 触发内部的确定按钮hook
-      const { flag, message } = await eventBus.publish('create')
-      if (flag) {
-        await update()
-        renderer.message.success(`${dataProvide.dialog.value.title}成功`)
-      }
-      else {
-        renderer.message.warning(message)
-      }
+  async function onConfirm() {
+    // 触发内部的确定按钮hook
+    const { flag, message } = await eventBus.publish(dataProvide.dialog.value.type)
+    if (flag) {
+      // 成功后更新数据
       await update()
+      renderer.message.success(`${dataProvide.dialog.value.title}成功`)
     }
     else {
-      if (handlers.updateConfirm)
-        await handlers.updateConfirm({ data: scope, url: requestCallback.urls.update })
-
-      // 触发内部的确定按钮hook
-      const { flag, message } = await eventBus.publish('update')
-      if (flag) {
-        await update()
-        renderer.message.success(`${dataProvide.dialog.value.title}成功`)
-      }
-      else {
-        renderer.message.warning(message)
-      }
+      renderer.message.warning(message)
     }
   }
 
+  // 点击取消
   async function onCancel() {
     await eventBus.publish('cancel')
   }
