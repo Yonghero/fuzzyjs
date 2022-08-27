@@ -9,13 +9,13 @@ export function mergeFuzzyOptions(...rest) {
 
 export function transferToArray(value, deep = false) {
   if (deep)
-    return [value]
+    return [unref(value)]
 
   if (Array.isArray(value) || Array.isArray(value[0]))
-    return value
+    return value.map(v => unref(v))
   if (Array.isArray(value))
-    return value
-  return [value]
+    return unref(value)
+  return [unref(value)]
 }
 
 /**
