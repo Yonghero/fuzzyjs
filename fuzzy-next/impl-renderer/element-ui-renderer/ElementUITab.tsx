@@ -15,7 +15,7 @@ export class ElementUITab implements TabRenderer {
         return (
           <div class="w-full flex items-center" style="border-bottom: 1px solid #EEEEEE">
             {
-              props.options.map((option, index) => {
+              unref(props.options).map((option, index) => {
                 return (
                   <div
                     key={option.value}

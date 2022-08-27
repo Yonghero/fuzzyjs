@@ -208,7 +208,7 @@ export class ElementUIForm implements FormRenderer {
       >
         {
           props.options
-          && props.options.map(item => (
+          && unref(props.options).map(item => (
             <el-option
               key={item.value}
               label={item.label}
