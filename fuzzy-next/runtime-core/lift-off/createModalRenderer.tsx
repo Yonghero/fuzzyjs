@@ -77,12 +77,15 @@ function createComp(type, requestMethod, templates: Templates[]) {
           const model = await processModel(form.model)
 
           const { success, message } = await _requestCallback[requestMethod](model)
-          await rest()
 
-          if (success)
+          if (success) {
+            // 成功后重置表单内容
+            await rest()
             return { flag: true, message }
-          else
+          }
+          else {
             return { flag: false, message }
+          }
         }
       }
 

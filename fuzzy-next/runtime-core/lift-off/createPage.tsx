@@ -30,11 +30,21 @@ export function createPage(renderer: Renderer, handlers: FuzzyNextHandlers, requ
         }
       })
 
+      watchEffect(() => {
+        console.log(dataProvide.total.value)
+      })
       return () => (
-        <renderer.page.render
-          v-model={c.value}
-          total={dataProvide.total}
-        />
+        <>
+          {
+            +dataProvide.total.value <= dataProvide.filterParams.value[paging.size]
+              ? null
+              : <renderer.page.render
+                v-model={c.value}
+                total={dataProvide.total}
+              />
+          }
+
+        </>
       )
     },
   })

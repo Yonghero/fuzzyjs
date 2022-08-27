@@ -24,13 +24,17 @@ axiosInstance.interceptors.request.use(
     return config
   })
 
+axiosInstance.interceptors.response.use((response) => {
+  return response.data
+})
+
 const Fuzzy = createFuzzy({
   adapters: {
     http: new DefaultRequestProvider(axiosInstance),
     layout: new DefaultLayoutProvider(),
     renderer: new ElementUIRenderer(),
     paging: {
-      current: 'current',
+      current: 'index',
       size: 'size',
     },
   },

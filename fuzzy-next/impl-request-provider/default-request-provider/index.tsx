@@ -20,43 +20,61 @@ export class DefaultRequestProvider implements RequestProvider {
   }
 
   delete(url: string, params: any): Promise<Pick<Response, 'success' | 'message'>> {
-    return this._instance.delete(`${url}?id=${params.row.id}`)
-      .then(res => this.implResponse(res.data))
+    return this._instance.delete(`${url}/${params.row.id}`)
+      .then(res => this.implResponse(res))
   }
 
   get(url: string, params: any): Promise<Required<Response>> {
     return this._instance.get(
       url,
-      { params: { size: 10, current: 1, ...params } },
+      { params: { size: 10, index: 1, ...params } },
     )
-      .then(res => this.implResponse(res.data))
+      .then(res => this.implResponse(res))
   }
 
   post(url: string, params: any): Promise<Pick<Response, 'message' | 'success' | 'data'>> {
-    console.log('post', params)
-    return Promise.resolve({
-      message: '编辑成功',
-      success: true,
-      data: 0,
-    })
+    // TODO 闲暇时迁移
+    // 因子组接口特殊处理
+    if (url === '/environ/factor/group') {
+      const _p = { ...params }
+      delete _p.factors
+      return this._instance({
+        method: 'post',
+        url,
+        params: _p,
+        data: [
+          ...params.factors.map((f) => {
+            return {
+              factorId: f,
+            }
+          }),
+        ],
+      },
+      ).then(this.implResponse)
+    }
+    return this._instance({
+      method: 'post',
+      url,
+      data: { ...params },
+    }).then(this.implResponse)
   }
 
   put(url: string, params: any): Promise<Pick<Response, 'message' | 'success' | 'data'>> {
-    console.log('put', params)
-    return Promise.resolve({
-      message: '编辑成功',
-      success: true,
-      data: 0,
-    })
+    return this._instance({
+      method: 'put',
+      url,
+      data: { ...params },
+    }).then(res => this.implResponse(res))
   }
 
   implResponse(response: LTResponse): Response {
+    console.log(response)
     return {
-      data: response.data,
-      message: response.message,
-      total: response.total,
-      size: response.size,
-      success: response.code === 10000,
+      data: response?.data?.data,
+      message: response?.message,
+      total: +response?.data?.total,
+      size: +response?.data?.size,
+      success: +response.code === 10000,
     }
   }
 }

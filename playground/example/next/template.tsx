@@ -4,10 +4,10 @@ import type { FuzzyNextHandlers, OptionsConfiguration } from '../../../fuzzy-nex
 export const options: OptionsConfiguration = {
   title: '标题一',
   api: {
-    filter: '/environ/dictFactorFlag/flag/factor',
-    update: '/safety/ent/base',
-    create: '/safety/ent/base',
-    delete: '/safety/ent/base',
+    filter: '/environ/factor/list',
+    update: '/environ/factor',
+    create: '/environ/factor',
+    delete: '/environ/factor',
   },
   labelWidth: 120,
   feature: {
@@ -17,92 +17,48 @@ export const options: OptionsConfiguration = {
   selection: true,
   template: [
     {
-      type: 'date',
-      label: '企业名称',
-      value: 'entName',
-      placeholder: '来吧占位置',
-      defaultValue: {
-        filter: '特',
-        create: 'hhh',
-      },
-      order: {
-        filter: 2,
-        table: 3,
-      },
-      require: true,
-      rules: [
-        { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },
-      ],
-      visible: {
-        table: true,
-        filter: true,
-      },
-      renderer: {
-        // filter: props => (<el-input v-model={props.model[props.value]}/>),
-        table: props => (<div class="text-red-500">{props.value}</div>),
-      },
-    },
-    {
-      type: 'select',
-      options: [
-        { label: 'hhh', value: 0 },
-      ],
-      label: '企业code',
-      value: 'enterpriseCode',
-      defaultValue: {
-        create: 0,
-        update: 0,
-      },
-      renderer: {
-        table: () => <div>123hhh</div>,
-      },
-      visible: {
-        table: true,
-      },
-    },
-    {
-      label: '级别',
-      value: 'level',
-      require: true,
-      placeholder: '来吧占位置',
-      type: 'input',
-      visible: {
-        table: true,
-        filter: true,
-      },
-    },
-    {
-      label: '两重点名称',
+      label: '因子名称',
       value: 'name',
       type: 'input',
-      order: {
-        filter: 4,
-      },
+      require: true,
+    },
+    {
+      label: '因子编码',
+      value: 'polId',
+      type: 'input',
+      require: true,
+    },
+    {
+      label: '国际编码',
+      value: 'nationalPolId',
+      type: 'input',
       visible: {
-        table: true,
+        filter: false,
       },
     },
     {
-      label: '两重点名称22',
-      value: 'name1',
+      label: '单位',
+      value: 'unit',
       type: 'input',
-      visible: {
-        table: true,
-      },
+      require: true,
+      // type: 'select',
+      // options: Object.keys(useDict().unit).length
+      //   ? [
+      //     ...useDict().unit[useSystem().activatedType].map(item => ({ label: item.name, value: item.id })),
+      //   ]
+      //   : [],
+      // visible: {
+      //   filter: false,
+      // },
     },
     {
-      label: '站点类型',
-      value: 'subType',
-      filterUnShow: true,
-      defaultValue: {
-        filter: 1,
-      },
-      visible: {
-        table: false,
-        update: false,
-        create: false,
-      },
+      label: '小数位数',
+      value: 'valPrecision',
       type: 'input',
+      require: true,
+      visible: {
+        filter: false,
+      },
     },
   ],
   operateWidth: 280,
@@ -114,6 +70,7 @@ export const options: OptionsConfiguration = {
 
 export const options3 = {
   title: '数据标记',
+  labelWidth: 150,
   api: {
     filter: '/safety/ent/base',
     update: '/safety/ent/base',
@@ -240,17 +197,17 @@ export const handlers: FuzzyNextHandlers = {
 
     return true
   },
-  updateConfirm: async() => {
-    return true
-  },
+  // updateConfirm: async() => {
+  //   return true
+  // },
   selectionChange: (selection) => {
     console.log('selectionChange', selection)
   },
-  createConfirm: async() => {
-    return true
-    // return f.value.validate((isValid) => {
-    //   if (isValid)
-    //     return true
-    // })
-  },
+  // createConfirm: async() => {
+  //   return true
+  // return f.value.validate((isValid) => {
+  //   if (isValid)
+  //     return true
+  // })
+  // },
 }

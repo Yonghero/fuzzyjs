@@ -149,7 +149,7 @@ export class ElementUIForm implements FormRenderer {
 
     const { full, width, rest, half } = item
     if (full)
-      style.width = 'calc(100% - 1rem)'
+      style.width = 'calc(100% - 2rem)'
     if (half)
       style.width = 'calc(50% - 1rem)'
 

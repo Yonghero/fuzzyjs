@@ -22,7 +22,7 @@ const button = new ElementUIButton()
 
 const _layout = mergeFuzzyOptions(layout, layoutP)
 
-const _options = mergeFuzzyOptions(options3)
+const _options = mergeFuzzyOptions(options, options2)
 
 const modalRenderer = mergeFuzzyOptions(
   {
