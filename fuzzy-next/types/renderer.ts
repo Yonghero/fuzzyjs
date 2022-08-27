@@ -71,6 +71,10 @@ export interface FormRenderProps {
    * 是否开启标签宽度自适应 默认开启
    */
   shouldLabelWidthAuto?: boolean
+  /**
+   * 是否移除表单模型的空值
+   */
+  shouldRemoveModelUndefined?: boolean
 }
 
 /**

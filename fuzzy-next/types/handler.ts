@@ -51,6 +51,10 @@ export interface FuzzyNextHandlers {
    * @param params
    */
   selectionChange?: (params: any[]) => any
+  /**
+   * 更新成功后
+   */
+  updated: () => any
 }
 
 export interface PrivateHandlers {

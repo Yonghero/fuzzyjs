@@ -61,11 +61,12 @@ export function createComponent(globalRenderer: Renderer, globalLayoutProvider: 
         options,
         tab,
         layoutProvider,
+        handlers,
       } = useActivated(props)
 
       // 根据activeOptions页面配置动态渲染
       const dynamicLayout = computed(() => {
-        const components = LiftOff(props.renderer, modalRenderer.value, extraRenderer.value, props.handlers, options.value, props.mock, requestProvider, fuzzyOptions, props.paging)
+        const components = LiftOff(props.renderer, modalRenderer.value, extraRenderer.value, handlers.value, options.value, props.mock, requestProvider, fuzzyOptions, props.paging)
         return (
           <layoutProvider.value renderer={{ ...components, Tab: tab.value }}></layoutProvider.value>
         )

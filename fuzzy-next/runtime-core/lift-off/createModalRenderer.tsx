@@ -54,6 +54,7 @@ function createComp(type, requestMethod, templates: Templates[]) {
     labelPosition: 'right',
     shouldWarpEvenly: true,
     shouldLabelWidthAuto: false,
+    shouldRemoveModelUndefined: true,
   })
 
   return defineComponent({
@@ -81,6 +82,9 @@ function createComp(type, requestMethod, templates: Templates[]) {
           if (success) {
             // 成功后重置表单内容
             await rest()
+            console.log(_handlers.updated, 'update')
+            if (_handlers.updated)
+              _handlers.updated()
             return { flag: true, message }
           }
           else {

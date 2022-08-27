@@ -1,6 +1,7 @@
 import { transferToArray } from '../utils'
 
 export function useActivated(props: any) {
+  console.log(props)
   // 当前激活的下标
   const activeTabIndex = ref(0)
 
@@ -32,6 +33,10 @@ export function useActivated(props: any) {
   },
   )
 
+  const mergeHandlers = computed(() => transferToArray(props.handlers))
+
+  const handlers = computed(() => mergeHandlers.value[activeTabIndex.value])
+
   const tab = computed(() => {
     return <props.renderer.tab.render
       vModel={activeTabIndex.value}
@@ -45,5 +50,6 @@ export function useActivated(props: any) {
     extraRenderer,
     layoutProvider,
     tab,
+    handlers,
   }
 }

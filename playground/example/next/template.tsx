@@ -18,13 +18,17 @@ export const options: OptionsConfiguration = {
   selection: true,
   template: [
     {
-      label: 'xx',
+      label: '系统站点类型',
       value: 'dataType',
       type: 'input',
       filterUnShow: true,
       visible: {
-        update: true,
-        create: true,
+        table: false,
+      },
+      defaultValue: {
+        filter: 1,
+        update: 1,
+        create: 1,
       },
     },
     {

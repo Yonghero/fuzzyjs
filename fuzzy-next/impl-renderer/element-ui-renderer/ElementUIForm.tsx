@@ -17,11 +17,13 @@ export class ElementUIForm implements FormRenderer {
     shouldValidate = true,
     shouldLabelWidthAuto = true,
     labelWidth = 100,
+    shouldRemoveModelUndefined = false,
   }: FormRenderProps) {
     this.isHorizontal = isHorizontal
     this.shouldWarpEvenly = shouldWarpEvenly
     // 获取数据模型
     const model = this.getModel(unref(templates))
+    const h = this.getModel
     // 获取表单项组件
     const FormItems = computed(() => this.getFromItems(unref(templates), model, shouldWarpEvenly))
     // 获取表单项的验证规则
@@ -31,19 +33,21 @@ export class ElementUIForm implements FormRenderer {
 
     return {
       render: defineComponent({
-        props: ['modelValue', 'disabled'],
+        props: ['modelValue', 'disabled', 'shouldRemoveModelUndefined'],
         setup(props) {
           // 附默认值
-          if (props.modelValue) {
-            // 如果model存在 modelValue不存在 则model[key]置空
-            Object.keys(model).forEach((key) => {
-              if (!props.modelValue[key])
-                model[key] = ''
+          if (shouldRemoveModelUndefined) {
+            const rModel = h(unref(templates))
+            console.log(rModel, templates)
+            Object.keys(rModel).forEach((key) => {
+              model[key] = rModel[key]
             })
+          }
 
+          if (props.modelValue) {
             Object.keys(props.modelValue).forEach((key) => {
-              if (model[key] !== undefined)
-                model[key] = props.modelValue[key]
+              // if (model[key] !== undefined)
+              model[key] = props.modelValue[key]
             })
           }
 

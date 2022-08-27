@@ -5,7 +5,7 @@ export class ElementUITab implements TabRenderer {
     const Tab = () => {
       if (props.options.length === 1) {
         return (
-          <div class="flex w-full items-center" style="border-bottom: 2px solid #EEEEEE">
+          <div class="flex w-full items-center" style="border-bottom: 1px solid #EEEEEE">
             <div class="w-1 h-4 mb-2 bg-primary-100 rounded-sm mr-2"></div>
             <h2 class="mb-2 text-base">{props.options[0].label}</h2>
           </div>
@@ -13,7 +13,7 @@ export class ElementUITab implements TabRenderer {
       }
       else {
         return (
-          <div class="w-full flex items-center">
+          <div class="w-full flex items-center" style="border-bottom: 1px solid #EEEEEE">
             {
               props.options.map((option, index) => {
                 return (
