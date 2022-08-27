@@ -203,26 +203,13 @@ export const UpdateComponent2 = defineComponent({
 })
 
 export const handlers: FuzzyNextHandlers = {
-  updateBeforePop: async(params) => {
-    console.log('updateBeforePop', params)
-    return params.data
+  updated() {
+    debugger
   },
-  deleteBefore: async(params) => {
-    console.log('deleteBefore', params)
+}
 
-    return true
+export const handlers1: FuzzyNextHandlers = {
+  updated() {
+    debugger
   },
-  // updateConfirm: async() => {
-  //   return true
-  // },
-  selectionChange: (selection) => {
-    console.log('selectionChange', selection)
-  },
-  // createConfirm: async() => {
-  //   return true
-  // return f.value.validate((isValid) => {
-  //   if (isValid)
-  //     return true
-  // })
-  // },
 }

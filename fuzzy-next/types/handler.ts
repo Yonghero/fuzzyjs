@@ -54,7 +54,7 @@ export interface FuzzyNextHandlers {
   /**
    * 更新成功后
    */
-  updated: () => any
+  updated?: () => any
 }
 
 export interface PrivateHandlers {

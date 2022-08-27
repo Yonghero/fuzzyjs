@@ -8,6 +8,7 @@ import {
   UpdateComponent,
   UpdateComponent2,
   handlers,
+  handlers1,
   options,
   options2,
   options3,
@@ -22,7 +23,9 @@ const button = new ElementUIButton()
 
 const _layout = mergeFuzzyOptions(layout, layoutP)
 
-const _options = mergeFuzzyOptions(options, options2)
+const _options = mergeFuzzyOptions(options, options)
+
+const _h = mergeFuzzyOptions(handlers, handlers1)
 
 const modalRenderer = mergeFuzzyOptions(
   {
@@ -69,7 +72,7 @@ const onForceUpdate = () => {
   <Fuzzy
     :renderer="uiRenderer"
     :options="_options"
-    :handlers="handlers"
+    :handlers="_h"
     :layout-provider="layout"
   />
 </template>
