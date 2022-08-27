@@ -29,10 +29,6 @@ export function createPage(renderer: Renderer, handlers: FuzzyNextHandlers, requ
           c.value = dataProvide.currentPage.value
         }
       })
-
-      watchEffect(() => {
-        console.log(dataProvide.total.value)
-      })
       return () => (
         <>
           {

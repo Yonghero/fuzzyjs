@@ -68,7 +68,6 @@ export class DefaultRequestProvider implements RequestProvider {
   }
 
   implResponse(response: LTResponse): Response {
-    console.log(response)
     return {
       data: response?.data?.data,
       message: response?.message,

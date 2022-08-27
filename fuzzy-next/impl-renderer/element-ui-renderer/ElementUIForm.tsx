@@ -35,6 +35,12 @@ export class ElementUIForm implements FormRenderer {
         setup(props) {
           // 附默认值
           if (props.modelValue) {
+            // 如果model存在 modelValue不存在 则model[key]置空
+            Object.keys(model).forEach((key) => {
+              if (!props.modelValue[key])
+                model[key] = ''
+            })
+
             Object.keys(props.modelValue).forEach((key) => {
               if (model[key] !== undefined)
                 model[key] = props.modelValue[key]

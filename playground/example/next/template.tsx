@@ -1,6 +1,7 @@
 import { ElementUIForm } from '../../../fuzzy-next/impl-renderer/element-ui-renderer/ElementUIForm'
 import type { FuzzyNextHandlers, OptionsConfiguration } from '../../../fuzzy-next/types'
 
+// @ts-expect-error
 export const options: OptionsConfiguration = {
   title: '标题一',
   api: {
@@ -16,6 +17,16 @@ export const options: OptionsConfiguration = {
   },
   selection: true,
   template: [
+    {
+      label: 'xx',
+      value: 'dataType',
+      type: 'input',
+      filterUnShow: true,
+      visible: {
+        update: true,
+        create: true,
+      },
+    },
     {
       label: '因子名称',
       value: 'name',
