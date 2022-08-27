@@ -1,7 +1,6 @@
 import { transferToArray } from '../utils'
 
 export function useActivated(props: any) {
-  console.log(props)
   // 当前激活的下标
   const activeTabIndex = ref(0)
 

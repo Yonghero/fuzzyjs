@@ -38,7 +38,6 @@ export class ElementUIForm implements FormRenderer {
           // 附默认值
           if (shouldRemoveModelUndefined) {
             const rModel = h(unref(templates))
-            console.log(rModel, templates)
             Object.keys(rModel).forEach((key) => {
               model[key] = rModel[key]
             })
