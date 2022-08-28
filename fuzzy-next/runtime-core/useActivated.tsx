@@ -29,11 +29,12 @@ export function useActivated(props: any) {
     if (mergeLayoutProvider.value.length === mergeOptions.value.length)
       return markRaw(mergeLayoutProvider.value[activeTabIndex.value])
     return markRaw(mergeLayoutProvider.value[0])
-  },
-  )
+  })
 
+  // 合并处理函数
   const mergeHandlers = computed(() => transferToArray(props.handlers))
 
+  // 激活的处理函数
   const handlers = computed(() => mergeHandlers.value[activeTabIndex.value])
 
   const tab = computed(() => {
