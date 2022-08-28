@@ -79,7 +79,7 @@ export class ArcoUIForm implements FormRenderer {
       >
         {
           props.options
-          && props.options.map(item => (
+          && unref(props.options).map(item => (
             <a-option
               key={item.value}
               value={item.value}
