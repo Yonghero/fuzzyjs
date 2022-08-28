@@ -1,7 +1,6 @@
 import { ElementUIForm } from '../../../fuzzy-next/impl-renderer/element-ui-renderer/ElementUIForm'
 import type { FuzzyNextHandlers, OptionsConfiguration } from '../../../fuzzy-next/types'
 
-// @ts-expect-error
 export const options: OptionsConfiguration = {
   title: '标题一',
   api: {

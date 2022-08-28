@@ -1,4 +1,4 @@
-import type { Component, VNode } from 'vue'
+import type { Component, ComputedRef, VNode } from 'vue'
 
 /**
  * fuzzy-next supported options
@@ -202,11 +202,7 @@ export interface FormTemplate extends BaseTemplate {
   /**
    * type 为下拉框时的options
    */
-  options?: Array<{
-    label: {} | string
-    value: string | number
-    type?: number | string
-  }>
+  options?: Option[] | ComputedRef<Option[]>
   /**
    * 异步加载下拉框的options
    */
