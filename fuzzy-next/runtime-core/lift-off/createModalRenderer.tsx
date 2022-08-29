@@ -13,12 +13,12 @@ import {
   templateMiddleWare,
 } from '../../utils'
 import type { EventBus } from './createEventBus'
-import { options } from '~/example/next/template'
 
 let _renderer: Renderer
 let _eventBus: EventBus
 let _requestCallback: RequestCallback
 let _handlers: FuzzyNextHandlers
+let _options: OptionsConfiguration
 
 /**
  * 提供新增、编辑时的弹窗内容
@@ -31,6 +31,7 @@ export function createModalRenderer(renderer: Renderer, options: OptionsConfigur
   _renderer = renderer
   _requestCallback = requestCallback
   _handlers = handlers
+  _options = options
 
   if (modalRenderer?.UpdateComponent)
     UpdateComponent = modalRenderer.UpdateComponent
@@ -56,7 +57,7 @@ function createComp(type, requestMethod, templates: Templates[]) {
     shouldWarpEvenly: true,
     shouldLabelWidthAuto: false,
     shouldRemoveModelUndefined: true,
-    labelWidth: options.labelWidth,
+    labelWidth: _options.labelWidth,
   })
 
   return defineComponent({

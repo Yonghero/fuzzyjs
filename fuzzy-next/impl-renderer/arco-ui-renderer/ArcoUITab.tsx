@@ -14,7 +14,7 @@ export class ArcoUITab implements TabRenderer {
         {
           props.options.map((item) => {
             return (
-              <TabPane title={item.label} key={item.value}/>
+              <TabPane title={typeof item.label === 'string' ? item.label : '123'} key={item.value}/>
             )
           })
         }
