@@ -23,7 +23,9 @@ export class ElementUIButton implements ButtonRenderer {
     }
     if (props.type === 'filter') {
       return <div
-        class="bg-primary-100 w-20 h-8 cursor-pointer rounded-[6px] text-white flex items-center justify-center">
+        class="bg-primary-100 w-20 h-8 cursor-pointer rounded-[6px] text-white flex items-center justify-center"
+        style="font-size:14px!important"
+      >
         {
           slots.default && slots.default()
         }
