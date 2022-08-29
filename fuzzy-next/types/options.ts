@@ -158,6 +158,11 @@ export interface FormTemplate extends BaseTemplate {
    */
   type: FormItem | any
   /**
+   * type 为 select 时触发
+   * @param params
+   */
+  onChange?: (params: any) => void
+  /**
    * 不同情况下字段展示的默认值
    */
   defaultValue?: {
