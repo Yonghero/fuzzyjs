@@ -5,11 +5,15 @@ import type { Component, ComputedRef, VNode } from 'vue'
  */
 export type OptionsConfiguration = {
   /**
-   * 页面标题 可传递自定义渲染函数
-   * 传递展示
-   * 不传递 不展示标题组件
+   * 页面标题
+   * 新增、编辑弹窗标题
    */
-  title?: string | (() => VNode)
+  title: string
+  /**
+   * 页面标题自定义渲染函数
+   * 传递该参数 title属性仅在新增、编辑弹窗标题中显示
+   */
+  titleRenderer?: (() => VNode)
   /**
    * 增删改查接口地址
    */
@@ -192,6 +196,16 @@ export interface FormTemplate extends BaseTemplate {
    */
   multiple?: boolean
   /**
+   * 表格某个字段是否启用排序
+   */
+  sortable?: boolean
+  /**
+   * 指定数据按照哪个属性进行排序, 用法如同Array.sort
+   * @param a
+   * @param b
+   */
+  sortCallback?: (a, b) => number
+  /**
    *  该字段的表单规则 参照element-plus
    */
   rules?: any[]
@@ -242,6 +256,6 @@ export interface Feature {
 }
 
 export interface Option {
-  label: string
+  label: string | (() => VNode)
   value: any
 }

@@ -7,7 +7,8 @@ export class ElementUITab implements TabRenderer {
         return (
           <div class="flex w-full items-center" style="border-bottom: 1px solid #EEEEEE">
             <div class="w-1 h-4 mb-2 bg-primary-100 rounded-sm mr-2"></div>
-            <h2 class="mb-2 text-base">{props.options[0].label}</h2>
+            <h2
+              class="mb-2 text-base">{typeof props.options[0].label === 'function' ? props.options[0].label() : props.options[0].label}</h2>
           </div>
         )
       }
@@ -30,7 +31,7 @@ export class ElementUITab implements TabRenderer {
                       'px-8',
                       'rounded-t-lg', 'min-w-[120px]', 'flex', 'items-center', 'justify-center', 'mr-1', ' shadow-primary-50', 'cursor-pointer',
                     ].join(' ')}
-                  >{option.label}</div>
+                  >{typeof option.label === 'function' ? option.label() : option.label}</div>
                 )
               })
             }

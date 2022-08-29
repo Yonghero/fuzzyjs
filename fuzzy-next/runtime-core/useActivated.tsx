@@ -40,7 +40,7 @@ export function useActivated(props: any) {
   const tab = computed(() => {
     return <props.renderer.tab.render
       vModel={activeTabIndex.value}
-      options={mergeOptions.value.map((i, idx) => ({ label: i.title, value: idx }))}
+      options={mergeOptions.value.map((i, idx) => ({ label: i.titleRenderer ? i.titleRenderer() : i.title, value: idx }))}
     />
   })
 

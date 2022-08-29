@@ -7,6 +7,7 @@ import {
   CreateComponent2,
   UpdateComponent,
   UpdateComponent2,
+  changed,
   handlers,
   handlers1,
   options,
@@ -50,13 +51,15 @@ const extra = [
   <button key="2">decrease</button>,
 ]
 
+const onChangeTitle = () => {
+  changed.value = '被我改变了'
+}
 const onUpdate = () => {
   $shallowUpdate({ current: 2 })
 }
 const onForceUpdate = () => {
   $forceUpdate()
 }
-// :modal-renderer="modalRenderer"
 </script>
 
 <template>
@@ -69,10 +72,14 @@ const onForceUpdate = () => {
   <el-button @click="onForceUpdate">
     forceUpdate
   </el-button>
+  <el-button @click="onChangeTitle">
+    动态改变标题
+  </el-button>
   <Fuzzy
     :renderer="uiRenderer"
     :options="_options"
     :handlers="_h"
     :layout-provider="layout"
+    :extra-renderer="extra"
   />
 </template>

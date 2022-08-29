@@ -1,15 +1,18 @@
 import { ElementUIForm } from '../../../fuzzy-next/impl-renderer/element-ui-renderer/ElementUIForm'
 import type { FuzzyNextHandlers, OptionsConfiguration } from '../../../fuzzy-next/types'
 
+export const changed = ref('hhh')
+
 export const options: OptionsConfiguration = {
-  title: '标题一',
+  title: 'hhh',
+  titleRenderer: () => <div>{changed.value}</div>,
   api: {
     filter: '/environ/factor/list',
     update: '/environ/factor',
     create: '/environ/factor',
     delete: '/environ/factor',
   },
-  labelWidth: 120,
+  labelWidth: 140,
   feature: {
     update: true,
     delete: true,

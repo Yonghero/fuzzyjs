@@ -13,6 +13,7 @@ import {
   templateMiddleWare,
 } from '../../utils'
 import type { EventBus } from './createEventBus'
+import { options } from '~/example/next/template'
 
 let _renderer: Renderer
 let _eventBus: EventBus
@@ -55,6 +56,7 @@ function createComp(type, requestMethod, templates: Templates[]) {
     shouldWarpEvenly: true,
     shouldLabelWidthAuto: false,
     shouldRemoveModelUndefined: true,
+    labelWidth: options.labelWidth,
   })
 
   return defineComponent({
