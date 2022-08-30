@@ -4,6 +4,7 @@ import type { ExtraProps } from './options'
 interface HandlerParams {
   data: any
   url?: string
+  preventDefault?: any
 }
 
 export interface FuzzyNextHandlers {

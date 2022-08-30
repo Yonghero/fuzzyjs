@@ -79,7 +79,7 @@ function createComp(type, requestMethod, templates: Templates[]) {
         const valid = await form.formRef.value.validate()
         if (valid) {
           const model = await processModel(form.model)
-
+          if (model === null) return
           const { success, message } = await _requestCallback[requestMethod](model)
 
           if (success) {
@@ -98,12 +98,48 @@ function createComp(type, requestMethod, templates: Templates[]) {
       async function processModel(model) {
         let _model = { ...model }
         if (type === 'create') {
-          if (_handlers?.createConfirm)
-            _model = await _handlers.createConfirm({ data: form.model, url: _requestCallback.urls.create })
+          if (_handlers?.createConfirm) {
+            // 事件阻断器
+            const prevent = new Promise((resolve) => {
+              const timer = setTimeout(() => resolve(false), 500)
+
+              _handlers.createConfirm && _handlers.createConfirm({
+                data: form.model,
+                url: _requestCallback.urls.create,
+                preventDefault: () => {
+                  resolve(true)
+                  clearTimeout(timer)
+                },
+              }).then(m => _model = m)
+
+              // 默认500毫秒 不阻止
+            })
+
+            const isPrevent = await prevent
+            if (isPrevent)
+              return null
+          }
         }
         if (type === 'update') {
-          if (_handlers?.updateConfirm)
-            _model = await _handlers.updateConfirm({ data: form.model, url: _requestCallback.urls.update })
+          if (_handlers?.updateConfirm) {
+            // 默认500毫秒 不阻止
+            const prevent = new Promise((resolve) => {
+              const timer = setTimeout(() => resolve(false), 500)
+
+              _handlers.updateConfirm && _handlers.updateConfirm({
+                data: form.model,
+                url: _requestCallback.urls.update,
+                preventDefault: () => {
+                  resolve(true)
+                  clearTimeout(timer)
+                },
+              })
+            })
+
+            const isPrevent = await prevent
+            if (isPrevent)
+              return
+          }
           if (props.row.id)
             _model.id = props.row.id
         }

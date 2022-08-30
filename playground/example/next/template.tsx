@@ -1,3 +1,4 @@
+import { ElMessage } from 'element-plus'
 import { ElementUIForm } from '../../../fuzzy-next/impl-renderer/element-ui-renderer/ElementUIForm'
 import type { FuzzyNextHandlers, OptionsConfiguration } from '../../../fuzzy-next/types'
 
@@ -204,9 +205,12 @@ export const UpdateComponent2 = defineComponent({
 })
 
 export const handlers: FuzzyNextHandlers = {
-  updated() {
-    debugger
-  },
+  // async createConfirm({ preventDefault }) {
+  //   debugger
+  //   ElMessage.warning('hhhh')
+  //   preventDefault()
+  //   return {}
+  // },
 }
 
 export const handlers1: FuzzyNextHandlers = {

@@ -189,11 +189,13 @@ export class ElementUIForm implements FormRenderer {
       const p = { ...props }
       delete p.value
       return p
-    })
+    }) as any
+
     return (
       <el-input
         v-model={props.model[props.value]}
         size="default"
+        onBlur={() => _props.onBlur && _props.onBlur({ value: props.model[props.value], model: props.model })}
         {..._props.value}
       />
     )
