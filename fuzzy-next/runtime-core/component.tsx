@@ -13,6 +13,7 @@ import type {
 import { LiftOff } from './lift-off'
 import { useActivated } from './useActivated'
 import { workInProgressFuzzy } from './expose'
+import '../tailwind.css'
 
 export function createComponent(globalRenderer: Renderer, globalLayoutProvider: LayoutProvider, requestProvider: RequestProvider, globalPaging: PagingProvider, fuzzyOptions: CreateFuzzyOptions) {
   return defineComponent({

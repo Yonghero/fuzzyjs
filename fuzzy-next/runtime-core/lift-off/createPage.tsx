@@ -32,7 +32,7 @@ export function createPage(renderer: Renderer, handlers: FuzzyNextHandlers, requ
       return () => (
         <>
           {
-            +dataProvide.total.value <= dataProvide.filterParams.value[paging.size]
+            +dataProvide.total.value <= dataProvide.filterParams.value[paging.size] || !dataProvide.total.value
               ? null
               : <renderer.page.render
                 v-model={c.value}

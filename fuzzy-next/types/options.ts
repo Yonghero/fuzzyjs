@@ -161,7 +161,7 @@ export interface FormTemplate extends BaseTemplate {
    * type 为 select 时触发
    * @param params
    */
-  onChange?: (params: any) => void
+  onChange?: ({ key, value, model }) => void
   /**
    * 不同情况下字段展示的默认值
    */
@@ -221,7 +221,7 @@ export interface FormTemplate extends BaseTemplate {
   /**
    * type 为下拉框时的options
    */
-  options?: Option[] | ComputedRef<Option[]>
+  options?: Option[] | ComputedRef<Option[]> | any
   /**
    * 异步加载下拉框的options
    */

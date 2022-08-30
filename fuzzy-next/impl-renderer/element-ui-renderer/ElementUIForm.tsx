@@ -140,7 +140,7 @@ export class ElementUIForm implements FormRenderer {
           >
             {
               item.render
-                ? <item.render model={model} value={item.value}></item.render>
+                ? <item.render model={model} value={item.value}/>
                 : <FormItemComp onChange={item.onChange} {...item} model={model}/>
             }
           </ElFormItem>
@@ -201,7 +201,7 @@ export class ElementUIForm implements FormRenderer {
   select(props: FormCompProps, { emit }): VNode {
     return (
       <el-select
-        onChange={v => emit('change', props.value, v, props.model)}
+        onChange={v => emit('change', { key: props.value, value: v, model: props.model })}
         v-model={props.model[props.value]}
         {...props}
       >
