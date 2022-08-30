@@ -4,6 +4,7 @@ import type { VNode } from 'vue'
 import { reactive, ref } from 'vue'
 import type { FormCompProps, FormItem, FormRenderProps, FormRenderer, Templates } from '../../types'
 import { globalFormItems } from '../../index'
+import '../element-ui.scss'
 
 export class ElementUIForm implements FormRenderer {
   isHorizontal = false

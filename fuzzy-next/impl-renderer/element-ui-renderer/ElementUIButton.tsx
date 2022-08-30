@@ -1,6 +1,7 @@
 import { ElButton } from 'element-plus'
 import type { ButtonRenderer } from '../../types'
 import '../../tailwind.css'
+import '../element-ui.scss'
 
 export class ElementUIButton implements ButtonRenderer {
   render(props, { slots }) {

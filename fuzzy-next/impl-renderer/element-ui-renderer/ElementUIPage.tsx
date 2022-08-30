@@ -1,5 +1,6 @@
 import { ElPagination } from 'element-plus'
 import type { PageRenderer } from '../../types'
+import '../element-ui.scss'
 
 export class ElementUIPage implements PageRenderer {
   render({ total, modelValue }: any, { emit }) {

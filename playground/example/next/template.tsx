@@ -28,7 +28,6 @@ export const options: OptionsConfiguration = {
         table: false,
       },
       defaultValue: {
-        filter: [1, 2],
         update: 1,
         create: 1,
       },

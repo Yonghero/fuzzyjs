@@ -1,5 +1,6 @@
 import { ElPopconfirm } from 'element-plus'
 import type { ConfirmRender, ConfirmRenderProps } from '../../types'
+import '../element-ui.scss'
 
 export class ElementUIConfirm implements ConfirmRender {
   render(props: Readonly<ConfirmRenderProps>, { slots }) {

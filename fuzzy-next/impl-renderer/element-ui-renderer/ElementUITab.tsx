@@ -1,4 +1,5 @@
 import type { TabRenderProps, TabRenderer } from '../../types'
+import '../element-ui.scss'
 
 export class ElementUITab implements TabRenderer {
   render(props: Readonly<TabRenderProps>, { emit }) {

@@ -1,6 +1,7 @@
 import { Teleport } from 'vue'
 import { InfoFilled } from '@element-plus/icons-vue'
 import type { ConfirmRender } from '../../types'
+import '../element-ui.scss'
 
 export class ElementUIConfirmPlus implements ConfirmRender {
   render = defineComponent({

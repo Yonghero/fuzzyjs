@@ -1,6 +1,7 @@
 import { ElDialog } from 'element-plus'
 import type { DialogRenderProps, DialogRenderer } from '../../types'
 import { ElementUIButton } from './ElementUIButton'
+import '../element-ui.scss'
 
 export class ElementUIDialog implements DialogRenderer {
   render(props: Readonly<DialogRenderProps>, { slots, emit }) {
