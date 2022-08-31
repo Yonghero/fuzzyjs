@@ -195,8 +195,8 @@ export class ElementUIForm implements FormRenderer {
       <el-input
         v-model={props.model[props.value]}
         size="default"
-        onBlur={() => _props.onBlur && _props.onBlur({ value: props.model[props.value], model: props.model })}
         {..._props.value}
+        onBlur={() => _props.onBlur && _props.onBlur({ value: props.model[props.value], model: props.model })}
       />
     )
   }
