@@ -19,6 +19,7 @@ export function createRequest(options: OptionsConfiguration, request: RequestPro
 
   return {
     get: async(params) => {
+      debugger
       let handlerParams = {}
       // invoke hook
       if (handlers.queryBefore) {
