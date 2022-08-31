@@ -12,7 +12,7 @@ import {
   mapTemplatesRenderer,
   templateMiddleWare,
 } from '../../utils'
-import type {EventBus} from './createEventBus'
+import type { EventBus } from './createEventBus'
 
 let _renderer: Renderer
 let _eventBus: EventBus
@@ -64,7 +64,7 @@ function createComp(type, requestMethod, templates: Templates[]) {
     props: {
       row: {
         type: Object,
-        default: () => ({data: {}}),
+        default: () => ({ data: {} }),
       },
     },
     setup(props) {
@@ -85,22 +85,23 @@ function createComp(type, requestMethod, templates: Templates[]) {
               message: '',
             }
           }
-          const {success, message} = await _requestCallback[requestMethod](model)
+          const { success, message } = await _requestCallback[requestMethod](model)
 
           if (success) {
             // 成功后重置表单内容
             await rest()
             if (_handlers.updated)
               _handlers.updated()
-            return {flag: true, message}
-          } else {
-            return {flag: false, message}
+            return { flag: true, message }
+          }
+          else {
+            return { flag: false, message }
           }
         }
       }
 
       async function processModel(model) {
-        let _model = {...model}
+        let _model = { ...model }
         if (type === 'create') {
           if (_handlers?.createConfirm) {
             // 事件阻断器
@@ -141,7 +142,7 @@ function createComp(type, requestMethod, templates: Templates[]) {
 
             const isPrevent = await prevent
             if (isPrevent)
-              return
+              return null
           }
           if (props.row.id)
             _model.id = props.row.id
