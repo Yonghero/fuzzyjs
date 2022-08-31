@@ -184,10 +184,12 @@ export class ElementUIForm implements FormRenderer {
     return type.includes('datePicker') ? COMPS_MAP.datePick : COMPS_MAP[type]
   }
 
-  input(props: FormCompProps) {
+  input(props: FormCompProps | any) {
     const _props = computed(() => {
       const p = { ...props }
       delete p.value
+      if (p?.onBlur)
+        delete p?.onBlur
       return p
     }) as any
 
@@ -196,7 +198,7 @@ export class ElementUIForm implements FormRenderer {
         v-model={props.model[props.value]}
         size="default"
         {..._props.value}
-        onBlur={() => _props.onBlur && _props.onBlur({ value: props.model[props.value], model: props.model })}
+        onBlur={() => props.onBlur && props.onBlur({ value: props.model[props.value], model: props.model })}
       />
     )
   }

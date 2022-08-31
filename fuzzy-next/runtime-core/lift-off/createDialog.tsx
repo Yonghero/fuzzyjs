@@ -21,7 +21,8 @@ export function createDialog(renderer: Renderer, modalRenderer: ModalRenderer, h
       renderer.message.success(`${dataProvide.dialog.value.title}成功`)
     }
     else {
-      renderer.message.warning(message)
+      if (message)
+        renderer.message.warning(message)
     }
   }
 
