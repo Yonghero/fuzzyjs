@@ -18,7 +18,7 @@ export function createDialog(renderer: Renderer, modalRenderer: ModalRenderer, h
     if (flag) {
       // 成功后更新数据
       await update()
-      renderer.message.success(`${dataProvide.dialog.value.title}成功`)
+      renderer.message.success(`${unref(dataProvide.dialog.value.title)}成功`)
     }
     else {
       if (message)
@@ -36,7 +36,7 @@ export function createDialog(renderer: Renderer, modalRenderer: ModalRenderer, h
       return () => (
         <renderer.dialog.render
           v-model={dataProvide.dialog.value.visible}
-          title={dataProvide.dialog.value.title}
+          title={unref(dataProvide.dialog.value.title)}
           onUpdate={onConfirm}
           onCancel={onCancel}
           style={options?.modalStyle || {}}

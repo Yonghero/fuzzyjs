@@ -5,7 +5,7 @@ import type { FuzzyNextHandlers, OptionsConfiguration } from '../../../fuzzy-nex
 export const changed = ref('hhh')
 
 export const options: OptionsConfiguration = {
-  title: 'hhh',
+  title: computed(() => 'hhh'),
   titleRenderer: () => <div>{changed.value}</div>,
   api: {
     filter: '/environ/factor/list',
@@ -207,7 +207,13 @@ export const UpdateComponent2 = defineComponent({
 export const handlers: FuzzyNextHandlers = {
   async createConfirm({ preventDefault }) {
     ElMessage.warning('hhhh')
-    preventDefault()
+    preventDefault(true)
+    return {}
+  },
+  async updateConfirm({ preventDefault }) {
+    ElMessage.warning('hhhh')
+    debugger
+    preventDefault(true)
     return {}
   },
 }

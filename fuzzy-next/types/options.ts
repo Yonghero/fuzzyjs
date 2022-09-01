@@ -8,7 +8,7 @@ export type OptionsConfiguration = {
    * 页面标题
    * 新增、编辑弹窗标题
    */
-  title: string
+  title: string | any | ComputedRef<string>
   /**
    * 页面标题自定义渲染函数
    * 传递该参数 title属性仅在新增、编辑弹窗标题中显示

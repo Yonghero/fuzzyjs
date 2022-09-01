@@ -15,7 +15,7 @@ export function createCreateButton(renderer: Renderer, modalRenderer: ModalRende
 
     dataProvide.dispatch.setDialog({
       visible: true,
-      title: `新增${options.title}`,
+      title: `新增${unref(options.title)}`,
       type: 'create',
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error ts

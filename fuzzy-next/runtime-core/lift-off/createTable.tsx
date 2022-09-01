@@ -23,7 +23,7 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
 
     dataProvider.dispatch.setDialog({
       visible: true,
-      title: `编辑${options.title}`,
+      title: `编辑${unref(options.title)}`,
       type: 'update',
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error ts
