@@ -17,7 +17,7 @@ export type OptionsConfiguration = {
   /**
    * 增删改查接口地址
    */
-  api: string | Api | Array<string> | Array<Api> | ComputedRef<string> | Ref<string>
+  api: string | Api | Array<string> | Array<Api> | ComputedRef<string> | Ref<string> | any
   /**
    * 是否开启增删改查中其中一项功能
    * 默认全部开启
