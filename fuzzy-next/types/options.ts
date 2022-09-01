@@ -1,4 +1,4 @@
-import type { Component, ComputedRef, VNode } from 'vue'
+import type { Component, ComputedRef, Ref, VNode } from 'vue'
 
 /**
  * fuzzy-next supported options
@@ -17,7 +17,7 @@ export type OptionsConfiguration = {
   /**
    * 增删改查接口地址
    */
-  api: string | Api | Array<string> | Array<Api>
+  api: string | Api | Array<string> | Array<Api> | ComputedRef<string> | Ref<string>
   /**
    * 是否开启增删改查中其中一项功能
    * 默认全部开启
@@ -245,10 +245,10 @@ export interface FilterTemplate extends BaseTemplate {
 export type FormItem = 'input' | 'select' | 'datePicker' | 'datePickerRange'
 
 export interface Api {
-  create: string
-  update: string
-  delete: string
-  filter: string
+  create: string | ComputedRef<string> | Ref<string>
+  update: string | ComputedRef<string> | Ref<string>
+  delete: string | ComputedRef<string> | Ref<string>
+  filter: string | ComputedRef<string> | Ref<string>
 }
 
 /**

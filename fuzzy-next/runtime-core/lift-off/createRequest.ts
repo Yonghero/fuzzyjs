@@ -13,7 +13,7 @@ import type { DataProvider } from './createDataProvide'
  */
 export function createRequest(options: OptionsConfiguration, request: RequestProvider, handlers: FuzzyNextHandlers, dataProvide: DataProvider, paging: PagingProvider): RequestCallback {
   const getApiOfMode = (mode: keyof Api) => {
-    if (typeof options.api === 'string') return unref(options.api)
+    if (typeof unref(options.api) === 'string') return unref(options.api)
     return unref(options.api[mode])
   }
 
