@@ -113,7 +113,7 @@ export class ElementUIForm implements FormRenderer {
     const model = reactive({})
     templates.forEach((item) => {
       if (item.value)
-        model[item.value] = item.defaultQueryValue !== undefined ? item.defaultQueryValue : ''
+        model[item.value] = unref(item.defaultQueryValue) !== undefined ? unref(item.defaultQueryValue) : ''
     })
     return model
   }
