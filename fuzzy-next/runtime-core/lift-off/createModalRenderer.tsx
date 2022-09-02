@@ -128,7 +128,7 @@ function createComp(type, requestMethod, templates: Templates[]) {
           if (_handlers?.updateConfirm) {
             // 默认500毫秒 不阻止
             const prevent = new Promise((resolve) => {
-              const timer = setTimeout(() => resolve(false), 500)
+              const timer = setTimeout(() => resolve(false), 100)
 
               _handlers.updateConfirm && _handlers.updateConfirm({
                 data: form.model,
@@ -137,7 +137,7 @@ function createComp(type, requestMethod, templates: Templates[]) {
                   resolve(true)
                   clearTimeout(timer)
                 },
-              })
+              }).then(m => _model = m)
             })
 
             const isPrevent = await prevent
