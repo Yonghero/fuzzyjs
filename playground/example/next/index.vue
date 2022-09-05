@@ -51,6 +51,8 @@ const extra = [
   <button key="2">decrease</button>,
 ]
 
+const mergeExtra = extra
+
 const onChangeTitle = () => {
   changed.value = '被我改变了'
 }
@@ -80,6 +82,6 @@ const onForceUpdate = () => {
     :options="_options"
     :handlers="_h"
     :layout-provider="layout"
-    :extra-renderer="extra"
+    :extra-renderer="mergeExtra"
   />
 </template>

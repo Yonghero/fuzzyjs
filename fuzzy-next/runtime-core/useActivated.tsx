@@ -1,5 +1,7 @@
 import { transferToArray } from '../utils'
 
+const isDeep = arr => arr.some(item => item instanceof Array)
+
 export function useActivated(props: any) {
   // 当前激活的下标
   const activeTabIndex = ref(0)
@@ -17,8 +19,20 @@ export function useActivated(props: any) {
   const modalRenderer = computed(() => mergeModalRenderer.value[activeTabIndex.value])
 
   // 合并扩展组件
-  const mergeExtraRenderer = computed(() => transferToArray(props.extraRenderer, true))
+  const mergeExtraRenderer = computed(() => {
+    if (isDeep(props.extraRenderer)) {
+      return props.extraRenderer
+    }
+    else {
+      return Array.from({ length: mergeOptions.value.length }).map((_, idx) => {
+        if (idx === 0)
+          return props.extraRenderer
 
+        return undefined
+      })
+    }
+  })
+  console.log(mergeExtraRenderer.value, props.extraRenderer, '=-=-')
   // 激活的扩展组件
   const extraRenderer = computed(() => mergeExtraRenderer.value[activeTabIndex.value])
 
