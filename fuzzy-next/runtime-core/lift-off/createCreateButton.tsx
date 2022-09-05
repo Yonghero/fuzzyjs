@@ -23,9 +23,16 @@ export function createCreateButton(renderer: Renderer, modalRenderer: ModalRende
     })
   }
 
-  return <renderer.button.render
-    type={'create'}
-    onClick={onCreate}
-  >新增
-  </renderer.button.render>
+  return <>
+    {
+      ((options.feature && options.feature.create !== false) || options.feature?.create === undefined)
+        ? <renderer.button.render
+          type={'create'}
+          onClick={onCreate}
+        >新增
+        </renderer.button.render>
+        : <span></span>
+    }
+
+  </>
 }

@@ -32,7 +32,6 @@ export function useActivated(props: any) {
       })
     }
   })
-  console.log(mergeExtraRenderer.value, props.extraRenderer, '=-=-')
   // 激活的扩展组件
   const extraRenderer = computed(() => mergeExtraRenderer.value[activeTabIndex.value])
 
