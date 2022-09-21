@@ -206,9 +206,9 @@ export class ElementUIForm implements FormRenderer {
   select(props: FormCompProps, { emit }): VNode {
     return (
       <el-select
-        onChange={v => emit('change', { key: props.value, value: v, model: props.model })}
         v-model={props.model[props.value]}
         {...props}
+        onChange={v => emit('change', { key: props.value, value: v, model: props.model })}
       >
         {
           props.options

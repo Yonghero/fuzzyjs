@@ -51,7 +51,7 @@ const extra = [
   <button key="2">decrease</button>,
 ]
 
-const mergeExtra = extra
+const mergeExtra = mergeFuzzyOptions(extra, [<button></button>])
 
 const onChangeTitle = () => {
   changed.value = '被我改变了'
