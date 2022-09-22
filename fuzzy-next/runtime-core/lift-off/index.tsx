@@ -50,7 +50,7 @@ export function LiftOff(renderer: Renderer, _modalRenderer: ModalRenderer, extra
   const {
     Filter,
     FilterButton,
-  } = createFilter(renderer, options.template, options?.feature, requestCallback, dataProvide, fuzzyOptions)
+  } = createFilter(renderer, options.template, options?.feature, requestCallback, dataProvide, fuzzyOptions, paging)
 
   const CreateButton = createCreateButton(renderer, modalRenderer, mapTemplateOfFeature(options.template, 'create'), handlers, requestCallback, dataProvide, options)
 
