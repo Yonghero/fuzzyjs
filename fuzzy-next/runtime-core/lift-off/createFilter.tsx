@@ -1,5 +1,5 @@
 import type { VNode } from 'vue'
-import type { CreateFuzzyOptions, Renderer, RequestCallback, Templates } from '../../types'
+import type { CreateFuzzyOptions, PagingProvider, Renderer, RequestCallback, Templates } from '../../types'
 import {
   mapTemplateDefaultValue,
   mapTemplateOfFeature,
@@ -9,7 +9,7 @@ import {
 } from '../../utils'
 import type { DataProvider } from './createDataProvide'
 
-export function createFilter(renderer: Renderer, templates: Templates[], feature: any, requestCallback: RequestCallback, dataProvide: DataProvider, fuzzyOptions: CreateFuzzyOptions): { Filter: any; FilterButton: VNode } {
+export function createFilter(renderer: Renderer, templates: Templates[], feature: any, requestCallback: RequestCallback, dataProvide: DataProvider, fuzzyOptions: CreateFuzzyOptions, paging: PagingProvider): { Filter: any; FilterButton: VNode } {
   const FilterFrom = renderer.form.create({
     templates: templateMiddleWare([mapTemplateOfFeature, mapTemplatesRenderer, mapTemplateDefaultValue, mapTemplateOfOrder])(templates, 'filter'),
     feature,
@@ -26,7 +26,7 @@ export function createFilter(renderer: Renderer, templates: Templates[], feature
       data,
       message,
       total,
-    } = await requestCallback.get({ ...FilterFrom.model })
+    } = await requestCallback.get({ ...FilterFrom.model, [paging.current]: 1 })
     // success
     dataProvide.dispatch.setTableLoading(false)
     if (success) {
