@@ -1,4 +1,3 @@
-import { ExtraRenderer } from './renderer'
 import type { ExtraProps } from './options'
 
 interface HandlerParams {
@@ -56,6 +55,10 @@ export interface FuzzyNextHandlers {
    * 更新成功后
    */
   updated?: () => any
+  /**
+   * tab change
+   */
+  tabChange?: () => any
 }
 
 export interface PrivateHandlers {
