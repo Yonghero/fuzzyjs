@@ -73,6 +73,10 @@ export const options: OptionsConfiguration = {
       label: '小数位数',
       value: 'valPrecision',
       type: 'input',
+      sortable: true,
+      sortMethod: (obj1, obj2) => {
+        console.log('obj1: ', obj1, obj2)
+      },
       require: true,
       visible: {
         filter: false,
@@ -206,20 +210,26 @@ export const UpdateComponent2 = defineComponent({
 })
 
 export const handlers: FuzzyNextHandlers = {
-  async createConfirm({ preventDefault, data }) {
-    // ElMessage.warning('hhhh')
-    // preventDefault(true)
-    const _data = { ...data, a: 123 }
-    return _data
-  },
-  async updateConfirm({ preventDefault, data }) {
-    const _data = { ...data, a: 123 }
-    return _data
-  },
+  // async createConfirm({ preventDefault, data }) {
+  //   // ElMessage.warning('hhhh')
+  //   // preventDefault(true)
+  //   const _data = { ...data, a: 123 }
+  //   return _data
+  // },
+  // async updateConfirm({ preventDefault, data }) {
+  //   const _data = { ...data, a: 123 }
+  //   return _data
+  // },
+  // tabChange() {
+
+  // },
 }
 
 export const handlers1: FuzzyNextHandlers = {
   updated() {
-    debugger
+
+  },
+  tabChange() {
+
   },
 }

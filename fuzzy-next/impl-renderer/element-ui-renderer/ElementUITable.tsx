@@ -38,15 +38,19 @@ export class ElementUITable implements TableRenderer {
           default: scope => this._getColumn(item, scope),
         }
 
-        return <ElTableColumn
-          v-slots={columnsSlots}
-          key={item.value}
-          label={item.label}
-          prop={item.value}
-          width={item.width ? item.width : ''}
-          showOverflowTooltip={item.showOverflowTooltip ? item.showOverflowTooltip : false}
-          align="center"
-        />
+        return (
+          <ElTableColumn
+            v-slots={columnsSlots}
+            key={item.value}
+            label={item.label}
+            prop={item.value}
+            width={item.width ? item.width : ''}
+            sortable={item.sortable ? item.sortable : false}
+            sortMethod={item.sortMethod ? item.sortMethod : () => ({})}
+            showOverflowTooltip={item.showOverflowTooltip ? item.showOverflowTooltip : false}
+            align="center"
+          />
+        )
       })
 
     if (this.shouldFeaturesRender(feature)) {

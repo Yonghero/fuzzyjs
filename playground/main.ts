@@ -14,7 +14,7 @@ import { formItem } from '../fuzzy-next/runtime-core/extend/UIPlugings'
 import App from './App.vue'
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:3334/api', // api的base_url
+  baseURL: 'http://localhost:3300/api', // api的base_url
   timeout: 300000, // 请求超时时间
 })
 
