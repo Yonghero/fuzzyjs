@@ -27,7 +27,7 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
       type: 'update',
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error ts
-      render: <modalRenderer.UpdateComponent row={row}/>,
+      render: (<modalRenderer.UpdateComponent row={row}/>),
     })
   }
 
@@ -39,8 +39,12 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
     if (success) {
       renderer.message.success('删除成功')
 
+      if (dataProvider.tableData.value.length === 1 && dataProvider.currentPage.value !== 1)
+        await requestCallback.get({ [paging.current]: dataProvider.currentPage.value - 1 })
+      else
+        await requestCallback.get({})
+
       // 删除成功后 重新请求最新的数据
-      await requestCallback.get({})
       return
     }
     renderer.message.error(message)
