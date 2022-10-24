@@ -19,7 +19,7 @@ export interface FuzzyPluginOptions {
 export interface PagingProvider {
   current: string
   size: string
-  sizeNum: number
+  sizeNum?: number
 }
 
 export interface CreateFuzzyOptions {
