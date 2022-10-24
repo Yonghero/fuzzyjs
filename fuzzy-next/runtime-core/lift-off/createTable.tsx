@@ -111,7 +111,9 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
       value: 'fuzzy-No',
       width: 70,
       render(scope) {
-        return <span>{scope.$index + 1 + (dataProvider.filterParams.value[paging.current] - 1) * dataProvider.filterParams.value[paging.size]}</span>
+        return (
+          <span>{scope.$index + 1 + (dataProvider.filterParams.value[paging.current] - 1) * dataProvider.filterParams.value[paging.size]}</span>
+        )
       },
     })
   }
@@ -120,6 +122,8 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
     templates,
     feature: options.feature,
     selection: options.selection,
+    showSummary: options.showSummary,
+    summaryMethod: options.summaryMethod,
   })
 
   function onSelectionChange(p) {
@@ -127,10 +131,12 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
       handlers.selectionChange(p)
   }
 
-  return <Table
-    data={dataProvider.tableData}
-    loading={dataProvider.tableLoading}
-    onSelectionChange={onSelectionChange}
-    border={options.border ?? true}
-  />
+  return (
+    <Table
+      data={dataProvider.tableData}
+      loading={dataProvider.tableLoading}
+      onSelectionChange={onSelectionChange}
+      border={options.border ?? true}
+    />
+  )
 }
