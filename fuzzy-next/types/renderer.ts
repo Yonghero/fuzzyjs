@@ -119,7 +119,7 @@ export interface DialogRenderer {
 
 export interface DialogRenderProps {
   modelValue?: any
-  title: string
+  title: string | VNode | Function | Element | Component | JSX.Element | any
   footer?: VNode[]
   style?: ModalStyleProps
   onUpdate?: (scope: any) => void // vue emit
