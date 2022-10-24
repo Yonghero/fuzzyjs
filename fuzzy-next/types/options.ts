@@ -53,6 +53,14 @@ export type OptionsConfiguration = {
    */
   border?: boolean
   /**
+   * 表尾合计行
+   */
+  showSummary?: boolean
+  /**
+   * 自定义表为合计行逻辑
+   */
+  summaryMethod?: Function
+  /**
    * 表格操作栏的配置
    * @param updateRender 提供编辑组件 可任意放置位置
    * @param deleteRender 提供删除组件

@@ -3,7 +3,7 @@ import type { VNode } from 'vue'
 import type { Feature, TableRenderProps, TableRenderer, TableTemplate, Templates } from '../../types'
 
 export class ElementUITable implements TableRenderer {
-  render({ templates, feature, selection }: TableRenderProps) {
+  render({ templates, feature, selection, showSummary = false, summaryMethod = () => ({}) }: TableRenderProps) {
     const slots = {
       empty: () => (<ElEmpty/>),
     }
@@ -11,17 +11,20 @@ export class ElementUITable implements TableRenderer {
     const TableColumn = this.getColumns(templates, feature, selection)
 
     return (props) => {
-      return (<ElTable
-        v-slots={slots}
-        data={props.data.value}
-        v-loading={props.loading.value}
-        onSelection-Change={props.onSelectionChange}
-        border={props.border}
-      >
-        {
-          TableColumn
-        }
-      </ElTable>
+      return (
+        <ElTable
+          v-slots={slots}
+          showSummary={showSummary}
+          summaryMethod={summaryMethod}
+          data={props.data.value}
+          v-loading={props.loading.value}
+          onSelection-Change={props.onSelectionChange}
+          border={props.border}
+        >
+          {
+            TableColumn
+          }
+        </ElTable>
       )
     }
   }
