@@ -6,7 +6,7 @@ export function createPage(renderer: Renderer, handlers: FuzzyNextHandlers, requ
     const {
       success,
       message,
-    } = await requestCallback.get({ [paging.current]: params[paging.current], [paging.size]: 10 })
+    } = await requestCallback.get({ [paging.current]: params[paging.current], [paging.size]: paging.sizeNum || 10 })
 
     if (!success)
       renderer.message.warning(message)

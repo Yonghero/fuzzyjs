@@ -41,7 +41,7 @@ export function LiftOff(renderer: Renderer, _modalRenderer: ModalRenderer, extra
   const Dialog = createDialog(renderer, modalRenderer, handlers, requestCallback, dataProvide, options, eventBus)
 
   // Table Component
-  const Table = createTable(renderer, modalRenderer, handlers, options.template, dataProvide, requestCallback, options, paging)
+  const Table = createTable(renderer, modalRenderer, handlers, options.template, dataProvide, requestCallback, options, paging, mock)
 
   // Page Component
   const Page = createPage(renderer, handlers, requestCallback, dataProvide, paging)

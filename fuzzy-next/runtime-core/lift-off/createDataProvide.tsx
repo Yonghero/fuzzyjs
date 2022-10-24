@@ -38,7 +38,7 @@ export interface DialogProps {
  */
 export function createDataProvide(paging: PagingProvider): DataProvider {
   const currentPage = ref(1)
-  const filterParams = ref({ [paging.current]: 1, [paging.size]: 10 })
+  const filterParams = ref({ [paging.current]: 1, [paging.size]: paging.sizeNum || 10 })
   const tableData = ref([])
   const total = ref(0)
 

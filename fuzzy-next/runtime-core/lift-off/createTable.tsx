@@ -10,7 +10,7 @@ import type {
 import { mapTemplateOfFeature, mapTemplateOfOrder, mapTemplatesRenderer, templateMiddleWare } from '../../utils'
 import type { DataProvider } from './createDataProvide'
 
-export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, handlers: FuzzyNextHandlers, _templates: Partial<Templates>[], dataProvider: DataProvider, requestCallback: RequestCallback, options: OptionsConfiguration, paging: PagingProvider): any {
+export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, handlers: FuzzyNextHandlers, _templates: Partial<Templates>[], dataProvider: DataProvider, requestCallback: RequestCallback, options: OptionsConfiguration, paging: PagingProvider, mock: any): any {
   const templates = templateMiddleWare([mapTemplatesRenderer, mapTemplateOfOrder, mapTemplateOfFeature])(_templates, 'table')
 
   async function onUpdate(scope) {
@@ -131,6 +131,16 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
       handlers.selectionChange(p)
   }
 
+  if (mock && mock.length) {
+    return (
+      <Table
+        data={mock}
+        loading={dataProvider.tableLoading}
+        onSelectionChange={onSelectionChange}
+        border={options.border ?? true}
+      />
+    )
+  }
   return (
     <Table
       data={dataProvider.tableData}
