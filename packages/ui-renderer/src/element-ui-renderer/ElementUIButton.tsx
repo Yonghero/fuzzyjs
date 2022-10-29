@@ -5,7 +5,7 @@ export class ElementUIButton implements ButtonRenderer {
   render(props, { slots }) {
     if (props.type === 'create') {
       return <div
-        class="w-12 h-8 text-xl cursor-pointer text-white rounded bg-primary-100 flex items-center justify-center">
+        class="w-12 h-8 text-xl cursor-pointer text-white rounded bg-[#0971FF] flex items-center justify-center">
         +
       </div>
     }
@@ -23,7 +23,7 @@ export class ElementUIButton implements ButtonRenderer {
     }
     if (props.type === 'filter') {
       return <div
-        class="bg-primary-100 w-20 h-8 cursor-pointer rounded-[6px] text-white flex items-center justify-center"
+        class="bg-[#0971FF] w-20 h-8 cursor-pointer rounded-[6px] text-white flex items-center justify-center"
         style="font-size:14px!important"
       >
         {

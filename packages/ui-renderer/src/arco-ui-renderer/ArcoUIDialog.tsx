@@ -11,7 +11,7 @@ export class ArcoUIDialog implements DialogRenderer {
     const _slots = {
       title: () => (
         <div class="flex items-center">
-          <div class="w-1 h-4.5 rounded-sm bg-primary-100 mr-2"/>
+          <div class="w-1 h-4.5 rounded-sm bg-[#0971FF] mr-2"/>
           <h1>{unref(props.title)}</h1>
         </div>
       ),
