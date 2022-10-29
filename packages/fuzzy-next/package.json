@@ -1,0 +1,17 @@
+{
+  "name": "fuzzy-next",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@fuzzy-next/layout-provider": "workspace:^1.0.0",
+    "@fuzzy-next/ui-renderer": "workspace:^1.0.0",
+    "vue": "^3.2.41"
+  }
+}

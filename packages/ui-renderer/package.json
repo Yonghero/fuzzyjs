@@ -1,0 +1,17 @@
+{
+  "name": "@fuzzy-next/ui-renderer",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@arco-design/web-vue": "^2.34.1",
+    "element-plus": "^2.1.9",
+    "fuzzy-next": "workspace:^1.0.52"
+  }
+}

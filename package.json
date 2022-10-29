@@ -38,6 +38,10 @@
     "tailwindcss": "^3.1.8",
     "vue": "^3.2.26"
   },
+  "dependencies": {
+    "@fuzzy-next/layout-provider": "workspace:^1.0.0",
+    "@fuzzy-next/ui-renderer": "workspace:^1.0.0"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^0.16.1",
     "@arco-design/web-vue": "^2.34.1",

@@ -43,11 +43,11 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: path.resolve(__dirname, './fuzzy-next/index.ts'),
+      entry: path.resolve(__dirname, './packages/fuzzy-next/src/index.ts'),
       name: 'fuzzy',
       fileName: format => `fuzzy-next.${format}.js`,
     },
-    outDir: './lib',
+    outDir: path.resolve(__dirname, './packages/fuzzy-next/dist'),
     // emptyOutDir: false,
     rollupOptions: {
       // 确保外部化处理那些你不想打包进库的依赖

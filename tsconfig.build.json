@@ -1,6 +1,7 @@
 {
   "include": [
     "fuzzy-next/index.ts",
+    "fuzzy-next/index.ts",
     "fuzzy-next/runtime-core/index.ts",
     "fuzzy-next/impl-layout-provider/index.ts",
     "fuzzy-next/impl-renderer",
