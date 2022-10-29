@@ -59,7 +59,7 @@ export type OptionsConfiguration = {
   /**
    * 自定义表为合计行逻辑
    */
-  summaryMethod?: Function
+  summaryMethod?: any
   /**
    * 表格操作栏的配置
    * @param updateRender 提供编辑组件 可任意放置位置

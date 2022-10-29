@@ -31,11 +31,18 @@ export function createDialog(renderer: Renderer, modalRenderer: ModalRenderer, h
     await eventBus.publish('cancel')
   }
 
+  // function Title() {
+  //   return (
+  //     <div>123</div>
+  //   )
+  // }
+
   const WrapDialog = defineComponent({
     setup() {
       return () => (
         <renderer.dialog.render
           v-model={dataProvide.dialog.value.visible}
+          // title={Title}
           title={unref(dataProvide.dialog.value.title)}
           onUpdate={onConfirm}
           onCancel={onCancel}

@@ -1,14 +1,15 @@
 ![](https://img.shields.io/badge/component-fuzzy-red.svg?style=for-the-badge&logo=Vue.js ) ![](https://img.shields.io/badge/npm-v8.5.2-orange?style=for-the-badge&logo=npm& )
 
-- [Fuzzy Next](#fuzzy-next)
-- [Preview](#preview)
+- [Fuzzy-Next](#fuzzy-next)
 - [Features](#features)
+- [Preview](#preview)
 - [Install](#install)
 - [Quick Start](#quick-start)
 - [JS DOCX](#js-docx)
+- [Fuzzy Option](#fuzzy-option)
 - [Layout Provider](#layout-provider)
 - [Renderer](#renderer)
-- [Http](#http)
+- [http](#http)
 
 ### Fuzzy-Next
 
