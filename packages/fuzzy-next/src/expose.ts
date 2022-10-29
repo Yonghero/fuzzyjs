@@ -1,3 +1,4 @@
+import { ref } from 'vue'
 import type { DataProvider } from './lift-off/createDataProvide'
 
 /**

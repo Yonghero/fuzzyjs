@@ -1,5 +1,5 @@
 import type { PropType } from 'vue'
-import type { LayoutProvider, LayoutProviderRenderer } from '../../types'
+import type { LayoutProvider, LayoutProviderRenderer } from '../../../../types'
 
 export class DefaultLayoutProvider implements LayoutProvider {
   props = {

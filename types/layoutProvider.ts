@@ -1,5 +1,4 @@
-import type { SetupContext } from '@vue/runtime-core'
-import type { VNode } from 'vue'
+import type { SetupContext, VNode } from 'vue'
 import type { ExtraRenderer } from './renderer'
 
 export interface LayoutProvider {

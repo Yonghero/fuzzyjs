@@ -3,14 +3,17 @@ import { createApp } from 'vue'
 import ElementPlus from 'element-plus'
 import ArcoVue from '@arco-design/web-vue'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
-import { DefaultLayoutProvider, ElementUIRenderer, createFuzzy } from '../fuzzy-next'
+// import { DefaultLayoutProvider, ElementUIRenderer, createFuzzy } from '../fuzzy-next'
+
 import './assets/style/tailwind.css'
 import './assets/style/index.scss'
 import 'element-plus/dist/index.css'
 import '@arco-design/web-vue/dist/arco.css'
-import { DefaultRequestProvider } from '../fuzzy-next/impl-request-provider/default-request-provider'
-// import { DefaultLayoutProvider, ElementUIRenderer, createFuzzy } from '../lib/fuzzy-core.es.js'
-import { formItem } from '../fuzzy-next/runtime-core/extend/UIPlugings'
+import { DefaultLayoutProvider } from '../packages/layout-provider/dist/@fuzzy-next/layout-provider.es.js'
+import { ElementUIRenderer } from '../packages/ui-renderer/dist/@fuzzy-next/ui-renderer.es.js'
+import { DefaultRequestProvider } from '../packages/request-provider/dist/@fuzzy-next/request-provider.es.js'
+import { createFuzzy } from '../packages/fuzzy-next/dist/fuzzy-next.es.js'
+
 import App from './App.vue'
 
 const axiosInstance = axios.create({
@@ -43,9 +46,9 @@ const Fuzzy = createFuzzy({
   },
 })
 
-Fuzzy.use(({ installUIPlugin }) => {
-  installUIPlugin(formItem)
-})
+// Fuzzy.use(({ installUIPlugin }) => {
+//   installUIPlugin(formItem)
+// })
 
 function fuzzyInstall(App: any) {
   App.component(

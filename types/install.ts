@@ -1,5 +1,4 @@
-import type { ComponentOptionsMixin } from '@vue/runtime-core'
-
+import type { ComponentOptionsMixin } from 'vue'
 import type { LayoutProvider } from './layoutProvider'
 import type { ExtendFormItem, Renderer } from './renderer'
 import type { RequestProvider } from './requestProvider'

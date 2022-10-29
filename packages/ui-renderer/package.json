@@ -7,11 +7,10 @@
   "author": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "vite build && tsc -p ./tsconfig.build.json"
   },
   "dependencies": {
-    "@arco-design/web-vue": "^2.34.1",
-    "element-plus": "^2.1.9",
+    "@element-plus/icons-vue": "^2.0.10",
     "fuzzy-next": "workspace:^1.0.52"
   }
 }

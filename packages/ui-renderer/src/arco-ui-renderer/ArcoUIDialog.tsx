@@ -1,6 +1,8 @@
 import {Modal} from '@arco-design/web-vue'
 import type {DialogRenderProps, DialogRenderer} from '../../../../types'
 import {ArcoUIButton} from './ArcoUIButton'
+import { unref } from 'vue'
+
 
 export class ArcoUIDialog implements DialogRenderer {
   render(props: Readonly<DialogRenderProps>, {slots, emit}) {

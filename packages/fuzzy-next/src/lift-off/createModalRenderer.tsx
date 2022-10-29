@@ -1,3 +1,4 @@
+import { defineComponent } from 'vue'
 import type {
   FuzzyNextHandlers,
   ModalRenderer,

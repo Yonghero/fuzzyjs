@@ -1,5 +1,5 @@
 import { Empty, Table } from '@arco-design/web-vue'
-import type { Feature, TableRenderProps, TableRenderer, TableTemplate, Templates } from '../../types'
+import type { Feature, TableRenderProps, TableRenderer, TableTemplate, Templates } from '../../../../types'
 
 export class ArcoUITable implements TableRenderer {
   render({ templates, feature }: TableRenderProps) {

@@ -1,5 +1,5 @@
 import type { Ref, VNode } from 'vue'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { workInProgressFuzzy } from '../expose'
 import type { PagingProvider } from '../../../../types'
 

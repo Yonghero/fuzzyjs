@@ -1,9 +1,9 @@
 import type { FormInstance } from 'element-plus'
 import { ElForm, ElFormItem } from 'element-plus'
 import type { VNode } from 'vue'
-import { reactive, ref } from 'vue'
-import { globalFormItems } from 'fuzzy-next'
+import { computed, defineComponent, reactive, ref, unref } from 'vue'
 import type { FormCompProps, FormItem, FormRenderProps, FormRenderer, Templates } from '../../../../types'
+import { globalFormItems } from './install'
 
 export class ElementUIForm implements FormRenderer {
   isHorizontal = false

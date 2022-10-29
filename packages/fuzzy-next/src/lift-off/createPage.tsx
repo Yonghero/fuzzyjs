@@ -1,3 +1,4 @@
+import { defineComponent, ref, watch } from 'vue'
 import type { FuzzyNextHandlers, PagingProvider, Renderer, RequestCallback } from '../../../../types'
 import type { DataProvider } from './createDataProvide'
 

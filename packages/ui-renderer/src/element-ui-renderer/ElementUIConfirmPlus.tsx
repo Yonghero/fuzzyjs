@@ -1,4 +1,4 @@
-import { Teleport } from 'vue'
+import { Teleport, defineComponent, ref } from 'vue'
 import { InfoFilled } from '@element-plus/icons-vue'
 import type { ConfirmRender } from '../../../../types'
 

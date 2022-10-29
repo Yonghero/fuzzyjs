@@ -1,3 +1,4 @@
+import { unref } from 'vue'
 import type { TabRenderProps, TabRenderer } from '../../../../types'
 
 export class ElementUITab implements TabRenderer {

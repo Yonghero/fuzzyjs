@@ -1,7 +1,7 @@
 /**
  * 组件渲染器接口
  */
-import type { SetupContext } from '@vue/runtime-core'
+import type { SetupContext } from 'vue'
 import type { Component, Ref, VNode } from 'vue'
 import type { ComputedRef } from 'vue-demi'
 import type { Feature, FormTemplate, ModalStyleProps, Option, Templates } from './options'

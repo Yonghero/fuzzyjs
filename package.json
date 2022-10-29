@@ -18,8 +18,8 @@
   "homepage": "https://github.com/Yonghero/fuzzyjs.git",
   "exports": {
     ".": {
-      "import": "./lib/fuzzy-next.es.js",
-      "require": "./lib/fuzzy-next.umd.js"
+      "import": "./packages/fuzzy-next/dist/fuzzy-next.es.js",
+      "require": "./packages/fuzzy-next/dist/fuzzy-next.umd.js"
     },
     "./style": {
       "import": "./lib/style.css",
@@ -39,8 +39,7 @@
     "vue": "^3.2.26"
   },
   "dependencies": {
-    "@fuzzy-next/layout-provider": "workspace:^1.0.0",
-    "@fuzzy-next/ui-renderer": "workspace:^1.0.0"
+    "vue": "3.2.26"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.16.1",

@@ -1,4 +1,4 @@
-import type { ExtendFormItem, FormCompProps } from '../../types'
+import type { ExtendFormItem } from '../../../../types'
 
 export const globalFormItems = new Map()
 
@@ -10,14 +10,4 @@ export function installUIPlugin(items: ExtendFormItem[] | ExtendFormItem) {
   else {
     globalFormItems.set(items.type, items.renderer)
   }
-}
-
-export const formItem = {
-  type: 'date',
-  renderer: (props: FormCompProps) => {
-    return <el-date-picker
-      v-model={props.model[props.value]}
-      type={'date'}
-    />
-  },
 }
