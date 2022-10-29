@@ -68,9 +68,12 @@ importers:
     specifiers:
       '@element-plus/icons-vue': ^2.0.10
       fuzzy-next: workspace:^1.0.52
+      tailwindcss: ^3.1.8
     dependencies:
       '@element-plus/icons-vue': 2.0.10_vue@3.2.26
       fuzzy-next: link:../..
+    devDependencies:
+      tailwindcss: 3.2.1
 
 packages:
 
