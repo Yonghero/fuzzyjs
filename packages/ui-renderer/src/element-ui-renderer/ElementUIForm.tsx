@@ -3,7 +3,7 @@ import { ElForm, ElFormItem } from 'element-plus'
 import type { VNode } from 'vue'
 import { computed, defineComponent, reactive, ref, unref } from 'vue'
 import type { FormCompProps, FormItem, FormRenderProps, FormRenderer, Templates } from '../../../../types'
-import { globalFormItems } from './install'
+import { globalFormItems } from '../install'
 
 export class ElementUIForm implements FormRenderer {
   isHorizontal = false
