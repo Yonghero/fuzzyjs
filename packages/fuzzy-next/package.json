@@ -1,16 +1,24 @@
 {
   "name": "@fuzzy-next/core",
-  "version": "1.0.0",
-  "description": "",
-  "keywords": [],
+  "version": "1.0.1",
+  "description": "On the background management system Fuzzy Provides one - stop add, delete, change and check configurable component",
+  "keywords": [
+    "npm",
+    "younghero",
+    "yonghero",
+    "javascript",
+    "vue",
+    "component"
+  ],
   "license": "ISC",
-  "author": "",
+  "author": "younghero",
   "exports": {
     ".": {
       "import": "./dist/@fuzzy-next/core.es.js",
       "require": "./dist/@fuzzy-next/core.umd.js"
     }
   },
+  "types": "./lib/types/index.d.ts",
   "scripts": {
     "build": "vite build && tsc -p ./tsconfig.build.json",
     "pub": "npm run build && npm version patch && npm publish --access public --force"
