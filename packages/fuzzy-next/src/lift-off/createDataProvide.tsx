@@ -1,6 +1,6 @@
 import type { Ref, VNode } from 'vue'
 import { computed, ref } from 'vue'
-import { workInProgressFuzzy } from '../expose'
+import { workInProgressFuzzy } from '../utils/expose'
 import type { PagingProvider } from '../../../../types'
 
 export interface ValueOfProvide {

@@ -9,7 +9,7 @@ import type {
   RequestProvider,
 } from '../../../../types'
 import { mapTemplateOfFeature } from '../utils'
-import { workInProgressFuzzy } from '../expose'
+import { workInProgressFuzzy } from '../utils/expose'
 import { createEventBus } from './createEventBus'
 import { createDataProvide } from './createDataProvide'
 import { createDialog } from './createDialog'
