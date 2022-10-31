@@ -11,7 +11,7 @@
       "require": "./dist/@fuzzy-next/layout-provider.umd.js"
     }
   },
-  "types": "./lib/types/index.d.ts",
+  "types": "./lib/packages/layout-provider",
   "scripts": {
     "build": "vite build && tsc -p ./tsconfig.build.json",
     "pub": "npm run build && npm version patch && npm publish --access public --force"

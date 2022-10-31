@@ -15,7 +15,7 @@
       "require": "./dist/output.css"
     }
   },
-  "types": "./lib/types/index.d.ts",
+  "types": "./lib/packages/ui-renderer",
   "main": "index.js",
   "scripts": {
     "build": "vite build && tsc -p ./tsconfig.build.json && npx tailwindcss -i ./src/input.css -o ./dist/output.css",

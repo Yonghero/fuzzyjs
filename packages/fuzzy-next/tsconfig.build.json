@@ -2,6 +2,7 @@
   "include": [
     "./src/**/*.ts",
     "./src/**/*.tsx",
+    "./index.ts"
   ],
   "compilerOptions": {
     "moduleResolution": "node",

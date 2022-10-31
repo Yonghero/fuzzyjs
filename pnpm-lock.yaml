@@ -56,7 +56,8 @@ importers:
       vue-tsc: 0.29.8_typescript@4.8.4
 
   packages/fuzzy-next:
-    specifiers: {}
+    specifiers:
+      '@fuzzy-next/core': ^1.0.2
 
   packages/layout-provider:
     specifiers: {}

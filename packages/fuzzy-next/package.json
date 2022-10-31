@@ -18,9 +18,12 @@
       "require": "./dist/@fuzzy-next/core.umd.js"
     }
   },
-  "types": "./lib/types/index.d.ts",
+  "types": "./lib/packages/fuzzy-next",
   "scripts": {
     "build": "vite build && tsc -p ./tsconfig.build.json",
     "pub": "npm run build && npm version patch && npm publish --access public --force"
+  },
+  "dependencies": {
+    "@fuzzy-next/core": "^1.0.2"
   }
 }

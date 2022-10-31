@@ -11,6 +11,7 @@
       "require": "./dist/@fuzzy-next/request-provider.umd.js"
     }
   },
+  "types": "./lib/packages/request-provider",
   "scripts": {
     "build": "vite build && tsc -p ./tsconfig.build.json",
     "pub": "npm run build && npm version patch && npm publish --access public --force"
