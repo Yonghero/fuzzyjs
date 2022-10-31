@@ -1,6 +1,6 @@
 {
   "name": "@fuzzy-next/ui-renderer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "keywords": [],
   "license": "ISC",
@@ -18,7 +18,7 @@
   "types": "./lib/types/index.d.ts",
   "main": "index.js",
   "scripts": {
-    "build": "vite build && tsc -p ./tsconfig.build.json && npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "build": "vite build && tsc -p ./tsconfig.build.json && npx tailwindcss -i ./src/input.css -o ./dist/output.css",
     "pub": "npm run build && npm version patch && npm publish --access public --force"
   },
   "dependencies": {
