@@ -1,12 +1,13 @@
 {
   "name": "@fuzzy-next/layout-provider",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "keywords": [],
   "license": "ISC",
   "author": "",
   "main": "index.js",
   "scripts": {
-    "build": "vite build && tsc -p ./tsconfig.build.json"
+    "build": "vite build && tsc -p ./tsconfig.build.json",
+    "pub": "npm run build && npm version patch && npm publish --access public --force"
   }
 }

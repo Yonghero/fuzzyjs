@@ -1,0 +1,32 @@
+{
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
+  ],
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "target": "esnext",
+    "jsx": "preserve",
+    "emitDeclarationOnly": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "removeComments": false,
+    "declarationDir": "lib",
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "types": [
+      //      "element-plus/global",
+      //      "axios"
+    ]
+  },
+  "references": [
+    {
+      "path": "../../tsconfig.node.json"
+    }
+  ]
+}

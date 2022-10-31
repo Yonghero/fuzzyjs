@@ -1,12 +1,18 @@
 {
-  "name": "fuzzy-next",
+  "name": "@fuzzy-next/core",
   "version": "1.0.0",
   "description": "",
   "keywords": [],
   "license": "ISC",
   "author": "",
-  "main": "./index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/@fuzzy-next/core.es.js",
+      "require": "./dist/@fuzzy-next/core.umd.js"
+    }
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "vite build && tsc -p ./tsconfig.build.json",
+    "pub": "npm run build && npm version patch && npm publish --access public --force"
   }
 }
