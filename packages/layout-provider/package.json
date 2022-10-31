@@ -5,7 +5,13 @@
   "keywords": [],
   "license": "ISC",
   "author": "",
-  "main": "index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/@fuzzy-next/layout-provider.es.js",
+      "require": "./dist/@fuzzy-next/layout-provider.umd.js"
+    }
+  },
+  "types": "./lib/types/index.d.ts",
   "scripts": {
     "build": "vite build && tsc -p ./tsconfig.build.json",
     "pub": "npm run build && npm version patch && npm publish --access public --force"

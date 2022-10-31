@@ -4,8 +4,13 @@
   "description": "",
   "keywords": [],
   "license": "ISC",
-  "author": "",
-  "main": "index.js",
+  "author": "younghero",
+  "exports": {
+    ".": {
+      "import": "./dist/@fuzzy-next/request-provider.es.js",
+      "require": "./dist/@fuzzy-next/request-provider.umd.js"
+    }
+  },
   "scripts": {
     "build": "vite build && tsc -p ./tsconfig.build.json",
     "pub": "npm run build && npm version patch && npm publish --access public --force"

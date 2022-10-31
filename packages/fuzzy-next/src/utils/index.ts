@@ -72,3 +72,5 @@ export function templateMiddleWare(callback: TemplateMiddlewareCallback[]) {
     }, templates)
   }
 }
+
+export * from './expose'

@@ -1,4 +1,4 @@
-import type { ExtendFormItem } from '../../../../types'
+import type { ExtendFormItem } from '../../../types'
 
 export const globalFormItems = new Map()
 

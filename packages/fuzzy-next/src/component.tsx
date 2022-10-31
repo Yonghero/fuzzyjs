@@ -12,7 +12,7 @@ import type {
 } from '../../../types'
 import { LiftOff } from './lift-off'
 import { useActivated } from './useActivated'
-import { workInProgressFuzzy } from './expose'
+import { workInProgressFuzzy } from './utils/expose'
 
 export function createComponent(globalRenderer: Renderer, globalLayoutProvider: LayoutProvider, requestProvider: RequestProvider, globalPaging: PagingProvider, fuzzyOptions: CreateFuzzyOptions) {
   return defineComponent({
