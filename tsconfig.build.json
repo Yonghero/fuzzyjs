@@ -9,6 +9,7 @@
   ],
   "compilerOptions": {
     "moduleResolution": "node",
+    "preserveConstEnums": true,
     "sourceMap": true,
     "target": "esnext",
     "jsx": "preserve",
