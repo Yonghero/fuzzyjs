@@ -1,7 +1,7 @@
 /**
  * 组件渲染器接口
  */
-import type { SetupContext } from '@vue/runtime-core'
+import type { SetupContext } from 'vue'
 import type { Component, Ref, VNode } from 'vue'
 import type { ComputedRef } from 'vue-demi'
 import type { Feature, FormTemplate, ModalStyleProps, Option, Templates } from './options'
@@ -120,7 +120,7 @@ export interface DialogRenderer {
 export interface DialogRenderProps {
   modelValue?: any
   title: string | VNode | Function | Element | Component | JSX.Element | any
-  footer?: VNode[]
+  footer?: any
   style?: ModalStyleProps
   onUpdate?: (scope: any) => void // vue emit
   onCancel?: (scope: any) => void // vue emit

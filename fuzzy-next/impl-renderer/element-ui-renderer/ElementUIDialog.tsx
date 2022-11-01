@@ -20,7 +20,7 @@ export class ElementUIDialog implements DialogRenderer {
         </div>
       ),
       footer: scope => props.footer
-        ? props.footer
+        ? typeof props.footer === 'function' ? props.footer() : <props.footer></props.footer>
         : <div
           class="dialog-footer-box"
         >
