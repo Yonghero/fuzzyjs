@@ -34,6 +34,8 @@ export function createFilter(renderer: Renderer, templates: Templates[], feature
       dataProvide.dispatch.setTotal(total)
       return
     }
+    dataProvide.dispatch.setTableData([])
+    dataProvide.dispatch.setTotal(0)
     // failed
     renderer.message.warning(message)
   }

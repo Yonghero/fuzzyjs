@@ -210,19 +210,20 @@ export const UpdateComponent2 = defineComponent({
 })
 
 export const handlers: FuzzyNextHandlers = {
-  // async createConfirm({ preventDefault, data }) {
-  //   // ElMessage.warning('hhhh')
-  //   // preventDefault(true)
-  //   const _data = { ...data, a: 123 }
-  //   return _data
-  // },
-  // async updateConfirm({ preventDefault, data }) {
-  //   const _data = { ...data, a: 123 }
-  //   return _data
-  // },
-  // tabChange() {
+  async createConfirm({ preventDefault, data }) {
+    // ElMessage.warning('hhhh')
+    // preventDefault(true)
+    const _data = { ...data, a: 123 }
+    debugger
+    return _data
+  },
+  async updateConfirm({ preventDefault, data }) {
+    const _data = { ...data, a: 123 }
+    return _data
+  },
+  tabChange() {
 
-  // },
+  },
 }
 
 export const handlers1: FuzzyNextHandlers = {
