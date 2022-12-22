@@ -229,7 +229,7 @@ export interface FormTemplate extends BaseTemplate {
   /**
    * type 为下拉框时的options
    */
-  options?: Option[] | ComputedRef<Option[]> | any
+  options?: FeatureOption | Option[] | ComputedRef<Option[]> | any
   /**
    * 异步加载下拉框的options
    */
@@ -271,4 +271,10 @@ export interface Feature {
 export interface Option {
   label: string | (() => VNode)
   value: any
+}
+
+export interface FeatureOption {
+  create?: Option[] | ComputedRef<Option[]>
+  update?: Option[] | ComputedRef<Option[]>
+  filter?: Option[] | ComputedRef<Option[]>
 }

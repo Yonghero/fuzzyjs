@@ -4,6 +4,7 @@ import {
   mapTemplateDefaultValue,
   mapTemplateOfFeature,
   mapTemplateOfOrder,
+  mapTemplatesOptions,
   mapTemplatesRenderer,
   templateMiddleWare,
 } from '../../utils'
@@ -11,7 +12,7 @@ import type { DataProvider } from './createDataProvide'
 
 export function createFilter(renderer: Renderer, templates: Templates[], feature: any, requestCallback: RequestCallback, dataProvide: DataProvider, fuzzyOptions: CreateFuzzyOptions, paging: PagingProvider): { Filter: any; FilterButton: VNode } {
   const FilterFrom = renderer.form.create({
-    templates: templateMiddleWare([mapTemplateOfFeature, mapTemplatesRenderer, mapTemplateDefaultValue, mapTemplateOfOrder])(templates, 'filter'),
+    templates: templateMiddleWare([mapTemplateOfFeature, mapTemplatesRenderer, mapTemplateDefaultValue, mapTemplateOfOrder, mapTemplatesOptions])(templates, 'filter'),
     feature,
     isHorizontal: true,
     shouldWarpEvenly: false,
