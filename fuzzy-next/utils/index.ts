@@ -33,6 +33,22 @@ export function mapTemplatesRenderer(templates: Templates[], type) {
   })
 }
 
+export function mapTemplatesOptions(templates: Templates[], type) {
+  return templates.map((template) => {
+    const _template = { ...template }
+    if (_template.options && _template.options[type])
+      _template.options = _template.options[type]
+
+    return _template
+  })
+}
+
+/**
+ * 重新映射默认值
+ * @param templates
+ * @param type
+ * @returns
+ */
 export function mapTemplateDefaultValue(templates: Templates[], type) {
   return templates.map((templates) => {
     const _template = { ...templates }
@@ -43,6 +59,12 @@ export function mapTemplateDefaultValue(templates: Templates[], type) {
   })
 }
 
+/**
+ * 映射字段展示顺序
+ * @param templates
+ * @param type
+ * @returns
+ */
 export function mapTemplateOfOrder(templates: Templates[], type) {
   const orderTemplates = templates.map((template, index) => {
     const _template = { order: {}, ...template }
@@ -56,6 +78,12 @@ export function mapTemplateOfOrder(templates: Templates[], type) {
   return orderTemplates.sort((t1, t2) => t1.order[type] - t2.order[type])
 }
 
+/**
+ * 映射字段是否在该展示
+ * @param templates
+ * @param feature
+ * @returns
+ */
 export function mapTemplateOfFeature(templates: Templates[], feature) {
   return templates.filter((item) => {
     if (!item.visible)
