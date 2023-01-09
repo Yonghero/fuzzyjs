@@ -9,6 +9,7 @@ import type {
 import {
   mapTemplateDefaultValue,
   mapTemplateOfFeature,
+  mapTemplatesInjectType,
   mapTemplatesOptions,
   mapTemplatesRenderer,
   templateMiddleWare,
@@ -52,7 +53,7 @@ export function createModalRenderer(renderer: Renderer, options: OptionsConfigur
 
 function createComp(type, requestMethod, templates: Templates[]) {
   const form = _renderer.form.create({
-    templates: templateMiddleWare([mapTemplatesRenderer, mapTemplateDefaultValue, mapTemplatesOptions])(templates, type),
+    templates: templateMiddleWare([mapTemplatesRenderer, mapTemplateDefaultValue, mapTemplatesOptions, mapTemplatesInjectType])(templates, type),
     isHorizontal: false,
     labelPosition: 'right',
     shouldWarpEvenly: true,
