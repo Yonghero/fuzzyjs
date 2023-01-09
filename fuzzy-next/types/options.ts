@@ -234,6 +234,7 @@ export interface FormTemplate extends BaseTemplate {
    * 异步加载下拉框的options
    */
   fetchOptions?: (temp: Templates) => Promise<Option[]>
+  noFilter?: boolean
 }
 
 /**

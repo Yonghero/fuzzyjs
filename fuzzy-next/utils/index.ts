@@ -43,6 +43,17 @@ export function mapTemplatesOptions(templates: Templates[], type) {
   })
 }
 
+// 注入当前生产表单组件类型
+export function mapTemplatesInjectType(templates: Templates[], type) {
+  return templates.map((template) => {
+    const _template = { ...template }
+    if (type === 'update' || type === 'create')
+      template.noFilter = true
+
+    return _template
+  })
+}
+
 /**
  * 重新映射默认值
  * @param templates
