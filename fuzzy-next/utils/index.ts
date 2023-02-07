@@ -36,7 +36,7 @@ export function mapTemplatesRenderer(templates: Templates[], type) {
 export function mapTemplatesOptions(templates: Templates[], type) {
   return templates.map((template) => {
     const _template = { ...template }
-    if (!Array.isArray(unref(_template.options))) {
+    if (!Array.isArray(_template.options)) {
       if (_template.options && _template.options[type])
         _template.options = _template.options[type]
     }
