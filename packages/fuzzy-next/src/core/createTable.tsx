@@ -8,7 +8,12 @@ import type {
   TableTemplate,
   Templates,
 } from '../../../../types'
-import { mapTemplateOfFeature, mapTemplateOfOrder, mapTemplatesRenderer, templateMiddleWare } from '../utils'
+import {
+  mapTemplateOfFeature,
+  mapTemplateOfOrder,
+  mapTemplatesRenderer,
+  templateMiddleWare,
+} from '../extend'
 import type { DataProvider } from './createDataProvide'
 
 export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, handlers: FuzzyNextHandlers, _templates: Partial<Templates>[], dataProvider: DataProvider, requestCallback: RequestCallback, options: OptionsConfiguration, paging: PagingProvider, mock: any): any {

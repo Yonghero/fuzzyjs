@@ -12,7 +12,7 @@ import {
   mapTemplateOfFeature,
   mapTemplatesRenderer,
   templateMiddleWare,
-} from '../utils'
+} from '../extend'
 import type { EventBus } from './createEventBus'
 
 let _renderer: Renderer

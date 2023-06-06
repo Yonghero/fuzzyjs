@@ -6,7 +6,7 @@ import {
   mapTemplateOfOrder,
   mapTemplatesRenderer,
   templateMiddleWare,
-} from '../utils'
+} from '../extend'
 import type { DataProvider } from './createDataProvide'
 
 export function createFilter(renderer: Renderer, templates: Templates[], feature: any, requestCallback: RequestCallback, dataProvide: DataProvider, fuzzyOptions: CreateFuzzyOptions, paging: PagingProvider): { Filter: any; FilterButton: VNode } {

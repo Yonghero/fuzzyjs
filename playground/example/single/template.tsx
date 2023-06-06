@@ -1,4 +1,4 @@
-import type { FuzzyNextHandlers, OptionsConfiguration } from '../../../packages/request-provider/lib/types'
+import type { FuzzyNextHandlers, OptionsConfiguration } from '../../../types'
 
 export const options: OptionsConfiguration = {
   title: '因子信息',

@@ -1,23 +1,4 @@
-/**
- * 多tab页合并配置
- */
-import { unref } from 'vue'
 import type { TemplateMiddlewareCallback, Templates } from '../../../../types'
-
-export function mergeFuzzyOptions(...rest) {
-  return rest
-}
-
-export function transferToArray(value, deep = false) {
-  if (deep)
-    return [unref(value)]
-
-  if (Array.isArray(value) || Array.isArray(value[0]))
-    return value.map(v => unref(v))
-  if (Array.isArray(value))
-    return unref(value)
-  return [unref(value)]
-}
 
 /**
  * 根据renderer重新映射自定组件
@@ -33,7 +14,12 @@ export function mapTemplatesRenderer(templates: Templates[], type) {
     return _template
   })
 }
-
+/**
+ * 填充默认值
+ * @param templates
+ * @param type
+ * @returns
+ */
 export function mapTemplateDefaultValue(templates: Templates[], type) {
   return templates.map((templates) => {
     const _template = { ...templates }
@@ -43,6 +29,13 @@ export function mapTemplateDefaultValue(templates: Templates[], type) {
     return _template
   })
 }
+
+/**
+ * 填充排序
+ * @param templates
+ * @param type
+ * @returns
+ */
 
 export function mapTemplateOfOrder(templates: Templates[], type) {
   const orderTemplates = templates.map((template, index) => {
@@ -57,6 +50,12 @@ export function mapTemplateOfOrder(templates: Templates[], type) {
   return orderTemplates.sort((t1, t2) => t1.order[type] - t2.order[type])
 }
 
+/**
+ * 功能启停
+ * @param templates
+ * @param feature
+ * @returns
+ */
 export function mapTemplateOfFeature(templates: Templates[], feature) {
   return templates.filter((item) => {
     if (!item.visible)
@@ -72,5 +71,3 @@ export function templateMiddleWare(callback: TemplateMiddlewareCallback[]) {
     }, templates)
   }
 }
-
-export * from './expose'

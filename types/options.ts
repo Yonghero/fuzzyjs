@@ -77,6 +77,16 @@ export interface ModalStyleProps {
   top?: string
 }
 
+/**
+ * 模拟数据
+ * data -> tableData
+ * total -> data.length
+ */
+export interface Mock {
+  data: Record<string, any>[]
+  total: number
+}
+
 interface BaseTemplate {
   /**
    *  字段名称

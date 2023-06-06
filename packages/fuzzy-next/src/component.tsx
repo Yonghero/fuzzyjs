@@ -5,14 +5,14 @@ import type {
   ExtraRenderer,
   FuzzyNextHandlers,
   LayoutProvider,
+  Mock,
   ModalRenderer,
   OptionsConfiguration, PagingProvider,
   Renderer,
   RequestProvider,
 } from '../../../types'
-import { LiftOff } from './lift-off'
-import { useActivated } from './useActivated'
-import { workInProgressFuzzy } from './utils/expose'
+import { LiftOff } from './core'
+import { useActivated, workInProgressFuzzy } from './extend'
 
 export function createComponent(globalRenderer: Renderer, globalLayoutProvider: LayoutProvider, requestProvider: RequestProvider, globalPaging: PagingProvider, fuzzyOptions: CreateFuzzyOptions) {
   return defineComponent({
@@ -43,8 +43,8 @@ export function createComponent(globalRenderer: Renderer, globalLayoutProvider: 
         default: () => ({}),
       },
       mock: {
-        type: Array,
-        default: () => ([]),
+        type: Object as (PropType<Mock>),
+        default: () => ({ data: [], total: 0 }),
       },
       paging: {
         type: Object as PropType<PagingProvider>,

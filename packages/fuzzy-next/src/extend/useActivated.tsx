@@ -1,5 +1,5 @@
 import { computed, markRaw, ref, unref } from 'vue'
-import { transferToArray } from './utils'
+import { transferToArray } from '.'
 
 const isDeep = arr => arr.some(item => item instanceof Array)
 

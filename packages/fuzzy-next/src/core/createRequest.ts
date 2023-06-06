@@ -2,6 +2,7 @@ import { unref } from 'vue'
 import type {
   Api,
   FuzzyNextHandlers,
+  Mock,
   OptionsConfiguration,
   PagingProvider,
   RequestCallback,
@@ -12,7 +13,7 @@ import type { DataProvider } from './createDataProvide'
 /**
  * 创建请求模块
  */
-export function createRequest(options: OptionsConfiguration, request: RequestProvider, handlers: FuzzyNextHandlers, dataProvide: DataProvider, paging: PagingProvider): RequestCallback {
+export function createRequest(options: OptionsConfiguration, request: RequestProvider, handlers: FuzzyNextHandlers, dataProvide: DataProvider, paging: PagingProvider, mock: Mock): RequestCallback {
   const getApiOfMode = (mode: keyof Api) => {
     if (typeof unref(options.api) === 'string') return unref(options.api)
     return unref(options.api[mode])
@@ -30,6 +31,20 @@ export function createRequest(options: OptionsConfiguration, request: RequestPro
       dataProvide.filterParams.value = { ...dataProvide.filterParams.value, ...params, ...handlerParams }
 
       dataProvide.dispatch.setCurrentPage(dataProvide.filterParams.value[paging.current])
+
+      // 模拟数据 截断请求
+      if (mock.data.length && mock.total) {
+        dataProvide.dispatch.setTableData(mock.data)
+        dataProvide.dispatch.setTotal(mock.total)
+
+        return {
+          data: mock.data,
+          message: 'mock data',
+          total: mock.total,
+          size: 10,
+          success: true,
+        }
+      }
 
       const response = await request.get(getApiOfMode('filter'), dataProvide.filterParams.value)
 

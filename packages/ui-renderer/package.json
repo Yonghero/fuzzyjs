@@ -11,14 +11,13 @@
       "require": "./dist/@fuzzy-next/ui-renderer.umd.js"
     },
     "./style": {
-      "import": "./dist/output.css",
-      "require": "./dist/output.css"
+      "import": "./dist/style.css"
     }
   },
   "types": "./lib/packages/ui-renderer",
   "main": "index.js",
   "scripts": {
-    "build": "vite build && tsc -p ./tsconfig.build.json && npx tailwindcss -i ./src/input.css -o ./dist/output.css",
+    "build": "vite build && tsc -p ./tsconfig.build.json",
     "pub": "npm run build && npm version patch && npm publish --access public --force"
   },
   "dependencies": {

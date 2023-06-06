@@ -3,13 +3,13 @@ import type {
   ExtraRenderer,
   FuzzyNextHandlers,
   LayoutProviderRenderer,
+  Mock,
   ModalRenderer,
   OptionsConfiguration, PagingProvider,
   Renderer,
   RequestProvider,
 } from '../../../../types'
-import { mapTemplateOfFeature } from '../utils'
-import { workInProgressFuzzy } from '../utils/expose'
+import { mapTemplateOfFeature, workInProgressFuzzy } from '../extend'
 import { createEventBus } from './createEventBus'
 import { createDataProvide } from './createDataProvide'
 import { createDialog } from './createDialog'
@@ -20,13 +20,13 @@ import { createTable } from './createTable'
 import { createCreateButton } from './createCreateButton'
 import { createModalRenderer } from './createModalRenderer'
 
-export function LiftOff(renderer: Renderer, _modalRenderer: ModalRenderer, extraRenderer: ExtraRenderer, handlers: FuzzyNextHandlers, options: OptionsConfiguration, mock: any[], request: RequestProvider, fuzzyOptions: CreateFuzzyOptions, paging: PagingProvider): Omit<LayoutProviderRenderer, 'Tab'> {
+export function LiftOff(renderer: Renderer, _modalRenderer: ModalRenderer, extraRenderer: ExtraRenderer, handlers: FuzzyNextHandlers, options: OptionsConfiguration, mock: Mock, request: RequestProvider, fuzzyOptions: CreateFuzzyOptions, paging: PagingProvider): Omit<LayoutProviderRenderer, 'Tab'> {
   // global data provide
   // dispatch data
   const dataProvide = createDataProvide(paging)
 
   // provide request's methods
-  const requestCallback = createRequest(options, request, handlers, dataProvide, paging)
+  const requestCallback = createRequest(options, request, handlers, dataProvide, paging, mock)
 
   // 提供给用户的浅更新
   workInProgressFuzzy.shallowUpdate = requestCallback.get
