@@ -37,10 +37,10 @@ export function LiftOff(renderer: Renderer, _modalRenderer: ModalRenderer, extra
   // update & create dialog's content
   const modalRenderer = createModalRenderer(renderer, options, _modalRenderer, requestCallback, eventBus, handlers)
 
-  const Dialog = createDialog(renderer, modalRenderer, handlers, requestCallback, dataProvide, options, eventBus)
+  const Dialog = createDialog(renderer, modalRenderer, handlers, requestCallback, dataProvide, options, eventBus, fuzzyOptions)
 
   // Table Component
-  const Table = createTable(renderer, modalRenderer, handlers, options.template, dataProvide, requestCallback, options, paging, mock)
+  const Table = createTable(renderer, modalRenderer, handlers, options.template, dataProvide, requestCallback, options, paging, mock, fuzzyOptions)
 
   // Page Component
   const Page = createPage(renderer, handlers, requestCallback, dataProvide, paging)
@@ -51,7 +51,7 @@ export function LiftOff(renderer: Renderer, _modalRenderer: ModalRenderer, extra
     FilterButton,
   } = createFilter(renderer, options.template, options?.feature, requestCallback, dataProvide, fuzzyOptions, paging)
 
-  const CreateButton = createCreateButton(renderer, modalRenderer, mapTemplateOfFeature(options.template, 'create'), handlers, requestCallback, dataProvide, options)
+  const CreateButton = createCreateButton(renderer, modalRenderer, mapTemplateOfFeature(options.template, 'create'), handlers, requestCallback, dataProvide, options, fuzzyOptions)
 
   return {
     Filter,

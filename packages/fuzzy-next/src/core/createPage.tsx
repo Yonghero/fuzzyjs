@@ -15,28 +15,25 @@ export function createPage(renderer: Renderer, handlers: FuzzyNextHandlers, requ
 
   const Page = defineComponent({
     setup() {
-      const c = ref(1)
+      const page = ref(1)
 
-      watch(c, async() => {
-        await onUpdatePage({ [paging.current]: c.value })
+      watch(page, async() => {
+        await onUpdatePage({ [paging.current]: page.value })
       })
 
       watch(() => dataProvide.currentPage.value, () => {
         // eslint-disable-next-line no-empty
-        if (c.value === dataProvide.currentPage.value) {
-
-        }
-        else {
-          c.value = dataProvide.currentPage.value
-        }
+        if (page.value !== dataProvide.currentPage.value)
+          page.value = dataProvide.currentPage.value
       })
+
       return () => (
         <>
           {
             +dataProvide.total.value <= dataProvide.filterParams.value[paging.size] || !dataProvide.total.value
               ? null
               : <renderer.page.render
-                v-model={c.value}
+                v-model={page.value}
                 total={dataProvide.total}
               />
           }

@@ -16,8 +16,11 @@ import {
 } from '../extend'
 import type { DataProvider } from './createDataProvide'
 
-export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, handlers: FuzzyNextHandlers, _templates: Partial<Templates>[], dataProvider: DataProvider, requestCallback: RequestCallback, options: OptionsConfiguration, paging: PagingProvider, mock: any): any {
+export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, handlers: FuzzyNextHandlers, _templates: Partial<Templates>[], dataProvider: DataProvider, requestCallback: RequestCallback, options: OptionsConfiguration, paging: PagingProvider, mock: any, fuzzyOptions): any {
   const templates = templateMiddleWare([mapTemplatesRenderer, mapTemplateOfOrder, mapTemplateOfFeature])(_templates, 'table')
+
+  const updateLangText = fuzzyOptions?.lang.update || '编辑'
+  const deleteLangText = fuzzyOptions?.lang.delete || '删除'
 
   async function onUpdate(scope) {
     let row = scope.row
@@ -29,7 +32,7 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
 
     dataProvider.dispatch.setDialog({
       visible: true,
-      title: `编辑${unref(options.title)}`,
+      title: `${updateLangText}${unref(options.title)}`,
       type: 'update',
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error ts
@@ -43,7 +46,7 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
 
     const { success, message } = await requestCallback.delete(scope)
     if (success) {
-      renderer.message.success('删除成功')
+      renderer.message.success(fuzzyOptions?.message?.deleteSuccess || '删除成功')
 
       if (dataProvider.tableData.value.length === 1 && dataProvider.currentPage.value !== 1)
         await requestCallback.get({ [paging.current]: dataProvider.currentPage.value - 1 })
@@ -56,62 +59,65 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
     renderer.message.error(message)
   }
 
-  // 是否添加操作
-  templates.push({
-    width: options?.operateWidth ? `${options.operateWidth}px` : '180px',
-    value: 'fuzzy-table-operate',
-    visible: {
-      table: true,
-    },
-    render(scope) {
-      const UpdateRender = <renderer.button.render type={'update'}
-        onClick={() => onUpdate(scope)}>编辑</renderer.button.render>
+  // 是否添加操作栏
+  if (options?.table?.visibleOperator === undefined || (options.table && options.table.visibleOperator)) {
+    // 是否添加操作
+    templates.push({
+      width: options?.table?.operateWidth ? `${options.table?.operateWidth}px` : '180px',
+      value: 'fuzzy-table-operate',
+      visible: {
+        table: true,
+      },
+      render(scope) {
+        const UpdateRender = <renderer.button.render type={'update'}
+          onClick={() => onUpdate(scope)}>{updateLangText}</renderer.button.render>
 
-      // @ts-expect-error 123
-      const DeleteRender = (<renderer.confirm.render type="warning"
-        onOk={() => onDelete(scope)}
-        onCancel={() => {
-        }}>
-        <renderer.button.render type={'delete'}>删除</renderer.button.render>
-      </renderer.confirm.render>)
+        // @ts-expect-error 123
+        const DeleteRender = (<renderer.confirm.render type="warning"
+          onOk={() => onDelete(scope)}
+          onCancel={() => {
+          }}>
+          <renderer.button.render type={'delete'}>{deleteLangText}</renderer.button.render>
+        </renderer.confirm.render>)
 
-      if (options.operators) {
-        const operators = options.operators(scope, { UpdateRender, DeleteRender })
-        return <div class="w-full h-full flex justify-center items-center" style="column-gap: 1rem">
-          {
-            operators.map((Operator, idx) => {
-              return <Operator key={idx}/>
-            })
-          }
-        </div>
-      }
-      else {
-        return (<div class="w-full h-full flex justify-center items-center" style="column-gap: 1rem">
-          {
-            options.feature && options.feature.update === false
-              ? null
-              : <renderer.button.render type={'update'} onClick={() => onUpdate(scope)}>编辑</renderer.button.render>
-          }
-          {
-            options.feature && options.feature.delete === false
-              ? null
+        if (options?.table?.operators) {
+          const operators = options?.table?.operators(scope, { UpdateRender, DeleteRender })
+          return <div class="w-full h-full flex justify-center items-center" style="column-gap: 1rem">
+            {
+              operators.map((Operator, idx) => {
+                return <Operator key={idx}/>
+              })
+            }
+          </div>
+        }
+        else {
+          return (<div class="w-full h-full flex justify-center items-center" style="column-gap: 1rem">
+            {
+              options.feature && options.feature.update === false
+                ? null
+                : <renderer.button.render type={'update'} onClick={() => onUpdate(scope)}>{updateLangText}</renderer.button.render>
+            }
+            {
+              options.feature && options.feature.delete === false
+                ? null
               // @ts-expect-error 123
-              : <renderer.confirm.render type="warning"
-                onOk={() => onDelete(scope)}
-                onCancel={() => {
-                }}
-              >
-                <renderer.button.render type={'delete'}>删除</renderer.button.render>
-              </renderer.confirm.render>
-          }
+                : <renderer.confirm.render type="warning"
+                  onOk={() => onDelete(scope)}
+                  onCancel={() => {
+                  }}
+                >
+                  <renderer.button.render type={'delete'}>{deleteLangText}</renderer.button.render>
+                </renderer.confirm.render>
+            }
 
-        </div>)
-      }
-    },
-  } as TableTemplate)
+          </div>)
+        }
+      },
+    } as TableTemplate)
+  }
 
   // 是否添加序号
-  if (options.No === undefined || options.No) {
+  if (options?.table?.No === undefined || (options.table && options.table.No)) {
     templates.unshift({
       label: '序号',
       value: 'fuzzy-No',
@@ -127,9 +133,9 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
   const Table = renderer.table.render({
     templates,
     feature: options.feature,
-    selection: options.selection,
-    showSummary: options.showSummary,
-    summaryMethod: options.summaryMethod,
+    selection: options?.table?.selection,
+    showSummary: options?.table?.showSummary,
+    summaryMethod: options?.table?.summaryMethod,
   })
 
   function onSelectionChange(p) {
@@ -137,22 +143,12 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
       handlers.selectionChange(p)
   }
 
-  if (mock && mock.length) {
-    return (
-      <Table
-        data={mock}
-        loading={dataProvider.tableLoading}
-        onSelectionChange={onSelectionChange}
-        border={options.border ?? true}
-      />
-    )
-  }
   return (
     <Table
-      data={dataProvider.tableData}
+      data={mock.data.length ? mock.data : dataProvider.tableData}
       loading={dataProvider.tableLoading}
       onSelectionChange={onSelectionChange}
-      border={options.border ?? true}
+      border={options?.table?.border ?? true}
     />
   )
 }

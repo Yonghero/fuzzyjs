@@ -44,28 +44,44 @@ export type OptionsConfiguration = {
    * 表单标题的统一宽度
    */
   labelWidth?: number
-  /**
-   * 表格操作栏的宽度
+
+  table?: {
+    /**
+   * 表格是否展示序号 默认展示
    */
-  operateWidth?: number
-  /**
-   * 表格是否展示边框
-   */
-  border?: boolean
-  /**
-   * 表尾合计行
-   */
-  showSummary?: boolean
-  /**
-   * 自定义表为合计行逻辑
-   */
-  summaryMethod?: any
-  /**
+    No?: boolean
+    /**
+  * 表格是否展示多选框
+  */
+    selection?: boolean
+    /**
+  * 表格操作栏的宽度
+  */
+    operateWidth?: number
+    /**
+  * 表格是否展示边框
+  */
+    border?: boolean
+    /**
+  * 表尾合计行
+  */
+    showSummary?: boolean
+    /**
+  * 自定义表为合计行逻辑
+  */
+    summaryMethod?: any
+    /**
+     * 是否展示操作列
+     */
+    visibleOperator?: boolean
+    /**
    * 表格操作栏的配置
    * @param updateRender 提供编辑组件 可任意放置位置
    * @param deleteRender 提供删除组件
    */
-  operators?: (row, { UpdateRender, DeleteRender }) => Element[] | Component[] | VNode[]
+    operators?: (row, { UpdateRender, DeleteRender }) => Element[] | Component[] | VNode[]
+  }
+
 } & ExtraProps
 
 export type ExtraProps = {

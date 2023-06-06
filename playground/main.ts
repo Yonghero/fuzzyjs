@@ -47,6 +47,10 @@ const Fuzzy = createFuzzy({
   lang: {
     filter: '查询',
   },
+  message: {
+    deleteSuccess: '删除成功',
+    success: '成功',
+  },
 })
 
 // Fuzzy.use(({ installUIPlugin }) => {

@@ -31,7 +31,14 @@ export interface CreateFuzzyOptions {
   lang?: {
     filter?: string
     update?: string
+    create?: string
     reset?: string
+  }
+  message?: {
+    deleteSuccess?: string
+    updateSuccess?: string
+    createSuccess?: string
+    success?: string
   }
 }
 
