@@ -11,12 +11,13 @@ export class ElementUITable implements TableRenderer {
     const TableColumn = this.getColumns(templates, feature, selection)
 
     return (props) => {
+      const tableData = unref(props.data)
       return (
         <ElTable
           v-slots={slots}
           showSummary={showSummary}
           summaryMethod={summaryMethod}
-          data={props.data.value}
+          data={tableData}
           v-loading={props.loading.value}
           onSelection-Change={props.onSelectionChange}
           border={props.border}

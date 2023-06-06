@@ -12,7 +12,7 @@ import type {
   RequestProvider,
 } from '../../../types'
 import { LiftOff } from './core'
-import { useActivated, workInProgressFuzzy } from './extend'
+import { useActivated, useSlotsMap, workInProgressFuzzy } from './extend'
 
 export function createComponent(globalRenderer: Renderer, globalLayoutProvider: LayoutProvider, requestProvider: RequestProvider, globalPaging: PagingProvider, fuzzyOptions: CreateFuzzyOptions) {
   return defineComponent({
@@ -51,11 +51,15 @@ export function createComponent(globalRenderer: Renderer, globalLayoutProvider: 
         default: () => globalPaging,
       },
     },
-    setup(props) {
+    setup(props, { slots }) {
       // 提供给用户的强制更新
       workInProgressFuzzy.forceUpdate = getCurrentInstance()?.proxy?.$forceUpdate
 
+      // 当前被激活的配置
       const activated = useActivated(computed(() => props))
+
+      // 注入插槽组件
+      const injectSlotCompProps = useSlotsMap(slots)
 
       watch(() => activated.tab.value,
         () => {
@@ -65,9 +69,21 @@ export function createComponent(globalRenderer: Renderer, globalLayoutProvider: 
 
       // 根据activeOptions页面配置动态渲染
       const dynamicLayout = computed(() => {
-        const components = LiftOff(props.renderer, activated.modalRenderer.value, activated.extraRenderer.value, activated.handlers.value, activated.options.value, props.mock, requestProvider, fuzzyOptions, props.paging)
+        const components = LiftOff(
+          props.renderer, activated.modalRenderer.value,
+          activated.extraRenderer.value, activated.handlers.value,
+          activated.options.value, props.mock, requestProvider,
+          fuzzyOptions, props.paging,
+        )
+
+        // 为插槽组件注入props
+        const slotsMap = injectSlotCompProps({ options: activated.options.value })
+
         return (
-          <activated.layoutProvider.value renderer={{ ...components, Tab: activated.tab.value }}></activated.layoutProvider.value>
+          <activated.layoutProvider.value
+            renderer={{ ...components, Tab: activated.tab.value }}
+            {...slotsMap}
+          ></activated.layoutProvider.value>
         )
       })
 

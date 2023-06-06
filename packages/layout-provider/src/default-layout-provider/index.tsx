@@ -1,10 +1,13 @@
-import type { PropType } from 'vue'
+import type { Component, PropType } from 'vue'
 import type { LayoutProvider, LayoutProviderRenderer } from '../../../../types'
 
 export class DefaultLayoutProvider implements LayoutProvider {
   props = {
     renderer: {
       type: Object as PropType<LayoutProviderRenderer>,
+    },
+    slotA: {
+      type: Object as PropType<Component>,
     },
   }
 
@@ -13,6 +16,7 @@ export class DefaultLayoutProvider implements LayoutProvider {
     // 自定义放置框架组件 可扩展其他组件
     return () => (
       <div class="w-full h-full p-2">
+        <props.slotA></props.slotA>
         <div>
           {props.renderer.Tab}
         </div>

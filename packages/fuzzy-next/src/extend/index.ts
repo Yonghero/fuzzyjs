@@ -32,3 +32,4 @@ export function use(installPlugin: (options: FuzzyPluginOptions) => void) {
 export * from './expose'
 export * from './useActivated'
 export * from './middleware'
+export * from './useSlotsMap'

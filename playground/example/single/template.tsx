@@ -1,3 +1,4 @@
+import { mergeFuzzyOptions } from '../../../packages/fuzzy-next/src/extend'
 import type { FuzzyNextHandlers, OptionsConfiguration } from '../../../types'
 
 export const options: OptionsConfiguration = {
@@ -56,6 +57,8 @@ export const options: OptionsConfiguration = {
     },
   ],
 }
+
+export const mergeOp = mergeFuzzyOptions(options, { ...options, title: '因子信息2' })
 
 export const handlers: FuzzyNextHandlers = {
   queryBefore: async({ data }) => {
