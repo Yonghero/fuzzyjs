@@ -4,7 +4,7 @@ import type { FuzzyNextHandlers, ModalRenderer, OptionsConfiguration, Renderer, 
 import type { DataProvider } from './createDataProvide'
 import type { EventBus } from './createEventBus'
 
-export function createDialog(renderer: Renderer, modalRenderer: ModalRenderer, handlers: FuzzyNextHandlers, requestCallback: RequestCallback, dataProvide: DataProvider, options: OptionsConfiguration, eventBus: EventBus) {
+export function createDialog(renderer: Renderer, modalRenderer: ModalRenderer, handlers: FuzzyNextHandlers, requestCallback: RequestCallback, dataProvide: DataProvider, options: OptionsConfiguration, eventBus: EventBus, fuzzyOptions) {
   // 对话框确定并成功后调用
   async function update() {
     // 确认更新操作 关闭弹窗
@@ -20,7 +20,7 @@ export function createDialog(renderer: Renderer, modalRenderer: ModalRenderer, h
     if (flag) {
       // 成功后更新数据
       await update()
-      renderer.message.success(`${unref(dataProvide.dialog.value.title)}成功`)
+      renderer.message.success(`${unref(dataProvide.dialog.value.title)}${fuzzyOptions?.message?.success || '成功'}`)
     }
     else {
       if (message)
