@@ -13,10 +13,11 @@ import '@arco-design/web-vue/dist/arco.css'
 // import { DefaultRequestProvider } from '../packages/request-provider/dist/@fuzzy-next/request-provider.es.js'
 // import { createFuzzy } from '../packages/fuzzy-next/dist/fuzzy-next.es.js'
 import { DefaultLayoutProvider } from '../packages/layout-provider/index.ts'
-import { ElementUIRenderer } from '../packages/ui-renderer/index.ts'
+import { ElementUIRenderer, installUIPlugin } from '../packages/ui-renderer/index.ts'
 import { DefaultRequestProvider } from '../packages/request-provider/index.ts'
 import { createFuzzy } from '../packages/fuzzy-next/index.ts'
 
+import type { FormCompProps } from '../types/renderer.ts'
 import App from './App.vue'
 
 const axiosInstance = axios.create({
@@ -50,6 +51,17 @@ const Fuzzy = createFuzzy({
   message: {
     deleteSuccess: '删除成功',
     success: '成功',
+  },
+})
+
+installUIPlugin({
+  type: 'textarea',
+  renderer: (props: FormCompProps) => {
+    return <el-input
+      v-model={props.model[props.value]}
+      type="textarea"
+      placeholder="请输入"
+    />
   },
 })
 

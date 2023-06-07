@@ -4,7 +4,7 @@
 import { unref } from 'vue'
 
 import type { FuzzyPluginOptions } from '../../../../types'
-import { globalFormItems, installUIPlugin } from './UIPlugins'
+import { globalFormItems, installUIPlugin } from './installUIPlugin'
 
 export function mergeFuzzyOptions(...rest) {
   return rest
@@ -30,6 +30,6 @@ export function use(installPlugin: (options: FuzzyPluginOptions) => void) {
 }
 
 export * from './expose'
-export * from './useActivated'
+export * from '../composable/useActivated'
 export * from './middleware'
-export * from './useSlotsMap'
+export * from '../composable/useSlotsMap'

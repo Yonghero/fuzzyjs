@@ -1,2 +1,2 @@
 export * from './createFuzzy'
-export * from './extend/expose'
+export * from './extend'

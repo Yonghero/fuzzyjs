@@ -8,13 +8,16 @@ export const options: OptionsConfiguration = {
     {
       label: '因子名称',
       value: 'name',
-      type: 'input',
+      type: 'textarea',
       require: true,
     },
     {
       label: '因子编码',
       value: 'polId',
       type: 'input',
+      visible: {
+        table: true,
+      },
       require: true,
     },
     {

@@ -180,7 +180,7 @@ export class ElementUIForm implements FormRenderer {
       select: this.select,
       datePick: this.datePick,
     }
-    return type.includes('datePicker') ? COMPS_MAP.datePick : COMPS_MAP[type]
+    return COMPS_MAP[type]
   }
 
   input(props: FormCompProps | any) {

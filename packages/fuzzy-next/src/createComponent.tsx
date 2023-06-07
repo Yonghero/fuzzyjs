@@ -10,6 +10,7 @@ import type {
   OptionsConfiguration, PagingProvider,
   Renderer,
   RequestProvider,
+  RestTemplatePlugin,
 } from '../../../types'
 import { LiftOff } from './core'
 import { useActivated, useSlotsMap, workInProgressFuzzy } from './extend'
@@ -50,6 +51,10 @@ export function createComponent(globalRenderer: Renderer, globalLayoutProvider: 
         type: Object as PropType<PagingProvider>,
         default: () => globalPaging,
       },
+      plugins: {
+        type: Array as (PropType<RestTemplatePlugin[]>),
+        default: () => fuzzyOptions.plugins || [],
+      },
     },
     setup(props, { slots }) {
       // 提供给用户的强制更新
@@ -69,6 +74,10 @@ export function createComponent(globalRenderer: Renderer, globalLayoutProvider: 
 
       // 根据activeOptions页面配置动态渲染
       const dynamicLayout = computed(() => {
+        props.plugins.length && props.plugins.forEach((plugin) => {
+          plugin.install(activated.options.value.template)
+        })
+
         const components = LiftOff(
           props.renderer, activated.modalRenderer.value,
           activated.extraRenderer.value, activated.handlers.value,

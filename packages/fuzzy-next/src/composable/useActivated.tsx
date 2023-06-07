@@ -1,9 +1,9 @@
 import { computed, markRaw, ref, unref } from 'vue'
-import { transferToArray } from '.'
+import { transferToArray } from '../extend'
 
 const isDeep = arr => arr.some(item => item instanceof Array)
 
-export function useActivated(props: any) {
+export function useActivated(props) {
   const _p = unref(props)
   // 当前激活的下标
   const activeTabIndex = ref(0)

@@ -52,6 +52,10 @@ export function createRequest(options: OptionsConfiguration, request: RequestPro
         dataProvide.dispatch.setTableData(response.data)
         dataProvide.dispatch.setTotal(response.total)
       }
+      else {
+        dataProvide.dispatch.setTableData([])
+        dataProvide.dispatch.setTotal(0)
+      }
 
       return response
     },

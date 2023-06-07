@@ -14,6 +14,12 @@ export interface FuzzyPluginOptions {
   installUIPlugin: (items: ExtendFormItem[]) => void
 }
 
+export abstract class RestTemplatePlugin {
+  abstract install(...rest): void
+
+  uuid = ''
+}
+
 // 请求服务端分页的键
 export interface PagingProvider {
   current: string
@@ -40,6 +46,7 @@ export interface CreateFuzzyOptions {
     createSuccess?: string
     success?: string
   }
+  plugins?: RestTemplatePlugin[]
 }
 
 export interface TemplateMiddlewareCallback {
