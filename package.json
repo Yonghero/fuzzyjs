@@ -30,6 +30,7 @@
   "scripts": {
     "dev": "vite --force",
     "build": "vite build && tsc -p ./tsconfig.build.json",
+    "build:all": "sudo chmod -R 777 ./compile-build.sh && sudo ./compile-build.sh",
     "preview": "vite preview",
     "test": "vitest",
     "pub": "npm run build && npm version patch && npm publish --access public --force"

@@ -1,5 +1,6 @@
 import { ElEmpty, ElTable, ElTableColumn } from 'element-plus'
 import type { VNode } from 'vue'
+import { unref } from 'vue'
 import type { Feature, TableRenderProps, TableRenderer, TableTemplate, Templates } from '../../../../types'
 
 export class ElementUITable implements TableRenderer {

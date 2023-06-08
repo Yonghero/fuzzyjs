@@ -1,4 +1,5 @@
 import type { Component, Slots } from 'vue'
+import { defineComponent } from 'vue'
 
 /**
  *  fuzzy 注入插槽组件
