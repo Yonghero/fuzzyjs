@@ -58,6 +58,8 @@ importers:
   packages/fuzzy-next:
     specifiers:
       '@fuzzy-next/core': ^1.0.2
+    dependencies:
+      '@fuzzy-next/core': 1.0.3
 
   packages/layout-provider:
     specifiers: {}
@@ -560,6 +562,10 @@ packages:
     dependencies:
       '@floating-ui/core': 1.0.1
     dev: true
+
+  /@fuzzy-next/core/1.0.3:
+    resolution: {integrity: sha512-6LaQ4YkTph3YnwGdZ0Q9hWc5dDj/tLi873lRp74pCeTijI9Wj00k4vL6zNxqP+okUCyzcD9S5ojorwG9WMxWPw==}
+    dev: false
 
   /@humanwhocodes/config-array/0.10.7:
     resolution: {integrity: sha512-MDl6D6sBsaV452/QSdX+4CXIjZhIcI0PELsxUjk4U828yd58vk3bTIvk/6w5FY+4hIy9sLW0sfrV7K7Kc++j/w==}

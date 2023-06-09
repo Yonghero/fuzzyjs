@@ -1,6 +1,6 @@
 {
   "name": "@fuzzy-next/ui-renderer",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "",
   "keywords": [],
   "license": "ISC",
@@ -18,7 +18,7 @@
   "main": "index.js",
   "scripts": {
     "build": "vite build && tsc -p ./tsconfig.build.json",
-    "pub": "npm run build && npm version patch && npm publish --access public --force"
+    "pub": "pnpm run build && pnpm version patch && pnpm publish --access public --force"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.10",
