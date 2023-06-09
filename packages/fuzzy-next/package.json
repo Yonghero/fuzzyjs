@@ -1,6 +1,6 @@
 {
   "name": "@fuzzy-next/core",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "On the background management system Fuzzy Provides one - stop add, delete, change and check configurable component",
   "keywords": [
     "npm",

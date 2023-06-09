@@ -33,7 +33,8 @@
     "build:all": "sudo chmod -R 777 ./compile-build.sh && sudo ./compile-build.sh",
     "preview": "vite preview",
     "test": "vitest",
-    "pub": "npm run build && npm version patch && npm publish --access public --force"
+    "pub": "npm run build && npm version patch && npm publish --access public --force",
+    "pub:all": "sudo chmod -R 777 ./compile-build.sh && sudo ./compile-pub.sh"
   },
   "peerdependencies": {
     "tailwindcss": "^3.1.8",
