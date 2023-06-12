@@ -1,6 +1,7 @@
 
 import { defineComponent, unref } from 'vue'
 import type { FuzzyNextHandlers, ModalRenderer, OptionsConfiguration, Renderer, RequestCallback } from '../../../../types'
+import { FuzzyComponentSize } from '../extend'
 import type { DataProvider } from './createDataProvide'
 import type { EventBus } from './createEventBus'
 
@@ -49,6 +50,7 @@ export function createDialog(renderer: Renderer, modalRenderer: ModalRenderer, h
           onUpdate={onConfirm}
           onCancel={onCancel}
           style={options?.modalStyle || {}}
+          size={unref(FuzzyComponentSize)}
         >
           {
             dataProvide.dialog.value.render

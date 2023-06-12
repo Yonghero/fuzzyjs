@@ -48,7 +48,7 @@ export function createDataProvide(paging: PagingProvider): DataProvider {
     visible: false,
     type: 'update',
     title: '编辑',
-    render: <>hhh</>,
+    render: <>---</>,
   })
 
   const dialogVisible = ref(false)

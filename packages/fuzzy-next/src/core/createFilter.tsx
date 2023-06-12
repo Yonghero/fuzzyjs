@@ -1,6 +1,7 @@
 import type { VNode } from 'vue'
 import type { CreateFuzzyOptions, PagingProvider, Renderer, RequestCallback, Templates } from '../../../../types'
 import {
+  FuzzyComponentSize,
   mapTemplateDefaultValue,
   mapTemplateOfFeature,
   mapTemplateOfOrder,
@@ -41,6 +42,7 @@ export function createFilter(renderer: Renderer, templates: Templates[], feature
   function FilterButton() {
     return (
       <renderer.button.render
+        size={unref(FuzzyComponentSize)}
         type="filter"
         class="fuzzy-filter-button"
         onClick={dispatchFilter}>{
@@ -53,7 +55,7 @@ export function createFilter(renderer: Renderer, templates: Templates[], feature
   Promise.resolve().then(dispatchFilter)
 
   return {
-    Filter: <FilterFrom.render/>,
+    Filter: <FilterFrom.render size={unref(FuzzyComponentSize)}/>,
     FilterButton: <FilterButton/>,
   }
 }

@@ -8,6 +8,7 @@ import type {
   Templates,
 } from '../../../../types'
 import {
+  FuzzyComponentSize,
   mapTemplateDefaultValue,
   mapTemplateOfFeature,
   mapTemplatesRenderer,
@@ -154,7 +155,7 @@ function createComp(type, requestMethod, templates: Templates[]) {
         return _model
       }
 
-      return () => <form.render modelValue={props.row}/>
+      return () => <form.render modelValue={props.row} size={unref(FuzzyComponentSize)}/>
     },
   })
 }

@@ -2,7 +2,7 @@ import type { CreateFuzzyOptions } from '../../../types'
 import { createComponent } from './createComponent'
 import { use } from './extend'
 
-export function createFuzzy(options: CreateFuzzyOptions): any {
+export function createFuzzy(options: CreateFuzzyOptions) {
   const {
     http,
     layout,

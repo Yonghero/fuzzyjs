@@ -1,5 +1,5 @@
 import type { Component, PropType } from 'vue'
-import type { LayoutProvider, LayoutProviderRenderer } from '../../../../types'
+import type { FuzzySize, LayoutProvider, LayoutProviderRenderer } from '../../../../types'
 
 export class DefaultLayoutProvider implements LayoutProvider {
   props = {
@@ -8,6 +8,9 @@ export class DefaultLayoutProvider implements LayoutProvider {
     },
     slotA: {
       type: Object as PropType<Component>,
+    },
+    size: {
+      type: String as PropType<FuzzySize>,
     },
   }
 

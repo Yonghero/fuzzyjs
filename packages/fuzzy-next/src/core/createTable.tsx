@@ -9,6 +9,7 @@ import type {
   Templates,
 } from '../../../../types'
 import {
+  FuzzyComponentSize,
   mapTemplateOfFeature,
   mapTemplateOfOrder,
   mapTemplatesRenderer,
@@ -150,6 +151,7 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
       loading={dataProvider.tableLoading}
       onSelectionChange={onSelectionChange}
       border={options?.table?.border ?? true}
+      size={unref(FuzzyComponentSize)}
     />
   )
 }

@@ -5,6 +5,7 @@ import type { SetupContext } from 'vue'
 import type { Component, Ref, VNode } from 'vue'
 import type { ComputedRef } from 'vue-demi'
 import type { Feature, FormTemplate, ModalStyleProps, Option, Templates } from './options'
+import type { FuzzySize } from './install'
 
 export interface Renderer {
   table: TableRenderer
@@ -21,7 +22,7 @@ export interface Renderer {
  * 表格渲染器接口
  */
 export interface TableRenderer {
-  render: (props: TableRenderProps) => (props: { data: Ref<any>; loading: Ref<boolean>; border: boolean; onSelectionChange: (p) => any }) => VNode
+  render: (props: TableRenderProps) => (props: { data: Ref<any>; loading: Ref<boolean>; border: boolean; onSelectionChange: (p) => any; size: FuzzySize }) => VNode
   getColumns: (templates: Templates[], feature: Feature | undefined) => VNode[]
   shouldFeaturesRender: (feature: Feature | undefined) => boolean
 
@@ -105,6 +106,7 @@ export interface PageRenderer {
 
 export interface PageProps {
   total: Ref<number>
+  size: FuzzySize
   // modelValue: Ref<number>
   // onUpdateModelValue?: (page: number) => void // vue emit
 }
@@ -124,6 +126,7 @@ export interface DialogRenderProps {
   style?: ModalStyleProps
   onUpdate?: (scope: any) => void // vue emit
   onCancel?: (scope: any) => void // vue emit
+  size: FuzzySize
 }
 
 export interface MessageRender {

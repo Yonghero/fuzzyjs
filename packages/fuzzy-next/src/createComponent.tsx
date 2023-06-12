@@ -4,6 +4,7 @@ import type {
   CreateFuzzyOptions,
   ExtraRenderer,
   FuzzyNextHandlers,
+  FuzzySize,
   LayoutProvider,
   Mock,
   ModalRenderer,
@@ -13,11 +14,15 @@ import type {
   RestTemplatePlugin,
 } from '../../../types'
 import { LiftOff } from './core'
-import { useActivated, useSlotsMap, workInProgressFuzzy } from './extend'
+import { FuzzyComponentSize, useActivated, useSlotsMap, workInProgressFuzzy } from './extend'
 
 export function createComponent(globalRenderer: Renderer, globalLayoutProvider: LayoutProvider, requestProvider: RequestProvider, globalPaging: PagingProvider, fuzzyOptions: CreateFuzzyOptions) {
   return defineComponent({
     props: {
+      size: {
+        type: String as (PropType<FuzzySize>),
+        default: 'default',
+      },
       options: {
         type: Object as (PropType<OptionsConfiguration>),
         default: () => ({ template: [] }),
@@ -60,6 +65,9 @@ export function createComponent(globalRenderer: Renderer, globalLayoutProvider: 
       // 提供给用户的强制更新
       workInProgressFuzzy.forceUpdate = getCurrentInstance()?.proxy?.$forceUpdate
 
+      // 组件尺寸
+      FuzzyComponentSize.value = fuzzyOptions.size || props.size
+
       // 当前被激活的配置
       const activated = useActivated(computed(() => props))
 
@@ -91,6 +99,7 @@ export function createComponent(globalRenderer: Renderer, globalLayoutProvider: 
         return (
           <activated.layoutProvider.value
             renderer={{ ...components, Tab: activated.tab.value }}
+            size={FuzzyComponentSize.value}
             {...slotsMap}
           ></activated.layoutProvider.value>
         )

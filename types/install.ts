@@ -27,7 +27,9 @@ export interface PagingProvider {
   sizeNum?: number
 }
 
+export type FuzzySize = 'small' | 'default' | 'large'
 export interface CreateFuzzyOptions {
+  size?: FuzzySize
   adapters: {
     http: RequestProvider
     layout: LayoutProvider

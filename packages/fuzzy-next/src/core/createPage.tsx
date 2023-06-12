@@ -1,5 +1,6 @@
 import { defineComponent, ref, watch } from 'vue'
 import type { FuzzyNextHandlers, PagingProvider, Renderer, RequestCallback } from '../../../../types'
+import { FuzzyComponentSize } from '../extend'
 import type { DataProvider } from './createDataProvide'
 
 export function createPage(renderer: Renderer, handlers: FuzzyNextHandlers, requestCallback: RequestCallback, dataProvide: DataProvider, paging: PagingProvider) {
@@ -35,6 +36,7 @@ export function createPage(renderer: Renderer, handlers: FuzzyNextHandlers, requ
               : <renderer.page.render
                 v-model={page.value}
                 total={dataProvide.total}
+                size={unref(FuzzyComponentSize)}
               />
           }
 
