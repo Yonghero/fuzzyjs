@@ -1,15 +1,21 @@
 {
   "name": "@fuzzy-next/ui-renderer",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "",
-  "keywords": ["fuzzy-next","ui"],
+  "keywords": [
+    "fuzzy-next",
+    "ui"
+  ],
   "license": "ISC",
   "author": "younghero",
-  "files": ["dist", "lib"],
+  "files": [
+    "dist",
+    "lib"
+  ],
   "exports": {
     ".": {
-      "import": "./dist/@fuzzy-next/ui-renderer.es.js",
-      "require": "./dist/@fuzzy-next/ui-renderer.umd.js"
+      "import": "./dist/ui-renderer.es.js",
+      "require": "./dist/ui-renderer.umd.js"
     },
     "./style": {
       "import": "./dist/style.css"

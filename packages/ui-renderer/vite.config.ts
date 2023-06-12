@@ -8,19 +8,11 @@ export default defineConfig({
     vue(),
     vueJsx(),
   ],
-  // optimizeDeps: {
-  //   include: [
-  //     'vue',
-  //   ],
-  //   exclude: [
-  //     'vue-demi',
-  //   ],
-  // },
   build: {
     lib: {
       entry: path.resolve(__dirname, './index.ts'),
       name: '@fuzzy-next/ui-renderer',
-      fileName: format => `@fuzzy-next/ui-renderer.${format}.js`,
+      fileName: format => `ui-renderer.${format}.js`,
     },
     outDir: path.resolve(__dirname, './dist'),
     // emptyOutDir: false,
