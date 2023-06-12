@@ -2,9 +2,10 @@
   "name": "@fuzzy-next/ui-renderer",
   "version": "2.0.2",
   "description": "",
-  "keywords": [],
+  "keywords": ["fuzzy-next","ui"],
   "license": "ISC",
   "author": "younghero",
+  "files": ["dist", "lib"],
   "exports": {
     ".": {
       "import": "./dist/@fuzzy-next/ui-renderer.es.js",
@@ -15,7 +16,10 @@
     }
   },
   "types": "./lib/packages/ui-renderer",
-  "main": "index.js",
+  "main": "./dist/@fuzzy-next/ui-renderer.umd.js",
+  "module": "./dist/@fuzzy-next/ui-renderer.es.js",
+  "typings": "./lib/src/index.d.ts",
+  "sideEffects": "false",
   "scripts": {
     "build": "vite build && tsc -p ./tsconfig.build.json",
     "pub": "pnpm run build && pnpm version patch && pnpm publish --access public --force --no-git-checks"

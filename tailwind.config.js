@@ -6,14 +6,5 @@ module.exports = {
     './playground/**/*.{vue,html,jsx,tsx,ts}',
     './packages/**/*.{vue,html,jsx,tsx,ts}',
   ],
-  theme: {
-    extend: {
-      colors: {
-        primary: {
-          100: '#0971FF',
-        },
-      },
-    },
-  },
   plugins: [],
 }

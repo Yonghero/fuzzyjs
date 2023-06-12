@@ -5,6 +5,7 @@
   "keywords": [],
   "license": "ISC",
   "author": "",
+  "files": ["dist", "lib"],
   "exports": {
     ".": {
       "import": "./dist/@fuzzy-next/layout-provider.es.js",

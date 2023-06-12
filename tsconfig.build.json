@@ -1,7 +1,7 @@
 {
   "include": [
-    "packages/fuzzy-next/src/**/*.ts",
-    "packages/fuzzy-next/src/**/*.tsx"
+    "packages/**/*.ts",
+    "packages/**/*.tsx"
   ],
   "compilerOptions": {
     "moduleResolution": "node",
