@@ -1,6 +1,6 @@
 {
   "name": "@fuzzy-next/core",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "On the background management system Fuzzy Provides one - stop add, delete, change and check configurable component",
   "keywords": [
     "npm",
@@ -10,7 +10,10 @@
     "vue",
     "component"
   ],
-  "files": ["dist", "lib"],
+  "files": [
+    "dist",
+    "lib"
+  ],
   "license": "ISC",
   "author": "younghero",
   "exports": {

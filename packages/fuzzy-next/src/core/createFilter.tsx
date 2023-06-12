@@ -1,4 +1,5 @@
 import type { VNode } from 'vue'
+import { unref } from 'vue'
 import type { CreateFuzzyOptions, PagingProvider, Renderer, RequestCallback, Templates } from '../../../../types'
 import {
   FuzzyComponentSize,

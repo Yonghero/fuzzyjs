@@ -1,4 +1,4 @@
-import { defineComponent, ref, watch } from 'vue'
+import { defineComponent, ref, unref, watch } from 'vue'
 import type { FuzzyNextHandlers, PagingProvider, Renderer, RequestCallback } from '../../../../types'
 import { FuzzyComponentSize } from '../extend'
 import type { DataProvider } from './createDataProvide'
