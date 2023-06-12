@@ -10,17 +10,33 @@ const mockData = {
   ],
 }
 
+const size = ref('default')
+
 const plugins = [new PolIdMappingPlugin()]
 
 </script>
 
 <template>
-  <Fuzzy
-    :options="mergeOp"
-    :handlers="handlers"
-    :mock="mockData"
-    :plugins="plugins"
-  >
-    <SlotA name="slotA" />
-  </Fuzzy>
+  <el-config-provider :size="size">
+    <el-radio-group v-model="size">
+      <el-radio label="small">
+        small
+      </el-radio>
+      <el-radio label="default">
+        default
+      </el-radio>
+      <el-radio label="large">
+        large
+      </el-radio>
+    </el-radio-group>
+    <Fuzzy
+      :options="mergeOp"
+      :handlers="handlers"
+      :mock="mockData"
+      :plugins="plugins"
+      :size="size"
+    >
+      <SlotA name="slotA" />
+    </Fuzzy>
+  </el-config-provider>
 </template>

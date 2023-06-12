@@ -12,6 +12,9 @@ export class DefaultLayoutProvider implements LayoutProvider {
     size: {
       type: String as PropType<FuzzySize>,
     },
+    radio: {
+      type: Object as PropType<Component>,
+    },
   }
 
   setup(props) {
@@ -19,7 +22,8 @@ export class DefaultLayoutProvider implements LayoutProvider {
     // 自定义放置框架组件 可扩展其他组件
     return () => (
       <div class="w-full h-full p-2">
-        <props.slotA></props.slotA>
+        {/* <props.slotA></props.slotA> */}
+        <props.radio></props.radio>
         <div>
           {props.renderer.Tab}
         </div>

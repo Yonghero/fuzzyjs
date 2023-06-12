@@ -4,10 +4,13 @@ import type { ButtonRenderer } from '../../../../types'
 export class ElementUIButton implements ButtonRenderer {
   render(props, { slots }) {
     if (props.type === 'create') {
-      return <div
-        class="w-12 h-8 text-xl cursor-pointer text-white rounded bg-[#0971FF] flex items-center justify-center">
+      return <ElButton
+        type="primary"
+        class="cursor-pointer text-white rounded flex items-center justify-center"
+        size={props.size}
+      >
         +
-      </div>
+      </ElButton>
     }
     if (props.type === 'update') {
       return <div style="background: #F0F0F0;border-radius:5px;color:#0078FF"
@@ -22,14 +25,15 @@ export class ElementUIButton implements ButtonRenderer {
       </div>
     }
     if (props.type === 'filter') {
-      return <div
-        class="bg-[#0971FF] w-20 h-8 cursor-pointer rounded-[6px] text-white flex items-center justify-center"
-        style="font-size:14px!important"
+      return <ElButton
+        type="primary"
+        class="cursor-pointer text-white flex items-center justify-center"
+        size={props.size}
       >
         {
           slots.default && slots.default()
         }
-      </div>
+      </ElButton>
     }
     if (props.type === 'operate') {
       return <div

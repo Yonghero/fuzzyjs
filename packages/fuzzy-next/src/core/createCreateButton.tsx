@@ -7,6 +7,7 @@ import type {
   RequestCallback,
   Templates,
 } from '../../../../types'
+import { FuzzyComponentSize } from '../extend'
 import type { DataProvider } from './createDataProvide'
 
 export function createCreateButton(renderer: Renderer, modalRenderer: ModalRenderer, templates: Templates[], handlers: FuzzyNextHandlers, requestCallback: RequestCallback, dataProvide: DataProvider, options: OptionsConfiguration, fuzzyOptions) {
@@ -21,7 +22,7 @@ export function createCreateButton(renderer: Renderer, modalRenderer: ModalRende
       type: 'create',
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error ts
-      render: <modalRenderer.CreateComponent/>,
+      render: <modalRenderer.CreateComponent size={unref(FuzzyComponentSize)}/>,
     })
   }
 
@@ -31,6 +32,7 @@ export function createCreateButton(renderer: Renderer, modalRenderer: ModalRende
         ? <renderer.button.render
           type={'create'}
           onClick={onCreate}
+          size={unref(FuzzyComponentSize)}
         >
           {text}
         </renderer.button.render>

@@ -65,9 +65,6 @@ export function createComponent(globalRenderer: Renderer, globalLayoutProvider: 
       // 提供给用户的强制更新
       workInProgressFuzzy.forceUpdate = getCurrentInstance()?.proxy?.$forceUpdate
 
-      // 组件尺寸
-      FuzzyComponentSize.value = fuzzyOptions.size || props.size
-
       // 当前被激活的配置
       const activated = useActivated(computed(() => props))
 
@@ -79,6 +76,11 @@ export function createComponent(globalRenderer: Renderer, globalLayoutProvider: 
           if (activated.handlers.value && activated.handlers.value.tabChange)
             activated.handlers.value.tabChange()
         })
+
+      watch(() => props.size, () => {
+        // 组件尺寸
+        FuzzyComponentSize.value = fuzzyOptions.size || props.size
+      })
 
       // 根据activeOptions页面配置动态渲染
       const dynamicLayout = computed(() => {

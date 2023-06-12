@@ -71,12 +71,19 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
         table: true,
       },
       render(scope) {
-        const UpdateRender = <renderer.button.render type={'update'}
-          onClick={() => onUpdate(scope)}>{updateLangText}</renderer.button.render>
+        const UpdateRender = (
+          <renderer.button.render type={'update'}
+            size={unref(FuzzyComponentSize)}
+            onClick={() => onUpdate(scope)}
+          >
+            {updateLangText}
+          </renderer.button.render>
+        )
 
         // @ts-expect-error 123
         const DeleteRender = (<renderer.confirm.render type="warning"
           onOk={() => onDelete(scope)}
+          size={unref(FuzzyComponentSize)}
           onCancel={() => {
           }}>
           <renderer.button.render type={'delete'}>{deleteLangText}</renderer.button.render>
@@ -87,7 +94,7 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
           return <div class="w-full h-full flex justify-center items-center" style="column-gap: 1rem">
             {
               operators.map((Operator, idx) => {
-                return <Operator key={idx}/>
+                return (<Operator key={idx} size={unref(FuzzyComponentSize)}/>)
               })
             }
           </div>
@@ -97,13 +104,18 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
             {
               options.feature && options.feature.update === false
                 ? null
-                : <renderer.button.render type={'update'} onClick={() => onUpdate(scope)}>{updateLangText}</renderer.button.render>
+                : (<renderer.button.render type={'update'}
+                  size={unref(FuzzyComponentSize)}
+                  onClick={() => onUpdate(scope)}>
+                  {updateLangText}
+                </renderer.button.render>)
             }
             {
               options.feature && options.feature.delete === false
                 ? null
               // @ts-expect-error 123
                 : <renderer.confirm.render type="warning"
+                  size={unref(FuzzyComponentSize)}
                   onOk={() => onDelete(scope)}
                   onCancel={() => {
                   }}

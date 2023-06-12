@@ -4,10 +4,9 @@ import ElementPlus from 'element-plus'
 import ArcoVue from '@arco-design/web-vue'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
-import './assets/style/tailwind.css'
-import './assets/style/index.scss'
-import 'element-plus/dist/index.css'
-import '@arco-design/web-vue/dist/arco.css'
+// import './assets/style/tailwind.css'
+// import './assets/style/index.scss'
+// import '@arco-design/web-vue/dist/arco.css'
 // import { DefaultLayoutProvider } from '../packages/layout-provider/dist/@fuzzy-next/layout-provider.es.js'
 // import { ElementUIRenderer } from '../packages/ui-renderer/dist/@fuzzy-next/ui-renderer.es.js'
 // import { DefaultRequestProvider } from '../packages/request-provider/dist/@fuzzy-next/request-provider.es.js'
@@ -19,6 +18,8 @@ import { createFuzzy } from '../packages/fuzzy-next/index.ts'
 
 import type { FormCompProps } from '../types/renderer.ts'
 import App from './App.vue'
+
+import 'element-plus/dist/index.css'
 
 const axiosInstance = axios.create({
   baseURL: 'http://localhost:3300/api', // api的base_url
