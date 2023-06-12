@@ -19,7 +19,7 @@
   "main": "./dist/@fuzzy-next/ui-renderer.umd.js",
   "module": "./dist/@fuzzy-next/ui-renderer.es.js",
   "typings": "./lib/src/index.d.ts",
-  "sideEffects": "false",
+  "sideEffects": false,
   "scripts": {
     "build": "vite build && tsc -p ./tsconfig.build.json",
     "pub": "pnpm run build && pnpm version patch && pnpm publish --access public --force --no-git-checks"
