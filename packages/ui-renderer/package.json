@@ -18,7 +18,8 @@
       "require": "./dist/ui-renderer.umd.js"
     },
     "./style": {
-      "import": "./dist/style.css"
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
     }
   },
   "types": "./lib/packages/ui-renderer",
