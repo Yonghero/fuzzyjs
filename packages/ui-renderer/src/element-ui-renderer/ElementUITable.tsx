@@ -49,7 +49,7 @@ export class ElementUITable implements TableRenderer {
             key={item.value}
             label={item.label}
             prop={item.value}
-            width={item.width ? item.width : ''}
+            width={item.table?.width ? item.table.width : ''}
             sortable={item.sortable ? item.sortable : false}
             sortMethod={item.sortMethod ? item.sortMethod : () => ({})}
             showOverflowTooltip={item.showOverflowTooltip ? item.showOverflowTooltip : false}
