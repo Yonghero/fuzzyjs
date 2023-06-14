@@ -52,21 +52,13 @@ export function createModalRenderer(renderer: Renderer, options: OptionsConfigur
 }
 
 function createComp(type, requestMethod, templates: Templates[]) {
-  const form = _renderer.form.create({
-    templates: templateMiddleWare([mapTemplatesRenderer, mapTemplateDefaultValue])(templates, type),
-    isHorizontal: false,
-    labelPosition: 'right',
-    shouldWarpEvenly: true,
-    shouldLabelWidthAuto: false,
-    shouldRemoveModelUndefined: true,
-    labelWidth: _options.labelWidth,
-  })
+  const form = _renderer.form.create()
 
   return defineComponent({
     props: {
       row: {
         type: Object,
-        default: () => ({ data: {} }),
+        default: () => ({}),
       },
     },
     setup(props) {
@@ -80,7 +72,7 @@ function createComp(type, requestMethod, templates: Templates[]) {
       async function invoke() {
         const valid = await form.formRef.value.validate()
         if (valid) {
-          const model = await processModel(form.model)
+          const model = await processModel(form.formModel.value)
           if (model === null) {
             return {
               flag: false,
@@ -111,7 +103,7 @@ function createComp(type, requestMethod, templates: Templates[]) {
               const timer = setTimeout(() => resolve(false), 500)
 
               _handlers.createConfirm && _handlers.createConfirm({
-                data: form.model,
+                data: form.formModel.value,
                 url: _requestCallback.urls.create,
                 preventDefault: () => {
                   resolve(true)
@@ -133,7 +125,7 @@ function createComp(type, requestMethod, templates: Templates[]) {
               const timer = setTimeout(() => resolve(false), 100)
 
               _handlers.updateConfirm && _handlers.updateConfirm({
-                data: form.model,
+                data: form.formModel.value,
                 url: _requestCallback.urls.update,
                 preventDefault: () => {
                   resolve(true)
@@ -155,7 +147,14 @@ function createComp(type, requestMethod, templates: Templates[]) {
         return _model
       }
 
-      return () => <form.render modelValue={props.row} size={unref(FuzzyComponentSize)}/>
+      return () => (
+        <form.render
+          labelWidth={_options.labelWidth}
+          templates= {templateMiddleWare([mapTemplatesRenderer, mapTemplateDefaultValue])(templates, type)}
+          modelValue={props.row}
+          size={unref(FuzzyComponentSize)}
+        />
+      )
     },
   })
 }

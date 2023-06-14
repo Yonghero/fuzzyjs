@@ -1,6 +1,8 @@
 import { mergeFuzzyOptions } from '../../../packages/fuzzy-next/src/extend'
 import type { FuzzyNextHandlers, OptionsConfiguration } from '../../../types'
 
+const r1 = ref(true)
+
 export const options: OptionsConfiguration = {
   title: '因子信息',
   api: '/environ/factor/list',
@@ -8,8 +10,8 @@ export const options: OptionsConfiguration = {
     {
       label: '因子名称',
       value: 'name',
-      type: 'textarea',
-      require: true,
+      type: 'input',
+      require: false,
     },
     {
       label: '因子编码',
@@ -18,7 +20,20 @@ export const options: OptionsConfiguration = {
       visible: {
         table: true,
       },
-      require: true,
+      require: r1,
+    },
+    {
+      label: '下拉测试',
+      value: 'select',
+      type: 'select',
+      options: [{ label: 1, value: 1 }],
+      onChange({ value }) {
+        if (value)
+          r1.value = !r1.value
+      },
+      visible: {
+        filter: false,
+      },
     },
     {
       label: '国际编码',
@@ -32,7 +47,7 @@ export const options: OptionsConfiguration = {
       label: '单位',
       value: 'unit',
       type: 'input',
-      require: true,
+      require: false,
       visible: {
         filter: false,
       },
@@ -41,7 +56,7 @@ export const options: OptionsConfiguration = {
       label: '小数位数',
       value: 'valPrecision',
       type: 'input',
-      require: true,
+      require: false,
       visible: {
         filter: false,
       },

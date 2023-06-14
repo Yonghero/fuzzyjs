@@ -18,9 +18,9 @@ export function useSlotsMap(slots: Slots) {
       const SlotComp = slotsMap[key]
 
       slotsMap[key] = defineComponent({
-        setup() {
+        setup(selfProps, { attrs }) {
           return () => (
-            <SlotComp {...props} />
+            <SlotComp {...attrs} {...props} {...selfProps} />
           )
         },
       })

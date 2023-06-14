@@ -15,8 +15,8 @@ import { DefaultLayoutProvider } from '../packages/layout-provider/index.ts'
 import { ElementUIRenderer, installUIPlugin } from '../packages/ui-renderer/index.ts'
 import { DefaultRequestProvider } from '../packages/request-provider/index.ts'
 import { createFuzzy } from '../packages/fuzzy-next/index.ts'
-
 import type { FormCompProps } from '../types/renderer.ts'
+import { PolIdMappingPlugin } from './example/single/plugins.tsx'
 import App from './App.vue'
 
 import 'element-plus/dist/index.css'
@@ -53,12 +53,14 @@ const Fuzzy = createFuzzy({
     deleteSuccess: '删除成功',
     success: '成功',
   },
+  plugins: [new PolIdMappingPlugin()],
 })
 
 installUIPlugin({
   type: 'textarea',
   renderer: (props: FormCompProps) => {
     return <el-input
+      size={props.size}
       v-model={props.model[props.value]}
       type="textarea"
       placeholder="请输入"
@@ -66,9 +68,44 @@ installUIPlugin({
   },
 })
 
-// Fuzzy.use(({ installUIPlugin }) => {
-//   installUIPlugin(formItem)
-// })
+installUIPlugin({
+  type: 'input',
+  renderer: (props: FormCompProps) => {
+    return <el-input
+      v-model={props.model[props.value]}
+      placeholder="请输入"
+      disabled={!!props.disabled}
+      size={props.size}
+    />
+  },
+})
+
+installUIPlugin({
+  type: 'select',
+  renderer: (props: FormCompProps) => {
+    return <el-select
+      v-model={props.model[props.value]}
+      size={props.size}
+      placeholder="请选择"
+      onChange={(value) => {
+        if (props.onChange)
+          props.onChange({ value, model: props.model, key: props.value })
+      }}
+      {...props}
+    >
+      {
+        props.options
+          && unref(props.options).map(item => (
+            <el-option
+              key={item.value}
+              label={item.label}
+              value={item.value}
+            />
+          ))
+      }
+    </el-select>
+  },
+})
 
 function fuzzyInstall(App: any) {
   App.component(

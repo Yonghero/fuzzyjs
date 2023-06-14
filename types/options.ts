@@ -44,8 +44,8 @@ export type OptionsConfiguration = {
    * 表单标题的统一宽度
    */
   labelWidth?: number
-
   table?: {
+    width?: string | number
     /**
    * 表格是否展示序号 默认展示
    */
@@ -207,11 +207,11 @@ export interface FormTemplate extends BaseTemplate {
   /**
    * 是否禁用
    */
-  disabled?: boolean
+  disabled?: boolean | Ref<boolean>| ComputedRef<boolean>
   /**
    * 是否只读
    */
-  readonly?: boolean
+  readonly?: boolean | Ref<boolean>| ComputedRef<boolean>
   /**
    * 表单尺寸
    */
@@ -233,7 +233,7 @@ export interface FormTemplate extends BaseTemplate {
   /**
    * 是否多选
    */
-  multiple?: boolean
+  multiple?: boolean | Ref<boolean>| ComputedRef<boolean>
   /**
    * 表格某个字段是否启用排序
    */
@@ -251,7 +251,7 @@ export interface FormTemplate extends BaseTemplate {
   /**
    * 是否必填
    */
-  require?: boolean
+  require?: boolean | Ref<boolean>| ComputedRef<boolean>
   /**
    * type 为下拉框时的options
    */

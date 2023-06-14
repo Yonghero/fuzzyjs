@@ -16,7 +16,7 @@ export class DictMappingPlugin extends RestTemplatePlugin {
   install(templates: Templates[]): void {
     // const values = ['polId']
     const factorMapper = [
-      { label: 'SO2 ', value: 'SO2' },
+      { label: 'SO2123 ', value: 'SO2' },
     ]
 
     const filterTemp = templates.filter(item => item.value === 'polId')

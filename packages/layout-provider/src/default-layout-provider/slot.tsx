@@ -1,13 +1,22 @@
-import type { PropType } from 'vue'
+import type { Component, PropType } from 'vue'
 import type { FuzzySize, LayoutProvider, LayoutProviderRenderer } from '../../../../types'
 
-export class DefaultLayoutProvider implements LayoutProvider {
+export class SlotLayoutProvider implements LayoutProvider {
   props = {
     renderer: {
       type: Object as PropType<LayoutProviderRenderer>,
     },
+    slotB: {
+      type: Object as PropType<Component>,
+    },
     size: {
       type: String as PropType<FuzzySize>,
+    },
+    radio: {
+      type: Object as PropType<Component>,
+    },
+    lew: {
+      type: Object as PropType<Component>,
     },
   }
 
@@ -16,6 +25,7 @@ export class DefaultLayoutProvider implements LayoutProvider {
     // 自定义放置框架组件 可扩展其他组件
     return () => (
       <div class="w-full h-full p-2">
+        <props.slotB abc={'123'}></props.slotB>
         <div>
           {props.renderer.Tab}
         </div>

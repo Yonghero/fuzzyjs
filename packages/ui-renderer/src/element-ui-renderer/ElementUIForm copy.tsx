@@ -1,59 +1,44 @@
 import type { FormInstance } from 'element-plus'
 import { ElForm, ElFormItem } from 'element-plus'
-import type { PropType } from 'vue'
+import type { VNode } from 'vue'
 import { computed, defineComponent, reactive, ref, unref } from 'vue'
-import type { FormItem, FormRenderer, Templates } from '../../../../types'
+import type { FormCompProps, FormItem, FormRenderProps, FormRenderer, Templates } from '../../../../types'
 import { globalFormItems } from '../install'
 
 export class ElementUIForm implements FormRenderer {
-  create() {
+  isHorizontal = false
+  shouldWarpEvenly = true
+
+  create({
+    templates,
+    isHorizontal,
+    labelPosition,
+    shouldWarpEvenly = true,
+    shouldValidate = true,
+    shouldLabelWidthAuto = true,
+    labelWidth = 100,
+    shouldRemoveModelUndefined = false,
+  }: FormRenderProps) {
+    this.isHorizontal = isHorizontal
+    this.shouldWarpEvenly = shouldWarpEvenly
+    // 获取数据模型
+    const model = this.getModel(unref(templates))
+    const h = this.getModel
+    // 获取表单项组件
+    const FormItems = computed(() => this.getFromItems(unref(templates), model, shouldWarpEvenly))
+    // 获取表单项的验证规则
+    const rules = shouldValidate ? computed(() => this.getRules(unref(templates))) : computed(() => [])
     // 获取组件实例
     const formRef = ref<FormInstance>()
-    const getRules = this.getRules
-    const getFromItems = this.getFromItems
-    const getModel = this.getModel
-
-    // eslint-disable-next-line @typescript-eslint/no-this-alias
-    const _this = this
-
-    const formModel = ref({})
 
     return {
       render: defineComponent({
         props: {
-          templates: {
-            type: Array as PropType<Templates[]>,
-            default: () => [],
-          },
-          shouldValidate: { // 是否校验
-            type: Boolean,
-            default: true,
-          },
-          shouldLabelWidthAuto: {
-            type: Boolean,
-            default: false,
-          },
-          shouldWarpEvenly: {
-            type: Boolean,
-            default: true,
-          },
-          isHorizontal: {
-            type: Boolean,
-            default: false,
-          },
-          labelPosition: {
-            type: String,
-            default: 'right',
-          },
-          labelWidth: {
-            type: [String, Number],
-            default: 100,
-          },
-          modelValue: { // 表单绑定的数据
+          modelValue: {
             type: Object,
             default: () => ({}),
           },
-          disabled: { // 是否禁用
+          disabled: {
             type: Boolean,
             default: false,
           },
@@ -63,41 +48,25 @@ export class ElementUIForm implements FormRenderer {
           },
         },
         setup(props) {
-          // 获取表单项的验证规则
-          const rules = props.shouldValidate ? computed(() => getRules(unref(props.templates))) : computed(() => [])
-          // rules 动态修改后 需手动清楚校验
-          watch(rules, () => {
-            setTimeout(() => {
-              formRef.value?.clearValidate()
-            }, 100)
-          })
-
-          // 获取数据模型
-          const model = getModel(unref(props.templates))
-          console.log('model:1 ', JSON.stringify(model))
-          // 获取表单项组件
-          const FormItems = computed(() => getFromItems(unref(props.templates), model, props.shouldWarpEvenly, props.isHorizontal, _this))
-
           // 附默认值
-          // if (props.shouldRemoveModelUndefined) {
-          //   const rModel = getModel(unref(props.templates))
-          //   Object.keys(rModel).forEach((key) => {
-          //     model[key] = rModel[key]
-          //   })
-          // }
+          if (shouldRemoveModelUndefined) {
+            const rModel = h(unref(templates))
+            Object.keys(rModel).forEach((key) => {
+              model[key] = rModel[key]
+            })
+          }
 
           if (props.modelValue) {
             Object.keys(props.modelValue).forEach((key) => {
+              // if (model[key] !== undefined)
               model[key] = props.modelValue[key]
             })
           }
 
-          formModel.value = model
-
           const expandProps = {} as Record<string, any>
           // 表单label是否自适应
-          if (!props.shouldLabelWidthAuto)
-            expandProps.labelWidth = `${props.labelWidth}px`
+          if (!shouldLabelWidthAuto)
+            expandProps.labelWidth = `${labelWidth}px`
 
           return () => (
             <>
@@ -106,8 +75,8 @@ export class ElementUIForm implements FormRenderer {
                 model={model}
                 rules={rules.value}
                 ref={formRef}
-                label-position={props.labelPosition}
-                inline={props.isHorizontal}
+                label-position={labelPosition}
+                inline={isHorizontal}
                 disabled={props.disabled ?? false}
                 {...expandProps }
               >
@@ -119,23 +88,22 @@ export class ElementUIForm implements FormRenderer {
           )
         },
       }),
+      model,
       formRef,
-      formModel,
     }
   }
 
   getRules(templates: Templates[] | any) {
-    const rules = reactive(templates.reduce((rules, item) => {
+    return reactive(templates.reduce((rules, item) => {
       rules[item.value] = []
       // 必填
-      if (unref(item.require))
-        rules[item.value].push({ required: true, trigger: ['blur', 'change'], message: `${item.label}为必填项` })
+      if (item.require)
+        rules[item.value].push({ required: true, trigger: 'change', message: `${item.label}为必填项` })
       // 其他规则
       if (item.rules)
         rules[item.value].push(...item.rules)
       return rules
     }, {}))
-    return rules
   }
 
   /**
@@ -157,11 +125,11 @@ export class ElementUIForm implements FormRenderer {
    * @param model
    * @param shouldWarpEvenly
    */
-  getFromItems(templates: Templates[] | any, model, shouldWarpEvenly, isHorizontal, _this) {
+  getFromItems(templates: Templates[] | any, model, shouldWarpEvenly) {
     return templates
       .filter(item => !item.filterUnShow)
       .map((item) => {
-        const FormItemComp = _this._getFormComponent(item.type)
+        const FormItemComp = this._getFormComponent(item.type)
         if (item.fetchOptions)
           item.fetchOptions()
 
@@ -169,7 +137,7 @@ export class ElementUIForm implements FormRenderer {
           <ElFormItem
             label={item.label}
             key={item.value}
-            style={_this.getFromStyle(item, shouldWarpEvenly, isHorizontal)}
+            style={this.getFromStyle(item, shouldWarpEvenly)}
             prop={item.value}
           >
             {
@@ -182,10 +150,10 @@ export class ElementUIForm implements FormRenderer {
       })
   }
 
-  getFromStyle(item: Templates, shouldWarpEvenly, isHorizontal) {
+  getFromStyle(item: Templates, shouldWarpEvenly) {
     const inlineLength = item.rowLength || 2
     const style = {
-      width: (isHorizontal ? `calc(100% / ${inlineLength} - 1rem)` : ''),
+      width: (!this.isHorizontal ? `calc(100% / ${inlineLength} - 1rem)` : ''),
     }
     if (shouldWarpEvenly)
       style.width = `calc(100% / ${inlineLength} - 1rem)`
@@ -198,7 +166,7 @@ export class ElementUIForm implements FormRenderer {
 
     if (width)
       style.width = width.toString()
-    if (!isHorizontal && rest)
+    if (!this.isHorizontal && rest)
       style.width = `calc(100% * ${inlineLength - 1} / ${inlineLength} - 1rem)`
 
     return style
@@ -208,5 +176,61 @@ export class ElementUIForm implements FormRenderer {
     const renderer = globalFormItems.get(type)
     if (renderer)
       return renderer
+
+    const COMPS_MAP = {
+      input: this.input,
+      select: this.select,
+      datePick: this.datePick,
+    }
+    return COMPS_MAP[type]
+  }
+
+  input(props: FormCompProps | any) {
+    const _props = computed(() => {
+      const p = { ...props }
+      delete p.value
+      if (p?.onBlur)
+        delete p?.onBlur
+      return p
+    }) as any
+
+    return (
+      <el-input
+        v-model={props.model[props.value]}
+        size="default"
+        {..._props.value}
+        onBlur={() => props.onBlur && props.onBlur({ value: props.model[props.value], model: props.model })}
+      />
+    )
+  }
+
+  select(props: FormCompProps, { emit }): VNode {
+    return (
+      <el-select
+        v-model={props.model[props.value]}
+        {...props}
+        onChange={v => emit('change', { key: props.value, value: v, model: props.model })}
+      >
+        {
+          props.options
+          && unref(props.options).map(item => (
+            <el-option
+              key={item.value}
+              label={item.label}
+              value={item.value}
+            />
+          ))
+        }
+      </el-select>
+    )
+  }
+
+  datePick(props: FormCompProps) {
+    return (
+      <el-date-picker
+        v-model={props.model[props.value]}
+        type={props.type}
+      />
+    )
   }
 }

@@ -76,6 +76,12 @@ export class SlotLayoutProvider implements LayoutProvider {
 
 ## 实现插件机制 插件可以做全局字典匹配 比如一个字段为userID, 在表格上的展示会直接通过userID匹配为userName
 
+# 响应式 require 
+
+# width table query update 
+
+# 下拉联动
+
 ## 可调节组件size 适配 small | default | large
 
 <!-- ## 如果配置存在items字典表，表格字段的展示直接匹配 无需重新renderer手动匹配 -->

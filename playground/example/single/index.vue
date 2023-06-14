@@ -1,7 +1,10 @@
 <script setup lang='ts'>
-import { PolIdMappingPlugin } from './plugins'
+import { SlotLayoutProvider } from '../../../packages/layout-provider/src/default-layout-provider/slot'
+// import { PolIdMappingPlugin } from './plugins'
 import { handlers, mergeOp } from './template'
 import SlotA from './SlotA.vue'
+
+const layout = new SlotLayoutProvider()
 
 const mockData = {
   total: 10,
@@ -12,11 +15,18 @@ const mockData = {
 
 const size = ref('default')
 
-const plugins = [new PolIdMappingPlugin()]
+// const plugins = [new PolIdMappingPlugin()]
+
+// 1. css rem html font-size
+
+// 2. 模仿
 
 </script>
 
 <template>
+  <layout-provider :size="size">
+    <Menu />
+  </layout-provider>
   <el-config-provider :size="size">
     <el-radio-group v-model="size">
       <el-radio label="small">
@@ -33,10 +43,10 @@ const plugins = [new PolIdMappingPlugin()]
       :options="mergeOp"
       :handlers="handlers"
       :mock="mockData"
-      :plugins="plugins"
       :size="size"
+      :layout-provider="layout"
     >
-      <SlotA name="slotA" />
+      <SlotA name="slotB" />
     </Fuzzy>
   </el-config-provider>
 </template>

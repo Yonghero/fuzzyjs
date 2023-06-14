@@ -6,10 +6,12 @@ const props = defineProps({
   options: {
     type: Object as PropType<OptionsConfiguration>,
   },
+  abc: String,
 })
 watchEffect(() => {
   console.log('props.options: ', props.options, props)
 })
+
 </script>
 
 <template>

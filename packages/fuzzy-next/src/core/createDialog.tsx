@@ -34,12 +34,6 @@ export function createDialog(renderer: Renderer, modalRenderer: ModalRenderer, h
     await eventBus.publish('cancel')
   }
 
-  // function Title() {
-  //   return (
-  //     <div>123</div>
-  //   )
-  // }
-
   const WrapDialog = defineComponent({
     setup() {
       return () => (
@@ -60,5 +54,5 @@ export function createDialog(renderer: Renderer, modalRenderer: ModalRenderer, h
     },
   })
 
-  return <WrapDialog/>
+  return (<WrapDialog/>)
 }

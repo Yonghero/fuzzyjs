@@ -19,7 +19,6 @@ import type { DataProvider } from './createDataProvide'
 
 export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, handlers: FuzzyNextHandlers, _templates: Partial<Templates>[], dataProvider: DataProvider, requestCallback: RequestCallback, options: OptionsConfiguration, paging: PagingProvider, mock: any, fuzzyOptions): any {
   const templates = templateMiddleWare([mapTemplatesRenderer, mapTemplateOfOrder, mapTemplateOfFeature])(_templates, 'table')
-  console.log('templates: table', templates)
 
   const updateLangText = fuzzyOptions?.lang.update || '编辑'
   const deleteLangText = fuzzyOptions?.lang.delete || '删除'
