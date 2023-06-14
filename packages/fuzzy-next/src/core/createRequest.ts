@@ -23,7 +23,7 @@ export function createRequest(options: OptionsConfiguration, request: RequestPro
     get: async(params) => {
       let handlerParams = {}
       // invoke hook
-      if (handlers.queryBefore) {
+      if (handlers?.queryBefore) {
         handlerParams = await handlers.queryBefore({
           data: { ...dataProvide.filterParams.value, ...params },
         })

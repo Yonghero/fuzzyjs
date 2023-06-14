@@ -12,13 +12,7 @@ import {
 import type { DataProvider } from './createDataProvide'
 
 export function createFilter(renderer: Renderer, templates: Templates[], feature: any, requestCallback: RequestCallback, dataProvide: DataProvider, fuzzyOptions: CreateFuzzyOptions, paging: PagingProvider): { Filter: any; FilterButton: VNode } {
-  const FilterFrom = renderer.form.create({
-    templates: templateMiddleWare([mapTemplateOfFeature, mapTemplatesRenderer, mapTemplateDefaultValue, mapTemplateOfOrder])(templates, 'filter'),
-    feature,
-    isHorizontal: true,
-    shouldWarpEvenly: false,
-    shouldValidate: false,
-  })
+  const FilterFrom = renderer.form.create()
 
   // invoke requestCallback to get filter data
   async function dispatchFilter() {
@@ -28,7 +22,7 @@ export function createFilter(renderer: Renderer, templates: Templates[], feature
       data,
       message,
       total,
-    } = await requestCallback.get({ ...FilterFrom.model, [paging.current]: 1 })
+    } = await requestCallback.get({ ...FilterFrom.formModel.value, [paging.current]: 1 })
     // success
     dataProvide.dispatch.setTableLoading(false)
     if (success) {
@@ -56,7 +50,14 @@ export function createFilter(renderer: Renderer, templates: Templates[], feature
   Promise.resolve().then(dispatchFilter)
 
   return {
-    Filter: <FilterFrom.render size={unref(FuzzyComponentSize)}/>,
-    FilterButton: <FilterButton/>,
+    Filter: (
+      <FilterFrom.render
+        templates={templateMiddleWare([mapTemplateOfFeature, mapTemplatesRenderer, mapTemplateDefaultValue, mapTemplateOfOrder])(templates, 'filter')}
+        isHorizontal={false}
+        shouldWarpEvenly={false}
+        shouldValidate={false}
+        size={unref(FuzzyComponentSize)}/>
+    ),
+    FilterButton: (<FilterButton/>),
   }
 }

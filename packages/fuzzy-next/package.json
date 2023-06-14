@@ -25,7 +25,7 @@
   "types": "./lib/packages/fuzzy-next",
   "scripts": {
     "build": "vite build && tsc -p ./tsconfig.build.json",
-    "pub": "pnpm run build && pnpm version patch && pnpm publish --access public --force --no-git-checks"
+    "pub": "sudo pnpm run build && pnpm version patch && pnpm publish --access public --force --no-git-checks"
   },
   "dependencies": {
     "@fuzzy-next/core": "^1.0.2"

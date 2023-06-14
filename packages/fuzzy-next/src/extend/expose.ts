@@ -35,4 +35,4 @@ export function $insideReactiveValue() {
 /**
  * 组件尺寸
  */
-export const FuzzyComponentSize = ref<FuzzySize>('small')
+export const FuzzyComponentSize = ref<FuzzySize>('default')
