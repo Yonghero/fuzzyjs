@@ -64,6 +64,19 @@ export function mapTemplateOfFeature(templates: Templates[], feature) {
   })
 }
 
+/**
+ * 功能是否展示
+ * @param templates
+ * @param feature
+ * @returns
+ */
+export function mapTemplateOfShow(templates: Templates[], feature) {
+  templates.forEach((item) => {
+    item.show = item?.show?.[feature]
+  })
+  return templates
+}
+
 export function templateMiddleWare(callback: TemplateMiddlewareCallback[]) {
   return (templates, type) => {
     return callback.reduce((templates, callback) => {

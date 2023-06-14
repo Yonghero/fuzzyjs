@@ -74,7 +74,7 @@ export class ElementUIForm implements FormRenderer {
 
           // 获取数据模型
           const model = getModel(unref(props.templates))
-          console.log('model:1 ', JSON.stringify(model))
+
           // 获取表单项组件
           const FormItems = computed(() => getFromItems(unref(props.templates), model, props.shouldWarpEvenly, props.isHorizontal, _this))
 
@@ -166,18 +166,20 @@ export class ElementUIForm implements FormRenderer {
           item.fetchOptions()
 
         return (
-          <ElFormItem
-            label={item.label}
-            key={item.value}
-            style={_this.getFromStyle(item, shouldWarpEvenly, isHorizontal)}
-            prop={item.value}
-          >
-            {
-              item.render
-                ? <item.render model={model} value={item.value}/>
-                : <FormItemComp onChange={item.onChange} {...item} model={model}/>
-            }
-          </ElFormItem>
+          unref(item.show) === false
+            ? null
+            : <ElFormItem
+              label={item.label}
+              key={item.value}
+              style={_this.getFromStyle(item, shouldWarpEvenly, isHorizontal)}
+              prop={item.value}
+            >
+              {
+                item.render
+                  ? <item.render model={model} value={item.value}/>
+                  : <FormItemComp onChange={item.onChange} {...item} model={model}/>
+              }
+            </ElFormItem>
         )
       })
   }

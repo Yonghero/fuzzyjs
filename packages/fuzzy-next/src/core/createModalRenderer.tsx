@@ -11,6 +11,7 @@ import {
   FuzzyComponentSize,
   mapTemplateDefaultValue,
   mapTemplateOfFeature,
+  mapTemplateOfShow,
   mapTemplatesRenderer,
   templateMiddleWare,
 } from '../extend'
@@ -38,19 +39,18 @@ export function createModalRenderer(renderer: Renderer, options: OptionsConfigur
   if (modalRenderer?.UpdateComponent)
     UpdateComponent = modalRenderer.UpdateComponent
   else
-    UpdateComponent = createComp('update', 'put', mapTemplateOfFeature(options.template, 'update'))
+    UpdateComponent = createComp('update', 'put', mapTemplateOfFeature([...options.template], 'update'))
 
   if (modalRenderer?.CreateComponent)
     CreateComponent = modalRenderer.CreateComponent
   else
-    CreateComponent = createComp('create', 'post', mapTemplateOfFeature(options.template, 'create'))
+    CreateComponent = createComp('create', 'post', mapTemplateOfFeature([...options.template], 'create'))
 
   return {
     UpdateComponent,
     CreateComponent,
   }
 }
-
 function createComp(type, requestMethod, templates: Templates[]) {
   const form = _renderer.form.create()
 
@@ -150,7 +150,7 @@ function createComp(type, requestMethod, templates: Templates[]) {
       return () => (
         <form.render
           labelWidth={_options.labelWidth}
-          templates= {templateMiddleWare([mapTemplatesRenderer, mapTemplateDefaultValue])(templates, type)}
+          templates= {templateMiddleWare([mapTemplateOfShow, mapTemplatesRenderer, mapTemplateDefaultValue, mapTemplateOfFeature])([...templates], type)}
           modelValue={props.row}
           size={unref(FuzzyComponentSize)}
         />
