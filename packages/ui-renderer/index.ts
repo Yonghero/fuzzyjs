@@ -1,1 +1,1 @@
-export { ElementUIRenderer, ArcoUIRenderer, installUIPlugin } from './src'
+export { ElementUIRenderer, installUIPlugin } from './src'
