@@ -1,7 +1,7 @@
 import type { FormInstance } from 'element-plus'
 import { ElForm, ElFormItem } from 'element-plus'
 import type { PropType } from 'vue'
-import { computed, defineComponent, reactive, ref, unref } from 'vue'
+import { computed, defineComponent, reactive, ref, unref, watch } from 'vue'
 import type { FormItem, FormRenderer, Templates } from '../../../../types'
 import { globalFormItems } from '../install'
 
