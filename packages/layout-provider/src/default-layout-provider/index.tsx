@@ -20,11 +20,11 @@ export class DefaultLayoutProvider implements LayoutProvider {
           {props.renderer.Tab}
         </div>
         <div class="flex flex-nowrap justify-between items-center">
-          <div class="flex flex-nowrap flex-shrink-1  pt-6 pb-2 items-start justify-between gap-x-3">
+          <div class="flex flex-nowrap flex-shrink-1 pt-4 items-start justify-between gap-x-2">
             {props.renderer.Filter}
             {props.renderer.FilterButton}
           </div>
-          <div class="flex gap-x-3 flex-shrink-1">
+          <div class="flex gap-x-2 flex-shrink-1">
             {
               props.renderer?.ExtraRenderer?.map((renderer, index) => (<renderer key={index}/>))
             }
@@ -33,10 +33,10 @@ export class DefaultLayoutProvider implements LayoutProvider {
           </div>
         </div>
 
-        <div class="relative top-100">
+        <div class="relative">
           {props.renderer.Table}
         </div>
-        <div class="w-full flex items-center justify-center mt-10">
+        <div class="w-full flex items-center justify-center mt-2">
           {props.renderer.Page}
         </div>
         {props.renderer.Dialog}

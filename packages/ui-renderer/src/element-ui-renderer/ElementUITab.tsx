@@ -6,7 +6,7 @@ export class ElementUITab implements TabRenderer {
     const Tab = () => {
       if (props.options.length === 1) {
         return (
-          <div class="flex w-full items-center" style="border-bottom: 1px solid #EEEEEE">
+          <div class="flex w-full items-center border-b border-solid border-b-[#EEE] dark:border-b-[#363637] ">
             <div class="w-1 h-4 mb-2 bg-[#0971FF] rounded-sm mr-2"></div>
             <h2
               class="mb-2 text-base">{typeof props.options[0].label === 'function' ? props.options[0].label() : props.options[0].label}</h2>
@@ -15,7 +15,7 @@ export class ElementUITab implements TabRenderer {
       }
       else {
         return (
-          <div class="w-full flex items-center" style="border-bottom: 1px solid #EEEEEE">
+          <div class="w-full flex items-center border-b border-solid border-b-[#EEE] dark:border-b-[#363637]">
             {
               unref(props.options).map((option, index) => {
                 return (
@@ -27,7 +27,7 @@ export class ElementUITab implements TabRenderer {
                     style="min-height: 2.4rem"
                     class={[
                       props?.modelValue === index
-                        ? 'bg-[#0971FF] text-white'
+                        ? 'bg-[var(--el-color-primary)] text-white'
                         : 'bg-gray-200 text-gray-700',
                       'px-8',
                       'rounded-t-lg', 'min-w-[120px]', 'flex', 'items-center', 'justify-center', 'mr-1', ' shadow-primary-50', 'cursor-pointer',

@@ -43,7 +43,7 @@ export function createDialog(renderer: Renderer, modalRenderer: ModalRenderer, h
           title={unref(dataProvide.dialog.value.title)}
           onUpdate={onConfirm}
           onCancel={onCancel}
-          style={options?.modalStyle || {}}
+          style={options?.dialog || {}}
           size={unref(FuzzyComponentSize)}
         >
           {

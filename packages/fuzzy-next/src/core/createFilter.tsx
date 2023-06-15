@@ -56,6 +56,7 @@ export function createFilter(renderer: Renderer, templates: Templates[], feature
         isHorizontal={false}
         shouldWarpEvenly={false}
         shouldValidate={false}
+        labelWidth={90}
         size={unref(FuzzyComponentSize)}/>
     ),
     FilterButton: (<FilterButton/>),

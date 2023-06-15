@@ -4,36 +4,46 @@ import type { ButtonRenderer } from '../../../../types'
 export class ElementUIButton implements ButtonRenderer {
   render(props, { slots }) {
     if (props.type === 'create') {
-      return <ElButton
-        type="primary"
-        class="cursor-pointer text-white rounded flex items-center justify-center"
-        size={props.size}
-      >
+      return (
+        <ElButton
+          type="primary"
+          class="cursor-pointer text-white rounded flex items-center justify-center"
+          size={props.size}
+        >
         +
-      </ElButton>
+        </ElButton>
+      )
     }
     if (props.type === 'update') {
-      return <div style="background: #F0F0F0;border-radius:5px;color:#0078FF"
-        class="w-14 h-7 p-3 flex items-center justify-center cursor-pointer">
-        编辑
-      </div>
+      return (
+        <el-button
+          text
+          bg
+          type="primary"
+        >编辑</el-button>
+      )
     }
     if (props.type === 'delete') {
-      return <div style="background: #F0F0F0;border-radius:5px;color:#FF0000"
-        class="w-14 h-7 p-3 flex items-center justify-center cursor-pointer">
-        删除
-      </div>
+      return (
+        <el-button
+          text
+          bg
+          type="danger"
+        >删除</el-button>
+      )
     }
     if (props.type === 'filter') {
-      return <ElButton
-        type="primary"
-        class="cursor-pointer text-white flex items-center justify-center"
-        size={props.size}
-      >
-        {
-          slots.default && slots.default()
-        }
-      </ElButton>
+      return (
+        <ElButton
+          type="primary"
+          class="cursor-pointer text-white flex items-center justify-center"
+          size={props.size}
+        >
+          {
+            slots.default && slots.default()
+          }
+        </ElButton>
+      )
     }
     if (props.type === 'operate') {
       return <div

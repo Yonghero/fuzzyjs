@@ -7,19 +7,40 @@ import SlotA from './SlotA.vue'
 const layout = new SlotLayoutProvider()
 
 const mockData = {
-  total: 10,
+  total: 12,
   data: [
     ...Array.from({ length: 10 }).map((_, idx) => ({ name: `因子$${idx}`, polId: 'SO2', nationalPolId: '国际编码', unit: '单位' })),
   ],
 }
 
 const size = ref('default')
+const darkMode = ref(false)
+
+watch(size, (s) => {
+  if (s === 'default')
+    document.querySelector('html')!.style.fontSize = '14px'
+  else if (s === 'small')
+    document.querySelector('html')!.style.fontSize = '13px'
+  else if (s === 'large')
+    document.querySelector('html')!.style.fontSize = '15px'
+})
+
+watch(darkMode, (bool) => {
+  if (bool)
+    document.querySelector('html')!.setAttribute('class', 'dark')
+  else
+    document.querySelector('html')!.removeAttribute('class')
+})
 
 // const plugins = [new PolIdMappingPlugin()]
 
 // 1. css rem html font-size
 
 // 2. 模仿
+
+onMounted(() => {
+  // document.querySelector('html')!.setAttribute('class', 'dark')
+})
 
 </script>
 
@@ -28,25 +49,42 @@ const size = ref('default')
     <Menu />
   </layout-provider>
   <el-config-provider :size="size">
-    <el-radio-group v-model="size">
-      <el-radio label="small">
-        small
-      </el-radio>
-      <el-radio label="default">
-        default
-      </el-radio>
-      <el-radio label="large">
-        large
-      </el-radio>
-    </el-radio-group>
+    <div class="flex items-center gap-2">
+      <el-radio-group v-model="size">
+        <el-radio label="small">
+          small
+        </el-radio>
+        <el-radio label="default">
+          default
+        </el-radio>
+        <el-radio label="large">
+          large
+        </el-radio>
+      </el-radio-group>
+      <label for="dark" class="ml-5">
+        <el-switch
+          v-model="darkMode"
+          active-text="dark mode"
+          inactive-text="light mode"
+        />
+      </label>
+    </div>
     <Fuzzy
       :options="mergeOp"
       :handlers="handlers"
       :mock="mockData"
       :size="size"
-      :layout-provider="layout"
     >
-      <SlotA name="slotB" />
+    <!-- :layout-provider="layout" -->
+
+    <!-- <SlotA name="slotB" /> -->
     </Fuzzy>
   </el-config-provider>
 </template>
+
+<style>
+
+html {
+  font-size: 14px;
+}
+</style>

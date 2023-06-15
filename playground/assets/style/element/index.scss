@@ -10,5 +10,15 @@
       'base' : #DD6A15
     )
   ),
+  $button-padding-vertical: (
+    'large': 13px,
+    'default': 9px,
+    'small': 6px,
+  ),
+  $button-padding-horizontal: (
+    'large': 24px,
+    'default': 20px,
+    'small': 16px,
+  )
 );
 @use "../../../../node_modules/element-plus/theme-chalk/src/index" as *;

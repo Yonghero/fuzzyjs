@@ -149,7 +149,7 @@ function createComp(type, requestMethod, templates: Templates[]) {
 
       return () => (
         <form.render
-          labelWidth={_options.labelWidth}
+          labelWidth={_options?.form?.labelWidth}
           templates= {templateMiddleWare([mapTemplateOfShow, mapTemplatesRenderer, mapTemplateDefaultValue, mapTemplateOfFeature])([...templates], type)}
           modelValue={props.row}
           size={unref(FuzzyComponentSize)}

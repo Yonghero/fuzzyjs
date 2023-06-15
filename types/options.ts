@@ -31,19 +31,16 @@ export type OptionsConfiguration = {
   /**
    * 对话框样式配置
    */
-  modalStyle?: ModalStyleProps
+  dialog?: ModalStyleProps
   /**
-   * 表格是否展示序号 默认展示
+   * 表单配置
    */
-  No?: boolean
-  /**
-   * 表格是否展示多选框
-   */
-  selection?: boolean
-  /**
+  form?: {
+    /**
    * 表单标题的统一宽度
    */
-  labelWidth?: number
+    labelWidth?: number
+  }
   table?: {
     width?: string | number
     /**

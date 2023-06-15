@@ -9,7 +9,7 @@ export class ElementUIDialog implements DialogRenderer {
 
     const _slots = {
       header: () => (
-        <div class="flex items-center border-b-gray-200 border-b-2 pb-1 w-full">
+        <div class="flex items-center border-b-gray-200 dark:border-b-[#363637] border-b-2 pb-1 w-full">
           <div class="w-1 h-5 rounded-sm bg-[#0971FF] mr-2"/>
           {
             typeof props.title === 'function'
@@ -22,7 +22,7 @@ export class ElementUIDialog implements DialogRenderer {
       footer: scope => props.footer
         ? props.footer
         : <div
-          class="dialog-footer-box"
+          class="dialog-footer-box flex items-center justify-center gap-x-3"
         >
           <button.render
             type="primary"

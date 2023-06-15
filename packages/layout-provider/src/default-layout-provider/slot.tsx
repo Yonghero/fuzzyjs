@@ -43,10 +43,10 @@ export class SlotLayoutProvider implements LayoutProvider {
           </div>
         </div>
 
-        <div class="relative top-100">
+        <div class="relative">
           {props.renderer.Table}
         </div>
-        <div class="w-full flex items-center justify-center mt-10">
+        <div class="w-full flex items-center justify-center">
           {props.renderer.Page}
         </div>
         {props.renderer.Dialog}
