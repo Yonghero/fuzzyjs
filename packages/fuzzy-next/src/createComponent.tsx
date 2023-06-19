@@ -1,5 +1,5 @@
 import type { PropType } from 'vue'
-import { computed, defineComponent, getCurrentInstance, watch } from 'vue'
+import { computed, defineComponent, getCurrentInstance, unref, watch } from 'vue'
 import type {
   CreateFuzzyOptions,
   ExtraRenderer,
