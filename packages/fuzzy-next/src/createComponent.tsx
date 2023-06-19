@@ -21,7 +21,6 @@ export function createComponent(globalRenderer: Renderer, globalLayoutProvider: 
     props: {
       size: {
         type: String as (PropType<FuzzySize>),
-        default: 'default',
       },
       options: {
         type: Object as (PropType<OptionsConfiguration>),
@@ -77,9 +76,13 @@ export function createComponent(globalRenderer: Renderer, globalLayoutProvider: 
             activated.handlers.value.tabChange()
         })
 
-      watch(() => props.size, () => {
+      watch(() => [props.size, unref(fuzzyOptions.size)], () => {
         // 组件尺寸
-        FuzzyComponentSize.value = fuzzyOptions.size || props.size
+        if (props.size) {
+          FuzzyComponentSize.value = props.size
+          return
+        }
+        FuzzyComponentSize.value = unref(fuzzyOptions.size)
       })
 
       // 根据activeOptions页面配置动态渲染

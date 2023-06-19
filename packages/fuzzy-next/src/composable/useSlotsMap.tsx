@@ -6,7 +6,7 @@ import { defineComponent } from 'vue'
  */
 export function useSlotsMap(slots: Slots) {
   const slotsMap = {}
-  if (slots.default) {
+  if (slots?.default) {
     const slotArr = slots.default()
     slotArr.forEach((comp) => {
       if (comp?.props?.name)

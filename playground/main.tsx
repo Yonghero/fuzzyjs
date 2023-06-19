@@ -23,6 +23,8 @@ import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import './assets/style/element/index.scss'
 
+import { size } from './utils/index.ts'
+
 const axiosInstance = axios.create({
   baseURL: 'http://localhost:3300/api', // api的base_url
   timeout: 300000, // 请求超时时间
@@ -55,6 +57,7 @@ const Fuzzy = createFuzzy({
     deleteSuccess: '删除成功',
     success: '成功',
   },
+  size,
   plugins: [new PolIdMappingPlugin()],
 })
 

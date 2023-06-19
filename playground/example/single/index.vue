@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 import { SlotLayoutProvider } from '../../../packages/layout-provider/src/default-layout-provider/slot'
 // import { PolIdMappingPlugin } from './plugins'
+import { size } from '../../utils'
 import { handlers, mergeOp } from './template'
 import SlotA from './SlotA.vue'
 
@@ -13,7 +14,7 @@ const mockData = {
   ],
 }
 
-const size = ref('default')
+// const size = ref('default')
 const darkMode = ref(false)
 
 watch(size, (s) => {
@@ -45,9 +46,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <layout-provider :size="size">
-    <Menu />
-  </layout-provider>
   <el-config-provider :size="size">
     <div class="flex items-center gap-2">
       <el-radio-group v-model="size">
@@ -73,7 +71,6 @@ onMounted(() => {
       :options="mergeOp"
       :handlers="handlers"
       :mock="mockData"
-      :size="size"
     >
     <!-- :layout-provider="layout" -->
 

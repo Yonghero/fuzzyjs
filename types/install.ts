@@ -1,4 +1,4 @@
-import type { ComponentOptionsMixin } from 'vue'
+import type { ComponentOptionsMixin, Ref } from 'vue'
 import type { LayoutProvider } from './layoutProvider'
 import type { ExtendFormItem, Renderer } from './renderer'
 import type { RequestProvider } from './requestProvider'
@@ -29,7 +29,7 @@ export interface PagingProvider {
 
 export type FuzzySize = 'small' | 'default' | 'large'
 export interface CreateFuzzyOptions {
-  size?: FuzzySize
+  size: FuzzySize | Ref<FuzzySize>
   adapters: {
     http: RequestProvider
     layout: LayoutProvider
