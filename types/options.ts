@@ -1,4 +1,5 @@
 import type { Component, ComputedRef, Ref, VNode } from 'vue'
+import type { PaginationRendererGlobalOptions } from './renderer'
 
 /**
  * fuzzy-next supported options
@@ -41,8 +42,12 @@ export type OptionsConfiguration = {
    */
     labelWidth?: number
   }
+  /**
+   * 表格配置
+   */
   table?: {
     width?: string | number
+    maxHeight?: string | number | Ref<string> | Ref<number>
     /**
    * 表格是否展示序号 默认展示
    */
@@ -78,6 +83,10 @@ export type OptionsConfiguration = {
    */
     operators?: (row, { UpdateRender, DeleteRender }) => Element[] | Component[] | VNode[]
   }
+  /**
+   * 分页配置
+   */
+  pagination?: PaginationRendererGlobalOptions
 
 } & ExtraProps
 

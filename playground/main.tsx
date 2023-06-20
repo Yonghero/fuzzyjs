@@ -44,10 +44,17 @@ const Fuzzy = createFuzzy({
   adapters: {
     http: new DefaultRequestProvider(axiosInstance),
     layout: new DefaultLayoutProvider(),
-    renderer: new ElementUIRenderer(),
+    renderer: new ElementUIRenderer({
+      table: {
+        maxHeight:
+         'calc(100vh - 150px)',
+      },
+    }),
     paging: {
       current: 'index',
       size: 'size',
+      pageSize: 20,
+      pageSizes: [20, 50, 100, 150],
     },
   },
   lang: {

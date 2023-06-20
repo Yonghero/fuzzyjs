@@ -1,3 +1,3 @@
 import type { FuzzySize } from '../../types'
 
-export const size = ref<FuzzySize>('default')
+export const size = ref<FuzzySize>('small')

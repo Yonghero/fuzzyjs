@@ -19,10 +19,29 @@ export interface Renderer {
 }
 
 /**
+ * 表格渲染器全局配置
+ */
+export interface TableRendererGlobalOptions {
+  maxHeight: string
+}
+
+export interface PaginationRendererGlobalOptions {
+  pageSizes?: number[]
+  pageSize?: number
+}
+
+/**
+ * 渲染器全局配置
+ */
+export interface RendererGlobalOptions {
+  table: TableRendererGlobalOptions
+}
+
+/**
  * 表格渲染器接口
  */
 export interface TableRenderer {
-  render: (props: TableRenderProps) => (props: { data: Ref<any>; loading: Ref<boolean>; border: boolean; onSelectionChange: (p) => any; size: FuzzySize }) => VNode
+  render: (props: TableRenderProps) => (props: { data: Ref<any>; loading: Ref<boolean>; border: boolean; maxHeight: string | number; onSelectionChange: (p) => any; size: FuzzySize }) => VNode
   getColumns: (templates: Templates[], feature: Feature | undefined) => VNode[]
   shouldFeaturesRender: (feature: Feature | undefined) => boolean
 
@@ -99,13 +118,15 @@ export interface TabRenderProps {
 }
 
 export interface PageRenderer {
-  render: (props: Readonly<PageProps>, context: SetupContext) => VNode
+  render: (props: PageProps, context: SetupContext) => VNode
 }
 
 export interface PageProps {
   total: Ref<number>
   size: FuzzySize
-  // modelValue: Ref<number>
+  modelValue: Ref<number>
+  pageSize?: number
+  pageSizes?: number[]
   // onUpdateModelValue?: (page: number) => void // vue emit
 }
 

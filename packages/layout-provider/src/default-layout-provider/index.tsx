@@ -15,7 +15,7 @@ export class DefaultLayoutProvider implements LayoutProvider {
     // 布局提供器
     // 自定义放置框架组件 可扩展其他组件
     return () => (
-      <div class="w-full h-full p-2">
+      <div class="w-full h-full p-2 flex flex-col flex-auto">
         <div>
           {props.renderer.Tab}
         </div>
@@ -33,13 +33,20 @@ export class DefaultLayoutProvider implements LayoutProvider {
           </div>
         </div>
 
-        <div class="relative">
+        <div class="relative flex-auto flex flex-col gap-y-1">
+          {props.renderer.Table}
+          <div class="w-full flex items-center justify-end">
+            {props.renderer.Page}
+          </div>
+        </div>
+
+        {props.renderer.Dialog}
+        {/* <div class="flex-auto fixed bottom-12 w-full">
           {props.renderer.Table}
         </div>
-        <div class="w-full flex items-center justify-center mt-2">
+        <div class="w-full flex items-center justify-center fixed bottom-1">
           {props.renderer.Page}
-        </div>
-        {props.renderer.Dialog}
+        </div> */}
       </div>
     )
   }

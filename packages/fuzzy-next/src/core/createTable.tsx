@@ -163,6 +163,7 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
       onSelectionChange={onSelectionChange}
       border={options?.table?.border ?? true}
       size={unref(FuzzyComponentSize)}
+      maxHeight={options?.table?.maxHeight ? unref(options?.table.maxHeight) : ''}
     />
   )
 }

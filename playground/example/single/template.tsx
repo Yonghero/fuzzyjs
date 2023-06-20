@@ -78,7 +78,6 @@ export const mergeOp = mergeFuzzyOptions(options, { ...options, title: '因子�
 
 export const handlers: FuzzyNextHandlers = {
   queryBefore: async({ data }) => {
-    console.log('queryBefore')
     return data
   },
 }

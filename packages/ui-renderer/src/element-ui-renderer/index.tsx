@@ -1,4 +1,4 @@
-import type { Renderer } from '../../../../types'
+import type { Renderer, RendererGlobalOptions } from '../../../../types'
 import { ElementUIButton } from './ElementUIButton'
 import { ElementUIConfirmPlus } from './ElementUIConfirmPlus'
 import { ElementUIForm } from './ElementUIForm'
@@ -12,9 +12,13 @@ export class ElementUIRenderer implements Renderer {
   button = new ElementUIButton()
   dialog = new ElementUIDialog()
   form = new ElementUIForm()
-  page = new ElementUIPage()
   tab = new ElementUITab()
-  table = new ElementUITable()
   message = new ElementUIMessage()
   confirm = new ElementUIConfirmPlus()
+  page = new ElementUIPage()
+  table
+
+  constructor(options: RendererGlobalOptions) {
+    this.table = new ElementUITable({ ...options.table })
+  }
 }

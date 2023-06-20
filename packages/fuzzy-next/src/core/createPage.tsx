@@ -1,9 +1,9 @@
 import { defineComponent, ref, unref, watch } from 'vue'
-import type { FuzzyNextHandlers, PagingProvider, Renderer, RequestCallback } from '../../../../types'
+import type { CreateFuzzyOptions, FuzzyNextHandlers, OptionsConfiguration, PagingProvider, Renderer, RequestCallback } from '../../../../types'
 import { FuzzyComponentSize } from '../extend'
 import type { DataProvider } from './createDataProvide'
 
-export function createPage(renderer: Renderer, handlers: FuzzyNextHandlers, requestCallback: RequestCallback, dataProvide: DataProvider, paging: PagingProvider) {
+export function createPage(renderer: Renderer, handlers: FuzzyNextHandlers, requestCallback: RequestCallback, dataProvide: DataProvider, paging: PagingProvider, options: OptionsConfiguration, fuzzyOptions: CreateFuzzyOptions) {
   const onUpdatePage = async(params) => {
     const {
       success,
@@ -17,9 +17,36 @@ export function createPage(renderer: Renderer, handlers: FuzzyNextHandlers, requ
   const Page = defineComponent({
     setup() {
       const page = ref(1)
+      const currentPageSize = ref(20)
+
+      const pageProps = {} as { pageSize: number; pageSizes: number[]; onSizeChange: (size: number) => void }
+
+      if (options.pagination?.pageSize || fuzzyOptions?.adapters.paging.pageSize) {
+        const config = options.pagination || fuzzyOptions.adapters.paging
+        if (!config) return
+
+        const {
+          pageSize,
+          pageSizes = [],
+        } = config
+
+        currentPageSize.value = pageSize || 20
+        pageProps.pageSize = currentPageSize.value
+
+        if (pageSizes.length)
+          pageProps.pageSizes = pageSizes
+      }
+
+      pageProps.onSizeChange = (size) => {
+        currentPageSize.value = size
+      }
 
       watch(page, async() => {
         await onUpdatePage({ [paging.current]: page.value })
+      })
+
+      watch(currentPageSize, async() => {
+        await onUpdatePage({ [paging.current]: page.value, [paging.size]: currentPageSize.value })
       })
 
       watch(() => dataProvide.currentPage.value, () => {
@@ -27,17 +54,20 @@ export function createPage(renderer: Renderer, handlers: FuzzyNextHandlers, requ
         if (page.value !== dataProvide.currentPage.value)
           page.value = dataProvide.currentPage.value
       })
-
       return () => (
         <>
           {
             +dataProvide.total.value <= dataProvide.filterParams.value[paging.size] || !dataProvide.total.value
               ? null
-              : <renderer.page.render
-                v-model={page.value}
-                total={dataProvide.total}
-                size={unref(FuzzyComponentSize)}
-              />
+              : (
+            // @ts-expect-error anyway
+                <renderer.page.render
+                  v-model={page.value}
+                  total={dataProvide.total}
+                  size={unref(FuzzyComponentSize)}
+                  {...pageProps}
+                />
+              )
           }
 
         </>

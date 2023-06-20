@@ -25,6 +25,8 @@ export interface PagingProvider {
   current: string
   size: string
   sizeNum?: number
+  pageSize?: number
+  pageSizes?: number[]
 }
 
 export type FuzzySize = 'small' | 'default' | 'large'

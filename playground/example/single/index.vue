@@ -8,9 +8,9 @@ import SlotA from './SlotA.vue'
 const layout = new SlotLayoutProvider()
 
 const mockData = {
-  total: 12,
+  total: 50,
   data: [
-    ...Array.from({ length: 10 }).map((_, idx) => ({ name: `因子$${idx}`, polId: 'SO2', nationalPolId: '国际编码', unit: '单位' })),
+    ...Array.from({ length: 20 }).map((_, idx) => ({ name: `因子$${idx}`, polId: 'SO2', nationalPolId: '国际编码', unit: '单位' })),
   ],
 }
 

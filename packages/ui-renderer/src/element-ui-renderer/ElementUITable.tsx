@@ -1,9 +1,15 @@
 import { ElEmpty, ElTable, ElTableColumn } from 'element-plus'
 import type { VNode } from 'vue'
 import { unref } from 'vue'
-import type { Feature, TableRenderProps, TableRenderer, TableTemplate, Templates } from '../../../../types'
+import type { Feature, TableRenderProps, TableRenderer, TableRendererGlobalOptions, TableTemplate, Templates } from '../../../../types'
 
 export class ElementUITable implements TableRenderer {
+  options = {} as TableRendererGlobalOptions
+
+  constructor(options: TableRendererGlobalOptions) {
+    this.options = options
+  }
+
   render({ templates, feature, selection, showSummary = false, summaryMethod = () => ({}) }: TableRenderProps) {
     const slots = {
       empty: () => (<ElEmpty/>),
@@ -13,6 +19,13 @@ export class ElementUITable implements TableRenderer {
 
     return (props) => {
       const tableData = unref(props.data)
+
+      const attrs = {} as TableRendererGlobalOptions
+      if (props.maxHeight)
+        attrs.maxHeight = props.maxHeight
+      else if (this.options.maxHeight)
+        attrs.maxHeight = this.options.maxHeight
+
       return (
         <ElTable
           v-slots={slots}
@@ -22,6 +35,7 @@ export class ElementUITable implements TableRenderer {
           v-loading={props.loading.value}
           onSelection-Change={props.onSelectionChange}
           border={props.border}
+          {...attrs}
         >
           {
             TableColumn

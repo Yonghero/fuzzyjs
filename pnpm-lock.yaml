@@ -13,7 +13,7 @@ importers:
       '@vitejs/plugin-vue-jsx': ^1.3.8
       autoprefixer: ^10.4.8
       axios: ^0.26.1
-      element-plus: ^2.1.9
+      element-plus: ^2.3.6
       eslint: 8.22.0
       eslint-config-prettier: ^8.3.0
       eslint-plugin-vue: ^8.2.0
@@ -40,7 +40,7 @@ importers:
       '@vitejs/plugin-vue-jsx': 1.3.10
       autoprefixer: 10.4.13_postcss@8.4.18
       axios: 0.26.1
-      element-plus: 2.2.19_vue@3.2.26
+      element-plus: 2.3.6_vue@3.2.26
       eslint: 8.22.0
       eslint-config-prettier: 8.5.0_eslint@8.22.0
       eslint-plugin-vue: 8.7.1_eslint@8.22.0
@@ -1575,8 +1575,8 @@ packages:
     resolution: {integrity: sha512-M8WEXFuKXMYMVr45fo8mq0wUrrJHheiKZf6BArTKk9ZBYCKJEOU5H8cdWgDT+qCVZf7Na4lVUaZsA+h6uA9+PA==}
     dev: true
 
-  /element-plus/2.2.19_vue@3.2.26:
-    resolution: {integrity: sha512-uN0gt9lUus/IHzu5J6vkbYoYJgUtU05osdtFv9RO27bHKOG5GN7dH6uA3OKfkQQ6R2sV8ZxY1rc9PH1X8Dgrow==}
+  /element-plus/2.3.6_vue@3.2.26:
+    resolution: {integrity: sha512-GLz0pXUYI2zRfIgyI6W7SWmHk6dSEikP9yR++hsQUyy63+WjutoiGpA3SZD4cGPSXUzRFeKfVr8CnYhK5LqXZw==}
     peerDependencies:
       vue: ^3.2.0
     dependencies:

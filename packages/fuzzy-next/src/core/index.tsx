@@ -43,7 +43,7 @@ export function LiftOff(renderer: Renderer, _modalRenderer: ModalRenderer, extra
   const Table = createTable(renderer, modalRenderer, handlers, options.template, dataProvide, requestCallback, options, paging, mock, fuzzyOptions)
 
   // Page Component
-  const Page = createPage(renderer, handlers, requestCallback, dataProvide, paging)
+  const Page = createPage(renderer, handlers, requestCallback, dataProvide, paging, options, fuzzyOptions)
 
   // Filter Component
   const {
