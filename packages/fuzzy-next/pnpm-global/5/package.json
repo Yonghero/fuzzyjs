@@ -1,0 +1,5 @@
+{
+	"dependencies": {
+		"@fuzzy-next/core": "^2.0.4"
+	}
+}

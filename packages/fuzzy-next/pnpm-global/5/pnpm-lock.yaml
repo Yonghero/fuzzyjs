@@ -1,0 +1,7 @@
+lockfileVersion: 5.3
+
+specifiers:
+  '@fuzzy-next/core': ^2.0.4
+
+dependencies:
+  '@fuzzy-next/core': link:../../../../../../../pnpm.store/pnpm-global/5/node_modules/@fuzzy-next/core
