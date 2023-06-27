@@ -1,15 +1,11 @@
 import axios from 'axios'
 import { createApp } from 'vue'
 import ElementPlus from 'element-plus'
-import ArcoVue from '@arco-design/web-vue'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
-
-// import './assets/style/tailwind.css'
-// import '@arco-design/web-vue/dist/arco.css'
 // import { DefaultLayoutProvider } from '../packages/layout-provider/dist/@fuzzy-next/layout-provider.es.js'
-// import { ElementUIRenderer } from '../packages/ui-renderer/dist/@fuzzy-next/ui-renderer.es.js'
-// import { DefaultRequestProvider } from '../packages/request-provider/dist/@fuzzy-next/request-provider.es.js'
-// import { createFuzzy } from '../packages/fuzzy-next/dist/fuzzy-next.es.js'
+// // import { ElementUIRenderer } from '../packages/ui-renderer/dist/@fuzzy-next/ui-renderer.es.js'
+// // import { DefaultRequestProvider } from '../packages/request-provider/dist/@fuzzy-next/request-provider.es.js'
+// // import { createFuzzy } from '../packages/fuzzy-next/dist/fuzzy-next.es.js'
 import { DefaultLayoutProvider } from '../packages/layout-provider/index.ts'
 import { ElementUIRenderer, installUIPlugin } from '../packages/ui-renderer/index.ts'
 import { DefaultRequestProvider } from '../packages/request-provider/index.ts'
@@ -17,11 +13,8 @@ import { createFuzzy } from '../packages/fuzzy-next/index.ts'
 import type { FormCompProps } from '../types/renderer.ts'
 import { PolIdMappingPlugin } from './example/single/plugins.tsx'
 import App from './App.vue'
-// import './assets/style/index.scss'
-
-import 'element-plus/dist/index.css'
-import 'element-plus/theme-chalk/dark/css-vars.css'
-import './assets/style/element/index.scss'
+import '../packages/ui-renderer/dist/style.css'
+import './styles/main.scss'
 
 import { size } from './utils/index.ts'
 
@@ -129,6 +122,5 @@ createApp(App)
   .use(ElementPlus, {
     locale: zhCn,
   })
-  .use(ArcoVue)
   .use(fuzzyInstall)
   .mount('#app')

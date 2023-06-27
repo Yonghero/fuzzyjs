@@ -11,17 +11,17 @@ export default defineConfig({
     },
   },
   css: {
-    preprocessorOptions: {
-      css: {
-        charset: false,
-      },
-      style: {
-        charset: false,
-      },
-      scss: {
-        charset: false,
-      },
-    },
+    // preprocessorOptions: {
+    //   css: {
+    //     charset: false,
+    //   },
+    //   style: {
+    //     charset: false,
+    //   },
+    //   scss: {
+    //     charset: false,
+    //   },
+    // },
   },
   plugins: [
     vue(),

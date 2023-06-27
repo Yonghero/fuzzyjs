@@ -1,0 +1,18 @@
+// @use 'tailwind.css';
+@use "element-plus/theme-chalk/src/dark/css-vars.scss" as *;
+// @use "@fuzzy-next/ui-renderer/style";
+// 动态引入scss文件 可以根据@forward指令来改变主题
+@use "element-plus/theme-chalk/src/index.scss" as *;
+// @use "element-plus/dist/index.css"; ！！！不能直接引用打包好的css文件否则light主题不生效 如果使用scss变量修改的话
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html.dark {
+  background: #121212;
+}

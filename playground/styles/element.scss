@@ -1,0 +1,40 @@
+@use 'sass:map';
+
+$--colors: (
+  'primary': (
+    'base': #00599D,
+  ),
+);
+
+// You should use them in scss, because we calculate it by sass.
+// comment next lines to use default color
+@forward "element-plus/theme-chalk/src/common/var.scss" with (
+  // do not use same name, it will override.
+  $colors: $--colors,
+  $button-padding-vertical: (
+    'large': 13px,
+    'default': 9px,
+    'small': 6px,
+  ),
+  $button-padding-horizontal: (
+    'large': 24px,
+    'default': 20px,
+    'small': 16px,
+  ),
+  $menu: (
+    // 'bg-color': #293450
+    'base-level-padding': 15px,
+    'icon-width': 0px,
+    'text-color': #fff,
+    'bg-color': darken(map.get($--colors, 'primary', 'base'), 20%),
+    'hover-bg-color': darken(map.get($--colors, 'primary', 'base'), 10%)
+  )
+);
+// if you want to import all
+// @use "element-plus/theme-chalk/src/index.scss" as *;
+
+// You can comment it to hide debug info.
+// @debug $--colors;
+
+// custom dark variables
+@use "./element-dark.scss";

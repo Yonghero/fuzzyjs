@@ -15,38 +15,30 @@ export class DefaultLayoutProvider implements LayoutProvider {
     // 布局提供器
     // 自定义放置框架组件 可扩展其他组件
     return () => (
-      <div class="w-full h-full p-2 flex flex-col flex-auto">
-        <div>
-          {props.renderer.Tab}
-        </div>
-        <div class="flex flex-nowrap justify-between items-center">
-          <div class="flex flex-nowrap flex-shrink-1 pt-4 items-start justify-between gap-x-2">
+      <div class="relative h-full w-full p-2">
+        {props.renderer.Tab}
+        <div class="flex flex-nowrap items-center justify-between">
+          <div class="shrink-1 flex flex-nowrap items-start justify-between gap-x-2 pt-4">
             {props.renderer.Filter}
             {props.renderer.FilterButton}
           </div>
-          <div class="flex gap-x-2 flex-shrink-1">
+          <div class="shrink-1 flex gap-x-2">
             {
               props.renderer?.ExtraRenderer?.map((renderer, index) => (<renderer key={index}/>))
             }
             {props.renderer.CreateButton}
-
           </div>
         </div>
-
-        <div class="relative flex-auto flex flex-col gap-y-1">
-          {props.renderer.Table}
-          <div class="w-full flex items-center justify-end">
+        <div class="flex flex-col gap-y-1" style="height: calc(100% - 90px)">
+          <div class="flex-auto">
+            {props.renderer.Table}
+          </div>
+          <div class="flex w-full items-center justify-center">
             {props.renderer.Page}
           </div>
         </div>
 
         {props.renderer.Dialog}
-        {/* <div class="flex-auto fixed bottom-12 w-full">
-          {props.renderer.Table}
-        </div>
-        <div class="w-full flex items-center justify-center fixed bottom-1">
-          {props.renderer.Page}
-        </div> */}
       </div>
     )
   }
