@@ -134,7 +134,9 @@ export function createTable(renderer: Renderer, modalRenderer: ModalRenderer, ha
     templates.unshift({
       label: '序号',
       value: 'fuzzy-No',
-      width: 70,
+      table: {
+        width: 60,
+      },
       render(scope) {
         return (
           <span>{scope.$index + 1 + (dataProvider.filterParams.value[paging.current] - 1) * dataProvider.filterParams.value[paging.size]}</span>

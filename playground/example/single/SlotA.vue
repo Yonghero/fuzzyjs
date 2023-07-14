@@ -7,6 +7,7 @@ const props = defineProps({
     type: Object as PropType<OptionsConfiguration>,
   },
   abc: String,
+  value: Number,
 })
 watchEffect(() => {
   console.log('props.options: ', props.options, props)

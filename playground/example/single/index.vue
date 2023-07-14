@@ -43,6 +43,12 @@ onMounted(() => {
   // document.querySelector('html')!.setAttribute('class', 'dark')
 })
 
+const value = ref(1)
+
+setTimeout(() => {
+  value.value = 11
+  console.log(' value.value: ', value.value)
+}, (2000))
 </script>
 
 <template>
@@ -71,10 +77,11 @@ onMounted(() => {
       :options="mergeOp"
       :handlers="handlers"
       :mock="mockData"
+      :layout-provider="layout"
     >
-    <!-- :layout-provider="layout" -->
+      <!-- :layout-provider="layout" -->
 
-    <!-- <SlotA name="slotB" /> -->
+      <SlotA name="slotB" :value="value" />
     </Fuzzy>
   </el-config-provider>
 </template>
